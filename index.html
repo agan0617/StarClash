@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>星海衝突</title>
+<meta name="theme-color" content="#0d1420">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" class="hidden"></canvas>
+
+<div id="menu" class="overlay">
+  <h1>星海衝突</h1>
+  <p class="sub">皇室戰爭的節奏，星海爭霸的經濟</p>
+  <div id="levels">
+    <button data-level="easy">簡單</button>
+    <button data-level="normal" class="on">普通</button>
+    <button data-level="hard">困難</button>
+  </div>
+  <button id="start" class="big">開始對戰</button>
+  <p id="record"></p>
+  <button id="help-btn" class="link">玩法說明</button>
+  <div id="help" class="hidden">
+    <p><b>目標</b>：4 分鐘內拆掉對方的主堡，或拆掉比對方多的塔。平手就進入 1 分鐘驟死戰，先拆一座塔的贏。</p>
+    <p><b>出兵</b>：點下方兵種卡，再點自家半場（下半部）任何位置，兵就立刻出現、沿著那條路往上推。也可以把卡片直接拖到戰場。卡片會一直選著，連點就連放。</p>
+    <p><b>經濟</b>：礦工自動挖礦，前 8 隻全速、之後半速。瓦斯要蓋精煉廠。每個單位佔人口，人口滿了要蓋補給站。</p>
+    <p><b>科技</b>：兵營 → 重工廠 → 星港，蓋好才解鎖對應兵種；武器升級全軍攻擊 +10%。建設不佔戰場，按一下就開始蓋。</p>
+    <p><b>剋制</b>：掠奪者、坦克對重甲與塔多打；惡火噴火剋輕甲海；女妖只有陸戰隊、維京、砲塔打得到。</p>
+    <p><b>鍵盤</b>：1～7 選卡、Q/W/E/R/T/Y/U 建設、P 暫停。</p>
+  </div>
+  <p id="version" class="dim"></p>
+</div>
+
+<div id="result" class="overlay hidden">
+  <h1 id="result-title"></h1>
+  <p id="result-reason"></p>
+  <table id="result-stats"></table>
+  <button id="again" class="big">再來一場</button>
+  <button id="back" class="link">回主選單</button>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

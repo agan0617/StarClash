@@ -1,0 +1,16 @@
+{
+  "name": "星海衝突",
+  "short_name": "星海衝突",
+  "description": "皇室戰爭的節奏配上星海爭霸的經濟：即時戰略小遊戲，先單機對電腦。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090d14",
+  "theme_color": "#0d1420",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

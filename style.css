@@ -1,0 +1,22 @@
+html, body { margin: 0; height: 100%; background: #090d14; color: #eee; font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif; overflow: hidden; overscroll-behavior: none; }
+body { display: flex; align-items: center; justify-content: center; }
+#game { display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
+.hidden { display: none !important; }
+.overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; overflow-y: auto; background: radial-gradient(ellipse at top, #16263d, #090d14 70%); text-align: center; }
+h1 { margin: 0 0 4px; font-size: 40px; letter-spacing: 4px; }
+.sub { margin: 0 0 24px; color: #9fb3cc; }
+#levels { display: flex; gap: 8px; margin-bottom: 20px; }
+#levels button { padding: 10px 22px; font-size: 16px; border-radius: 8px; border: 1px solid #3a5a85; background: #1f2a3a; color: #ddd; }
+#levels button.on { background: #2b4f7e; border-color: #8fc1ff; color: #fff; }
+button.big { padding: 14px 48px; font-size: 20px; border-radius: 10px; border: 0; background: #4da3ff; color: #06131f; font-weight: bold; }
+button.link { background: none; border: 0; color: #9fd3ff; text-decoration: underline; font-size: 15px; margin-top: 12px; }
+#record { color: #bbb; font-size: 14px; margin: 16px 0 0; }
+#help { max-width: 460px; text-align: left; font-size: 14px; line-height: 1.6; color: #ccc; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 4px 16px; }
+#help p { margin: 10px 0; }
+.dim { color: #556; font-size: 12px; margin-top: 24px; }
+#result-title { font-size: 48px; }
+#result-title.win { color: #7ad17a; } #result-title.lose { color: #ff5a5a; }
+#result-reason { color: #bbb; margin: 0 0 16px; }
+#result-stats { border-collapse: collapse; margin-bottom: 24px; font-size: 15px; }
+#result-stats th, #result-stats td { padding: 4px 16px; border-bottom: 1px solid #2a3344; }
+#result-stats th:first-child, #result-stats td:first-child { text-align: left; color: #9fb3cc; }
