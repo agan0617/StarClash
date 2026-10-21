@@ -12,7 +12,7 @@
   function saveRecord() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(record)); } catch (e) { /* 無痕模式沒有 localStorage */ } }
 
   let g = null, ai = null, level = 'normal', acc = 0, last = 0, raf = 0;
-  const ui = { selected: null, toasts: [], paused: false };
+  const ui = { drag: null, toasts: [], paused: false };
   const sparks = [];
 
   // ---- 版面：畫布等比例塞進視窗；實際解析度跟著螢幕像素走，手機上才不會糊 ----
@@ -61,11 +61,11 @@
     const seed = (Date.now() ^ (Math.random() * 1e9)) >>> 0;
     g = Sim.createGame(seed, [1, DATA.AI[level].income]);
     ai = AI.create(1, level, seed + 1);
-    ui.selected = null; ui.toasts.length = 0; ui.paused = false; sparks.length = 0;
+    ui.drag = null; ui.toasts.length = 0; ui.paused = false; sparks.length = 0;
     $('#menu').classList.add('hidden'); $('#result').classList.add('hidden'); canvas.classList.remove('hidden');
     acc = 0; last = performance.now();
     cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
-    toast('對手：' + DATA.AI[level].name + '　點卡片再點自家半場出兵');
+    toast('對手：' + DATA.AI[level].name + '　拖卡片到自家半場出兵，點一下隨機放');
   }
 
   // ---- 迴圈 ----
@@ -110,39 +110,41 @@
     setTimeout(() => $('#result').classList.remove('hidden'), 600);
   }
 
-  // ---- 輸入：點卡片選兵種，點自家半場放；也可以從卡片直接拖到戰場 ----
-  let press = null;
+  // ---- 輸入：按住兵種卡拖到自家半場放手就出兵（Ken 2026-10-21 指定只用拖的）；建設點一下就蓋 ----
+  // ui.drag：拖曳中的卡片與手指位置，畫面據此畫半透明預覽與射程圈
   canvas.addEventListener('pointerdown', ev => {
     if (!g || g.over) return;
     ev.preventDefault();
     const c = toCanvas(ev);
     const card = Render.hitCard(c.x, c.y);
-    if (card) { ui.selected = ui.selected === card ? null : card; press = { card, moved: false }; return; }
+    if (card) { canvas.setPointerCapture(ev.pointerId); ui.drag = { card, x: c.x, y: c.y, moved: false, sx: c.x, sy: c.y }; return; }
     const b = Render.hitBuild(c.x, c.y);
     if (b) { const r = Sim.applyCommand(g, 0, { type: 'build', what: b }); if (!r.ok) toast(r.reason, true); return; }
-    const f = Render.toField(c.x, c.y);
-    if (f) tryDeploy(f);
+    if (Render.toField(c.x, c.y)) toast('把下方的兵種卡拖到戰場上出兵', true);
   });
-  canvas.addEventListener('pointermove', ev => { if (press) { const c = toCanvas(ev); if (Render.toField(c.x, c.y)) press.moved = true; } });
+  canvas.addEventListener('pointermove', ev => {
+    if (!ui.drag) return;
+    const c = toCanvas(ev);
+    ui.drag.x = c.x; ui.drag.y = c.y;
+    if (Math.abs(c.x - ui.drag.sx) + Math.abs(c.y - ui.drag.sy) > 10) ui.drag.moved = true;
+  });
   canvas.addEventListener('pointerup', ev => {
-    if (!press) return;
+    const d = ui.drag;
+    if (!d) return;
+    ui.drag = null;
     const c = toCanvas(ev), f = Render.toField(c.x, c.y);
-    if (press.moved && f) { ui.selected = press.card; tryDeploy(f); }
-    press = null;
-  });
-  canvas.addEventListener('pointercancel', () => { press = null; });
-
-  function tryDeploy(f) {
-    if (!ui.selected) { toast('先點下方的兵種卡', true); return; }
-    const r = Sim.applyCommand(g, 0, { type: 'deploy', unit: ui.selected, x: f.x, y: f.y });
+    let at = f;
+    // 只點一下卡片沒拖：放在自家半場的隨機位置（Ken 2026-10-21 要求）；位置由介面決定，指令照樣帶座標，模擬仍可重現
+    if (!d.moved) at = { x: 1 + Math.random() * (DATA.FIELD.w - 2), y: 7 + Math.random() * (DATA.DEPLOY_MAX_Y - 7.5) };
+    else if (!f) return;   // 拖回面板＝取消
+    const r = Sim.applyCommand(g, 0, { type: 'deploy', unit: d.card, x: at.x, y: at.y });
     if (!r.ok) toast(r.reason, true);
-  }
+  });
+  canvas.addEventListener('pointercancel', () => { ui.drag = null; });
 
   window.addEventListener('keydown', ev => {
     if (!g || g.over) return;
     if (ev.key === 'p' || ev.key === 'P' || ev.key === 'Escape') ui.paused = !ui.paused;
-    const n = parseInt(ev.key, 10);
-    if (n >= 1 && n <= DATA.CARD_ORDER.length) ui.selected = DATA.CARD_ORDER[n - 1];
     const b = { q: 'worker', w: 'depot', e: 'refinery', r: 'barracks', t: 'factory', y: 'starport', u: 'upgrade' }[ev.key];
     if (b) { const res = Sim.applyCommand(g, 0, { type: 'build', what: b }); if (!res.ok) toast(res.reason, true); }
   });

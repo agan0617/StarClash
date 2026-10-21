@@ -265,6 +265,7 @@ const Render = (() => {
     drawEffects(ctx, g, sparks, true);
     drawHud(ctx, g, ui, now);
     drawPanel(ctx, g, ui, now);
+    if (ui.drag?.moved) drawDragGhost(ctx, g, ui.drag);
     ctx.restore();
   }
 
@@ -287,12 +288,35 @@ const Render = (() => {
     for (const lx of F.lanes) blit(ctx, br, fx(lx), fy(F.river), 0);
     // 自家半場（可放兵區）
     const zoneTop = fy(DATA.DEPLOY_MAX_Y);
-    if (ui.selected) {
+    if (ui.drag) {
       const a = 0.08 + 0.04 * Math.sin(now * 4);
       ctx.fillStyle = 'rgba(77,163,255,' + a + ')'; ctx.fillRect(0, zoneTop, W, FIELD_H - zoneTop);
       ctx.strokeStyle = 'rgba(120,190,255,0.6)'; ctx.setLineDash([8, 6]); ctx.lineDashOffset = -now * 20; ctx.lineWidth = 2;
       ctx.strokeRect(1, zoneTop, W - 2, FIELD_H - zoneTop - 1); ctx.setLineDash([]);
     }
+  }
+
+  // 拖曳中的卡片：手指位置畫半透明的兵與射程圈；放不下（不在自家半場、資源或人口不夠）就變紅
+  function drawDragGhost(ctx, g, d) {
+    const u = DATA.UNITS[d.card], p = g.players[0];
+    const f = toField(d.x, d.y);
+    const used = Sim.supplyUsed(g, p);
+    const full = u.structure ? g.units.filter(x => x.owner === 0 && x.type === d.card).length >= u.maxCount : used + u.supply > p.supplyCap;
+    const ok = f && f.y <= DATA.DEPLOY_MAX_Y && f.x >= 0.5 && f.x <= F.w - 0.5 && Sim.hasTech(p, u.req) && p.minerals >= u.m && p.gas >= u.g && !full;
+    const x = d.x, y = d.y;
+    ctx.save();
+    if (f) {
+      ctx.strokeStyle = ok ? 'rgba(160,215,255,0.7)' : 'rgba(255,110,110,0.75)'; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(x, y, u.range * S, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = ok ? 'rgba(77,163,255,0.08)' : 'rgba(255,90,90,0.1)'; ctx.fill();
+    }
+    ctx.globalAlpha = 0.75;
+    const sc = 1.3;
+    if (d.card === 'tank') { blit(ctx, spr('tankHull', 0), x, y, 0, sc); blit(ctx, spr('tankGun', 0), x, y, 0, sc); }
+    else if (d.card === 'turret') { blit(ctx, spr('turretBase', 0), x, y, 0, sc); blit(ctx, spr('turretGun', 0), x, y, 0, sc); }
+    else blit(ctx, spr(d.card, 0), x, y - (u.air ? 14 : 0), 0, sc);
+    if (!ok) { ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(255,80,80,0.35)'; ctx.beginPath(); ctx.arc(x, y, 22, 0, Math.PI * 2); ctx.fill(); }
+    ctx.restore();
   }
 
   function hpBar(ctx, x, y, w, ratio, owner) {
@@ -630,7 +654,7 @@ const Render = (() => {
       const d = DATA.UNITS[t], r = cardRect(i), cx = r.x + r.w / 2;
       const locked = !Sim.hasTech(p, d.req), poor = p.minerals < d.m || p.gas < d.g;
       const full = d.structure ? g.units.filter(u => u.owner === 0 && u.type === t).length >= d.maxCount : used + d.supply > p.supplyCap;
-      const ok = !locked && !poor && !full, sel = ui.selected === t;
+      const ok = !locked && !poor && !full, sel = ui.drag?.card === t;
       cardFrame(ctx, r, sel ? 'sel' : ok ? 'ok' : 'off');
       if (sel) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = rad(ctx, cx, r.y + 26, 0, 30, ['rgba(120,190,255,' + (0.25 + 0.1 * Math.sin(now * 5)) + ')', 'rgba(0,0,0,0)']); ctx.fillRect(r.x, r.y, r.w, 52); ctx.restore(); }
       ctx.globalAlpha = ok || sel ? 1 : 0.4;

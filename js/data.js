@@ -3,7 +3,7 @@
 'use strict';
 
 const DATA = {
-  VERSION: '0.2.0',
+  VERSION: '0.3.0',
   TICK: 0.05,                 // 模擬固定每秒 20 步，和畫面更新分開
   FIELD: { w: 22.5, h: 30, river: 15, lanes: [5.5, 17], mid: 11.25 },
   DEPLOY_MAX_Y: 14,           // 玩家只能在 y ≤ 14 的自家半場放兵（敵方鏡射）
