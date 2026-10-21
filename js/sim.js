@@ -41,7 +41,8 @@ const Sim = (() => {
       g.structures.push(makeStructure(g, p, 'main', m.x, m.y, t.main));
       F.lanes.forEach((lx, lane) => {
         const o = mirror(p, lx, DATA.TOWER_POS.outpostY);
-        const s = makeStructure(g, p, 'outpost', o.x, o.y, t.outpost); s.lane = lane;
+        // lane 照畫面上的左右算（跟單位的 lane 一樣看 x）：電腦那邊鏡射後左右會對調，用索引的話下方的兵會斜著走去對面那條路
+        const s = makeStructure(g, p, 'outpost', o.x, o.y, t.outpost); s.lane = Math.abs(o.x - F.lanes[0]) <= Math.abs(o.x - F.lanes[1]) ? 0 : 1;
         g.structures.push(s);
       });
     }
@@ -56,7 +57,7 @@ const Sim = (() => {
   // ---- 經濟 ----
   function income(p) {
     const w = p.workers, full = Math.min(w, E.saturated), extra = Math.max(0, w - E.saturated);
-    return (full * E.workerRate + extra * E.saturatedRate) * p.incomeMul;
+    return (full * E.workerRate + extra * E.saturatedRate) * p.incomeMul * (p.boost || 1);
   }
   function supplyUsed(g, p) {
     let s = p.workers + p.workerQueue;
@@ -108,7 +109,7 @@ const Sim = (() => {
     const lane = Math.abs(x - F.lanes[0]) <= Math.abs(x - F.lanes[1]) ? 0 : 1;
     g.units.push({
       id: g.nextId++, owner: p.id, type, x, y, lane, hp: d.hp, maxHp: d.hp, dmg: d.dmg, cd: d.cd, range: d.range,
-      speed: d.speed, air: d.air, hitsAir: d.hitsAir, armor: d.armor, splash: d.splash || 0, bonus: d.bonus || 0, bonusVs: d.bonusVs,
+      speed: d.speed, air: d.air, hitsAir: d.hitsAir, armor: d.armor, splash: d.splash || 0, bonus: d.bonus || 0, bonusVs: d.bonusVs, groundMul: d.groundMul || 1,
       structure: !!d.structure, radius: d.structure ? 0.6 : DATA.UNIT_RADIUS, cdLeft: 0.3, targetId: 0,
       expires: d.lifetime ? g.time + d.lifetime : 0, born: g.time,
     });
@@ -120,9 +121,19 @@ const Sim = (() => {
     if (g.over) return;
     g.tick++; g.time = g.tick * TICK;
     g.effects.length = 0;
-    for (const p of g.players) stepEconomy(g, p);
+    // 最後一分鐘與驟死戰收入加倍（皇室戰爭的雙倍聖水），逼雙方把存的資源推出去
+    const boost = g.time >= DATA.MATCH_TIME - DATA.DOUBLE_TIME || g.overtime ? 2 : 1;
+    if (boost > 1 && g.players[0].boost !== boost) g.msgs.push({ p: -1, text: '最後一分鐘：收入加倍！' });
+    for (const p of g.players) { p.boost = boost; stepEconomy(g, p); }
     const all = g.units.concat(g.structures);
+    // 傷害同一步結算：先全部開火、再一起扣血，誰先被處理都不佔便宜（之前先建立的一方會先開火，鏡像對打下方勝率偏高）
+    g.hits = [];
     for (const e of all) if (e.hp > 0) stepEntity(g, e, all);
+    for (const [a, t, d] of g.hits) {
+      t.hp -= d;
+      if (t.structure && !t.type) g.players[a.owner].stats.dmgToTowers += d;
+      if (t.hp <= 0 && t.killer === undefined) t.killer = a.owner;
+    }
     separate(g);
     cleanup(g);
     checkEnd(g);
@@ -130,7 +141,7 @@ const Sim = (() => {
 
   function stepEconomy(g, p) {
     p.minerals += income(p) * TICK;
-    p.gas += p.counts.refinery * E.gasRate * p.incomeMul * TICK;
+    p.gas += p.counts.refinery * E.gasRate * p.incomeMul * (p.boost || 1) * TICK;
     if (p.workerQueue > 0) {
       p.workerT += TICK;
       if (p.workerT >= DATA.BUILDS.worker.t) { p.workerT = 0; p.workerQueue--; p.workers++; }
@@ -194,6 +205,7 @@ const Sim = (() => {
   function damageOf(g, a, t) {
     let d = a.dmg + (a.bonus && t.armor === a.bonusVs ? a.bonus : 0);
     if (!a.structure || a.type) d *= 1 + 0.1 * g.players[a.owner].counts.upgrade;  // 塔不吃升級，砲塔吃
+    if (a.groundMul && !t.air) d *= a.groundMul;   // 維京打地面只有一半，主力是防空
     return d;
   }
 
@@ -206,11 +218,7 @@ const Sim = (() => {
     }
   }
 
-  function hit(g, a, t, d) {
-    t.hp -= d;
-    if (t.structure && !t.type) g.players[a.owner].stats.dmgToTowers += d;
-    if (t.hp <= 0) { t.killer = a.owner; }
-  }
+  function hit(g, a, t, d) { g.hits.push([a, t, d]); }
 
   function separate(g) {
     // 同一層（地面對地面、空中對空中）的單位互相推開，不要疊成一點；地面單位也被塔推開

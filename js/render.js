@@ -569,6 +569,11 @@ const Render = (() => {
     ctx.strokeStyle = urgent ? 'rgba(255,179,71,' + (0.6 + 0.4 * Math.sin(now * 6)) + ')' : 'rgba(150,180,220,0.5)'; ctx.lineWidth = 1.5; ctx.stroke();
     ctx.fillStyle = urgent ? '#ffb347' : '#fff'; ctx.font = 'bold 18px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText((g.overtime ? '驟死 ' : '') + mmss(left), W / 2, ty + 1);
+    // 最後一段收入加倍時，在計時下面標出來
+    if (g.players[0].boost > 1) {
+      pill(ctx, W / 2 - 40, ty + 19, 80, 20, 'rgba(255,207,90,0.7)');
+      ctx.fillStyle = '#ffcf5a'; ctx.font = 'bold 12px sans-serif'; ctx.fillText('收入 ×2', W / 2, ty + 29.5);
+    }
     // 拆塔數
     for (const [owner, cy] of [[1, 18], [0, FIELD_H - 18]]) {
       pill(ctx, 6, cy - 12, 56, 24, TEAM[owner].main);

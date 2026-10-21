@@ -45,10 +45,12 @@ const AI = (() => {
     if (c.barracks && c.upgrade + inProg('upgrade') < 3 && !inProg('upgrade') && res.m > 300 && res.g > 150) want('upgrade');
   }
 
+  // 威脅：對方的兵過了河、進到我方半場一格以上。停在河邊互打的不算，不然兩邊會為了「守」一直一隻一隻補兵，誰都存不到一波
+  const inMyHalf = (ai, u) => (ai.pid === 1 ? u.y > F.river + 1 : u.y < F.river - 1);
   function enemiesInHalf(g, ai) {
-    // 玩家的兵進到我方半場（含河邊兩格）
-    return g.units.filter(u => u.owner !== ai.pid && !u.structure && (ai.pid === 1 ? u.y > F.river - 2 : u.y < F.river + 2));
+    return g.units.filter(u => u.owner !== ai.pid && !u.structure && inMyHalf(ai, u));
   }
+  const value = u => U[u.type].m + U[u.type].g;
 
   // 可出的兵種裡挑一個並從 res 扣掉：有威脅就挑剋制的，否則照權重隨機
   function pick(g, ai, res, threats) {
@@ -65,6 +67,8 @@ const AI = (() => {
     } else {
       if ('tank' in w) w.tank += 2; if ('banshee' in w) w.banshee += 2; if ('marauder' in w) w.marauder += 1; w.marine += 1;
     }
+    // 瓦斯存多了就多出要瓦斯的兵，不然瓦斯一路堆著不用
+    if (res.g >= 150) for (const t of avail) if (U[t].g > 0 && w[t] > 0) w[t] += 2;
     const ok = avail.filter(t => w[t] > 0 && res.m >= U[t].m && res.g >= U[t].g && res.used + U[t].supply <= res.cap);
     if (!ok.length) return null;
     let total = 0; for (const t of ok) total += w[t];
@@ -76,7 +80,9 @@ const AI = (() => {
 
   function deployAt(ai, cmds, unit, lane, depth) {
     // depth：離自家底線多遠（0 = 自家主堡那端，DEPLOY_MAX_Y = 河邊）
-    const pos = Sim.mirror(ai.pid, F.lanes[lane] + (ai.rng() - 0.5) * 2.5, Math.max(1, Math.min(DATA.DEPLOY_MAX_Y, depth + (ai.rng() - 0.5) * 2)));
+    // lane 是畫面上的左右（x），只有 y 依自己是上方或下方換算；x 也鏡射的話會放到另一條路
+    const y = Math.max(1, Math.min(DATA.DEPLOY_MAX_Y, depth + (ai.rng() - 0.5) * 2));
+    const pos = { x: F.lanes[lane] + (ai.rng() - 0.5) * 2.5, y: ai.pid === 0 ? y : F.h - y };
     cmds.push({ type: 'deploy', unit, ...pos });
   }
 
@@ -84,9 +90,14 @@ const AI = (() => {
     const p = g.players[ai.pid];
     const threats = enemiesInHalf(g, ai);
     if (threats.length) {
-      // 守：在威脅最多的那條路、前哨塔前面放兵，一次最多兩隻
+      // 守：在威脅最多的那條路、前哨塔前面放兵。只補到「我方在半場的兵價值 ≥ 威脅價值」為止（塔也會幫忙打），一次最多三隻
       const lane = threats.filter(u => u.lane === 0).length >= threats.filter(u => u.lane === 1).length ? 0 : 1;
-      for (let i = 0; i < 2; i++) { const t = pick(g, ai, res, threats); if (!t) break; deployAt(ai, cmds, t, lane, DATA.TOWER_POS.outpostY + 3); }
+      const threatV = threats.reduce((s, u) => s + value(u), 0);
+      let mine = g.units.filter(u => u.owner === ai.pid && !u.structure && inMyHalf(ai, u)).reduce((s, u) => s + value(u), 0);
+      for (let i = 0; i < 3 && mine < threatV; i++) {
+        const t = pick(g, ai, res, threats); if (!t) break;
+        mine += U[t].m + U[t].g; deployAt(ai, cmds, t, lane, DATA.TOWER_POS.outpostY + 3);
+      }
       // 砲塔：塔血剩一半以下且還沒放滿就補一座
       const out = g.structures.find(s => s.owner === ai.pid && s.kind === 'outpost' && s.lane === lane);
       if (out && !out.dead && out.hp < out.maxHp * 0.5 && Sim.hasTech(p, 'barracks') && res.m >= U.turret.m &&
@@ -96,11 +107,13 @@ const AI = (() => {
       return;
     }
     // 攻：礦存到一波的預算才動手，一次全放在玩家較弱的那條路；最後一分鐘與驟死戰不再存礦、有多少放多少
-    const endgame = g.overtime || g.time > DATA.MATCH_TIME - 60;
-    if (res.m < (endgame ? 100 : ai.cfg.wave)) return;
+    // 一波的預算隨時間變大（後面的兵比較貴、經濟也比較好），最後一分鐘收入加倍時門檻降低、有就推
+    const endgame = g.overtime || g.time > DATA.MATCH_TIME - DATA.DOUBLE_TIME;
+    const wave = endgame ? 150 : ai.cfg.wave + g.time * (ai.cfg.waveGrow ?? 1.2);
+    if (res.m < wave) return;
     const outs = g.structures.filter(s => s.owner !== ai.pid && s.kind === 'outpost' && !s.dead);
     if (outs.length) { outs.sort((a, b) => a.hp - b.hp); ai.attackLane = outs[0].lane; }
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
       const t = pick(g, ai, res, []);
       if (!t) break;
       deployAt(ai, cmds, t, ai.attackLane, DATA.DEPLOY_MAX_Y - 1.5);
