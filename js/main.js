@@ -15,10 +15,13 @@
   const ui = { selected: null, toasts: [], paused: false };
   const sparks = [];
 
-  // ---- 版面：畫布等比例塞進視窗 ----
+  // ---- 版面：畫布等比例塞進視窗；實際解析度跟著螢幕像素走，手機上才不會糊 ----
   function fit() {
     const k = Math.min(window.innerWidth / Render.W, window.innerHeight / Render.H);
-    canvas.style.width = Math.floor(Render.W * k) + 'px'; canvas.style.height = Math.floor(Render.H * k) + 'px';
+    const cw = Math.floor(Render.W * k), ch = Math.floor(Render.H * k);
+    canvas.style.width = cw + 'px'; canvas.style.height = ch + 'px';
+    const px = Math.max(1, Math.min(3, Math.round(cw * (window.devicePixelRatio || 1) / Render.W * 4) / 4));
+    if (canvas.width !== Math.round(Render.W * px)) { canvas.width = Math.round(Render.W * px); canvas.height = Math.round(Render.H * px); }
   }
   window.addEventListener('resize', fit); fit();
 
@@ -37,6 +40,7 @@
     cancelAnimationFrame(raf); g = null;
     $('#menu').classList.remove('hidden'); $('#result').classList.add('hidden'); canvas.classList.add('hidden');
     updateRecord();
+    Render.hero($('#hero'));
   }
   function updateRecord() {
     const lines = Object.keys(DATA.AI).map(k => { const r = record[k] || { w: 0, l: 0, d: 0 }; return DATA.AI[k].name + '：' + r.w + ' 勝 ' + r.l + ' 敗' + (r.d ? ' ' + r.d + ' 平' : ''); });

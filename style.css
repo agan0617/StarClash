@@ -2,13 +2,27 @@ html, body { margin: 0; height: 100%; background: #090d14; color: #eee; font-fam
 body { display: flex; align-items: center; justify-content: center; }
 #game { display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 .hidden { display: none !important; }
-.overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; overflow-y: auto; background: radial-gradient(ellipse at top, #16263d, #090d14 70%); text-align: center; }
-h1 { margin: 0 0 4px; font-size: 40px; letter-spacing: 4px; }
-.sub { margin: 0 0 24px; color: #9fb3cc; }
+/* 選單背景：星空＋藍紅兩色星雲（純 CSS） */
+.overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; overflow-y: auto; text-align: center;
+  background:
+    radial-gradient(1px 1px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 78% 12%, #cfe6ff, transparent),
+    radial-gradient(1.5px 1.5px at 33% 72%, #fff, transparent), radial-gradient(1px 1px at 88% 64%, #ffd9d9, transparent),
+    radial-gradient(1px 1px at 52% 38%, #fff, transparent), radial-gradient(1.5px 1.5px at 22% 48%, #bfe0ff, transparent),
+    radial-gradient(1px 1px at 66% 86%, #fff, transparent), radial-gradient(1px 1px at 8% 90%, #fff, transparent),
+    radial-gradient(1px 1px at 94% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 44% 8%, #fff, transparent),
+    radial-gradient(ellipse 70% 45% at 15% 85%, rgba(40,110,220,0.35), transparent 70%),
+    radial-gradient(ellipse 70% 45% at 85% 10%, rgba(220,50,60,0.3), transparent 70%),
+    radial-gradient(ellipse at center, #111a2a, #05070c 75%); }
+#hero { width: min(420px, 86vw); height: auto; aspect-ratio: 420 / 220; margin-bottom: 4px; }
+h1 { margin: 0 0 4px; font-size: 44px; letter-spacing: 6px; font-weight: 900;
+  background: linear-gradient(180deg, #ffffff 10%, #a9dcff 55%, #4d8fdf 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 12px rgba(77,163,255,0.55)) drop-shadow(0 2px 0 rgba(0,0,0,0.6)); }
+.sub { margin: 0 0 24px; color: #9fb3cc; letter-spacing: 1px; }
 #levels { display: flex; gap: 8px; margin-bottom: 20px; }
-#levels button { padding: 10px 22px; font-size: 16px; border-radius: 8px; border: 1px solid #3a5a85; background: #1f2a3a; color: #ddd; }
-#levels button.on { background: #2b4f7e; border-color: #8fc1ff; color: #fff; }
-button.big { padding: 14px 48px; font-size: 20px; border-radius: 10px; border: 0; background: #4da3ff; color: #06131f; font-weight: bold; }
+#levels button { padding: 10px 22px; font-size: 16px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; }
+#levels button.on { background: linear-gradient(180deg, #3a6aa8, #1d3a63); border-color: #a9dcff; color: #fff; box-shadow: 0 0 12px rgba(77,163,255,0.45); }
+button.big { padding: 14px 48px; font-size: 20px; border-radius: 10px; border: 1px solid #a9dcff; background: linear-gradient(180deg, #7cc0ff, #2f7fd6); color: #04101c; font-weight: 900; letter-spacing: 2px;
+  box-shadow: 0 0 18px rgba(77,163,255,0.5), inset 0 1px 0 rgba(255,255,255,0.5); }
 button.link { background: none; border: 0; color: #9fd3ff; text-decoration: underline; font-size: 15px; margin-top: 12px; }
 #record { color: #bbb; font-size: 14px; margin: 16px 0 0; }
 #help { max-width: 460px; text-align: left; font-size: 14px; line-height: 1.6; color: #ccc; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 4px 16px; }

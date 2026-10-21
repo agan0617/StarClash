@@ -200,7 +200,7 @@ const Sim = (() => {
   function attack(g, a, t, all) {
     const d = damageOf(g, a, t);
     hit(g, a, t, d);
-    g.effects.push({ type: 'shot', x1: a.x, y1: a.y, x2: t.x, y2: t.y, owner: a.owner, big: a.structure || a.type === 'tank' });
+    g.effects.push({ type: 'shot', x1: a.x, y1: a.y, x2: t.x, y2: t.y, owner: a.owner, big: a.structure || a.type === 'tank', by: a.type || a.kind, air: t.air });
     if (a.splash) for (const o of all) {
       if (o !== t && canAttack(a, o) && !o.air && dist(o, t) <= a.splash) hit(g, a, o, d * 0.5);
     }
