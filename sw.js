@@ -1,5 +1,5 @@
 /* 離線快取：先用快取秒開，背景抓新版，下次打開就是新的。改版時把 VERSION 加一。 */
-const VERSION = 'sc-0.4.0';
+const VERSION = 'sc-0.5.0';
 const FILES = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
   'js/data.js', 'js/sim.js', 'js/ai.js', 'js/render.js', 'js/main.js',

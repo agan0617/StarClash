@@ -13,6 +13,8 @@ const Render = (() => {
   ];
   const COLOR = { me: TEAM[0].main, enemy: TEAM[1].main };
   const METAL = ['#aab4c4', '#7c8798', '#555f6e', '#39404b', '#262b33'];
+  const ZC = ['#3a1d26', '#6e3346', '#9c5468', '#d08a8a'];   // 蟲族甲殼：深→淺
+  const PC = ['#d9b45a', '#a07c32', '#f6e3a4', '#5a4416'];   // 神族金色裝甲：主、暗、亮、描邊
   const LAYOUT = {
     res: { y: 722, h: 30 },
     cards: { y: 756, h: 96, x0: 6, w: 74, gap: 2 },
@@ -162,8 +164,109 @@ const Render = (() => {
         x.fillStyle = r() < 0.3 ? t.dark : METAL[2 + Math.floor(r() * 3)]; x.fillRect(-s / 2, -s / 3, s, s * 0.66); x.restore();
       }
     },
+
+    // ── 蟲族：深色甲殼＋隊伍色斑紋，肉色關節 ──
+    zergling(x, t) {
+      for (const s of [-1, 1]) { x.strokeStyle = ZC[0]; x.lineWidth = 1.6; x.beginPath(); x.moveTo(s * 2, -2); x.quadraticCurveTo(s * 7, -7, s * 4, -11); x.stroke(); }
+      x.beginPath(); x.ellipse(0, 1.5, 4.2, 6, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -4, 0, 7, [ZC[2], ZC[1]]), ZC[0], 0.9);
+      x.fillStyle = t.main; x.beginPath(); x.ellipse(0, 2.5, 2.2, 3.4, 0, 0, Math.PI * 2); x.fill();
+      x.beginPath(); x.ellipse(0, -4.2, 2.8, 2.4, 0, 0, Math.PI * 2); shade(x, ZC[1], ZC[0], 0.8);
+      x.fillStyle = '#ffd36b'; x.fillRect(-1.6, -5.2, 1, 1); x.fillRect(0.6, -5.2, 1, 1);
+      for (const s of [-1, 1]) { x.strokeStyle = ZC[3]; x.lineWidth = 1.2; x.beginPath(); x.moveTo(s * 3.5, 1); x.lineTo(s * 6, 4); x.moveTo(s * 3.5, 4); x.lineTo(s * 5.5, 7.5); x.stroke(); }
+    },
+    baneling(x, t) {
+      x.beginPath(); x.arc(0, 1, 7.5, 0, Math.PI * 2); x.fillStyle = rad(x, -2, -1, 1, 8, ['#e8ffb0', '#8fdc45', '#3b7a1c']); x.fill(); x.strokeStyle = '#2a4a12'; x.lineWidth = 1; x.stroke();
+      x.fillStyle = 'rgba(255,255,255,0.35)'; x.beginPath(); x.ellipse(-2.5, -2, 2, 1.2, -0.6, 0, Math.PI * 2); x.fill();
+      x.beginPath(); x.arc(0, -6, 3.2, Math.PI, 0); shade(x, ZC[1], ZC[0], 0.8);
+      x.fillStyle = t.main; x.fillRect(-2.5, -6.5, 5, 1.6);
+      for (const s of [-1, 1]) { x.strokeStyle = ZC[0]; x.lineWidth = 1.3; x.beginPath(); x.moveTo(s * 6, 4); x.lineTo(s * 8.5, 7); x.stroke(); }
+    },
+    roach(x, t) {
+      for (const s of [-1, 1]) for (const yy of [-4, 1, 6]) { x.strokeStyle = ZC[0]; x.lineWidth = 1.6; x.beginPath(); x.moveTo(s * 6, yy); x.lineTo(s * 11, yy + 2); x.stroke(); }
+      x.beginPath(); x.ellipse(0, 1, 8.5, 11, 0, 0, Math.PI * 2); shade(x, lin(x, -8, 0, 8, 0, [ZC[0], ZC[2], ZC[0]]), '#1e1016', 1.2);
+      x.strokeStyle = t.main; x.lineWidth = 1.6; for (const yy of [-3, 2, 7]) { x.beginPath(); x.ellipse(0, yy, 7, 2.2, 0, Math.PI * 1.05, Math.PI * 1.95); x.stroke(); }
+      x.beginPath(); x.ellipse(0, -10, 4.2, 3.4, 0, 0, Math.PI * 2); shade(x, ZC[1], ZC[0], 0.9);
+      x.fillStyle = '#9be15d'; x.beginPath(); x.arc(0, -12, 1.4, 0, Math.PI * 2); x.fill();
+    },
+    hydralisk(x, t) {
+      x.beginPath(); x.moveTo(0, 14); x.quadraticCurveTo(5, 8, 1, 2); x.quadraticCurveTo(-4, 8, 0, 14); shade(x, ZC[1], ZC[0], 0.9);
+      x.beginPath(); x.ellipse(0, 0, 5, 6.5, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -6, 0, 6, [ZC[2], ZC[1]]), ZC[0], 1);
+      x.beginPath(); x.moveTo(0, -12); x.lineTo(8, -4); x.lineTo(4, -2); x.lineTo(0, -6); x.lineTo(-4, -2); x.lineTo(-8, -4); x.closePath(); shade(x, lin(x, 0, -12, 0, -2, [t.light, t.main, t.dark]), ZC[0], 1);
+      x.beginPath(); x.ellipse(0, -6, 2.6, 3, 0, 0, Math.PI * 2); shade(x, ZC[1], ZC[0], 0.8);
+      x.fillStyle = '#ffd36b'; x.fillRect(-1.7, -7.5, 1.1, 1.1); x.fillRect(0.6, -7.5, 1.1, 1.1);
+      for (const s of [-1, 1]) { x.strokeStyle = ZC[3]; x.lineWidth = 1.4; x.beginPath(); x.moveTo(s * 4, -1); x.quadraticCurveTo(s * 9, -3, s * 7, -9); x.stroke(); }
+    },
+    mutalisk(x, t) {
+      for (const s of [-1, 1]) {
+        x.beginPath(); x.moveTo(s * 3, -3); x.quadraticCurveTo(s * 17, -12, s * 18, 2); x.quadraticCurveTo(s * 12, -2, s * 10, 4); x.quadraticCurveTo(s * 7, 0, s * 3, 4); x.closePath();
+        shade(x, lin(x, 0, -10, 0, 4, [t.light, t.main, t.dark]), ZC[0], 1);
+        x.strokeStyle = 'rgba(0,0,0,0.3)'; x.lineWidth = 0.8; x.beginPath(); x.moveTo(s * 4, -1); x.lineTo(s * 16, -6); x.moveTo(s * 4, 1); x.lineTo(s * 12, 0); x.stroke();
+      }
+      x.beginPath(); x.ellipse(0, 1, 4, 9, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -8, 0, 10, [ZC[2], ZC[1]]), ZC[0], 1);
+      x.beginPath(); x.moveTo(0, 9); x.quadraticCurveTo(4, 15, 0, 18); x.quadraticCurveTo(-3, 14, 0, 9); shade(x, ZC[1], ZC[0], 0.8);
+      x.fillStyle = '#ffd36b'; x.fillRect(-1.8, -6.5, 1.2, 1.2); x.fillRect(0.6, -6.5, 1.2, 1.2);
+    },
+    corruptor(x, t) {
+      for (let i = 0; i < 4; i++) { const a = Math.PI * 0.6 + i * Math.PI * 0.27; x.strokeStyle = ZC[1]; x.lineWidth = 2; x.beginPath(); x.moveTo(Math.cos(a) * 6, Math.sin(a) * 6); x.quadraticCurveTo(Math.cos(a) * 14, Math.sin(a) * 10, Math.cos(a + 0.3) * 17, Math.sin(a + 0.3) * 16); x.stroke(); }
+      x.beginPath(); x.arc(0, -1, 11, 0, Math.PI * 2); shade(x, rad(x, -3, -4, 1, 12, [ZC[3], ZC[1], ZC[0]]), '#1e1016', 1.2);
+      x.fillStyle = t.main; for (const [px, py] of [[-5, -4], [5, -4], [0, 4], [-6, 3], [6, 3]]) { x.beginPath(); x.arc(px, py, 1.8, 0, Math.PI * 2); x.fill(); }
+      x.beginPath(); x.ellipse(0, -10, 3.5, 4, 0, 0, Math.PI * 2); shade(x, ZC[2], ZC[0], 0.8);
+    },
+    spine(x, t) {
+      x.beginPath(); x.arc(0, 2, 12, 0, Math.PI * 2); x.fillStyle = rad(x, 0, 2, 3, 12, ['#5a2f3a', '#3a1d26', 'rgba(40,20,30,0)']); x.fill();
+      for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3 + 0.3; x.strokeStyle = ZC[1]; x.lineWidth = 2.2; x.beginPath(); x.moveTo(Math.cos(a) * 4, 2 + Math.sin(a) * 4); x.quadraticCurveTo(Math.cos(a) * 9, 2 + Math.sin(a) * 6, Math.cos(a) * 12, 2 + Math.sin(a) * 10); x.stroke(); }
+      x.beginPath(); x.ellipse(0, 1, 6, 6.5, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -5, 0, 7, [ZC[2], ZC[1]]), ZC[0], 1);
+      x.fillStyle = t.main; x.beginPath(); x.arc(0, 1, 2.6, 0, Math.PI * 2); x.fill();
+    },
+    spineGun(x, t) {
+      x.beginPath(); x.moveTo(-2.4, 0); x.quadraticCurveTo(-1.5, -10, 0, -15); x.quadraticCurveTo(1.5, -10, 2.4, 0); x.closePath(); shade(x, lin(x, 0, -15, 0, 0, ['#f2e3c0', ZC[3], ZC[1]]), ZC[0], 0.9);
+    },
+    // ── 神族：金色裝甲＋隊伍色能量光 ──
+    zealot(x, t) {
+      for (const s of [-1, 1]) { x.save(); x.globalCompositeOperation = 'lighter'; x.strokeStyle = t.glow + '0.5)'; x.lineWidth = 4.5; x.beginPath(); x.moveTo(s * 6, -2); x.lineTo(s * 8, -12); x.stroke(); x.strokeStyle = t.light; x.lineWidth = 2; x.stroke(); x.restore(); }
+      x.beginPath(); x.ellipse(0, 2, 6.5, 5, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -3, 0, 7, [PC[2], PC[0], PC[1]]), PC[3], 1);
+      for (const s of [-1, 1]) { x.beginPath(); x.moveTo(s * 4, -2); x.lineTo(s * 9, 0); x.lineTo(s * 7.5, 4); x.lineTo(s * 4, 3); x.closePath(); shade(x, PC[0], PC[3], 0.8); }
+      x.beginPath(); x.arc(0, -2.5, 3.4, 0, Math.PI * 2); shade(x, lin(x, 0, -6, 0, 1, [PC[2], PC[1]]), PC[3], 0.8);
+      x.fillStyle = t.main; x.fillRect(-1.8, -3.4, 3.6, 1.3);
+    },
+    stalker(x, t) {
+      for (const [s, yy] of [[-1, -5], [1, -5], [-1, 6], [1, 6]]) { x.strokeStyle = PC[1]; x.lineWidth = 2; x.beginPath(); x.moveTo(s * 4, yy * 0.5); x.lineTo(s * 11, yy); x.lineTo(s * 12, yy + (yy < 0 ? -4 : 4)); x.stroke(); }
+      x.beginPath(); x.ellipse(0, 0, 7, 8, 0, 0, Math.PI * 2); shade(x, lin(x, -7, 0, 7, 0, [PC[1], PC[2], PC[1]]), PC[3], 1);
+      x.beginPath(); x.arc(0, -1, 3.6, 0, Math.PI * 2); x.fillStyle = rad(x, 0, -1, 0.5, 4, ['#ffffff', t.light, t.main]); x.fill();
+      x.fillStyle = PC[3]; x.fillRect(-1.5, -10, 3, 4);
+    },
+    immortal(x, t) {
+      for (const [s, yy] of [[-1, -7], [1, -7], [-1, 8], [1, 8]]) { x.strokeStyle = PC[1]; x.lineWidth = 2.6; x.beginPath(); x.moveTo(s * 5, yy * 0.4); x.lineTo(s * 14, yy); x.stroke(); x.fillStyle = PC[3]; x.fillRect(s * 14 - 2, yy - 2, 4, 4); }
+      rr(x, -10, -9, 20, 18, 5); shade(x, lin(x, -10, -9, 10, 9, [PC[2], PC[0], PC[1]]), PC[3], 1.2);
+      for (const s of [-1, 1]) { rr(x, s * 5 - 1.8, -15, 3.6, 8, 1); shade(x, PC[1], PC[3], 0.8); }
+      x.beginPath(); x.arc(0, 1, 4, 0, Math.PI * 2); x.fillStyle = rad(x, 0, 1, 0.5, 4.5, ['#ffffff', t.light, t.main]); x.fill();
+    },
+    colossus(x, t) {
+      for (const [s, yy] of [[-1, -10], [1, -10], [-1, 12], [1, 12]]) { x.strokeStyle = PC[1]; x.lineWidth = 2; x.beginPath(); x.moveTo(s * 6, 0); x.lineTo(s * 16, yy); x.lineTo(s * 20, yy * 1.4); x.stroke(); }
+      x.beginPath(); x.ellipse(0, 0, 10, 12, 0, 0, Math.PI * 2); shade(x, lin(x, 0, -12, 0, 12, [PC[2], PC[0], PC[1]]), PC[3], 1.2);
+      for (const s of [-1, 1]) { rr(x, s * 9 - 2.5, -11, 5, 14, 2); shade(x, PC[1], PC[3], 0.8); x.fillStyle = t.light; x.fillRect(s * 9 - 1, -12, 2, 2); }
+      x.beginPath(); x.ellipse(0, -3, 4, 5, 0, 0, Math.PI * 2); x.fillStyle = rad(x, 0, -3, 0.5, 5, ['#ffffff', t.light, t.main]); x.fill();
+    },
+    voidray(x, t) {
+      poly(x, [0, -20, 9, -4, 14, 8, 5, 14, 0, 10, -5, 14, -14, 8, -9, -4]); shade(x, lin(x, -14, 0, 14, 0, [PC[1], PC[2], PC[0], PC[2], PC[1]]), PC[3], 1.2);
+      poly(x, [0, -14, 5, -2, 0, 6, -5, -2]); x.fillStyle = rad(x, 0, -3, 1, 10, ['#ffffff', t.light, t.main]); x.fill();
+      for (const s of [-1, 1]) { x.fillStyle = t.main; x.beginPath(); x.arc(s * 10, 8, 2, 0, Math.PI * 2); x.fill(); }
+    },
+    phoenix(x, t) {
+      for (const s of [-1, 1]) { poly(x, [s * 2, -6, s * 17, -2, s * 18, 3, s * 6, 6, s * 2, 10]); shade(x, lin(x, 0, -6, 0, 10, [PC[2], PC[0], PC[1]]), PC[3], 1); x.fillStyle = t.main; x.fillRect(s * 15 - 1.5, -1.5, 3, 3); }
+      poly(x, [0, -16, 3.5, -4, 3, 12, 0, 15, -3, 12, -3.5, -4]); shade(x, lin(x, -3, 0, 3, 0, [PC[1], PC[2], PC[1]]), PC[3], 1);
+      x.beginPath(); x.ellipse(0, -6, 1.8, 3.5, 0, 0, Math.PI * 2); x.fillStyle = t.light; x.fill();
+    },
+    cannon(x, t) {
+      ngon(x, 0, 0, 13, 6, Math.PI / 6); shade(x, lin(x, 0, -13, 0, 13, [PC[0], PC[1]]), PC[3], 1.2);
+      ngon(x, 0, 0, 9, 6, Math.PI / 6); shade(x, lin(x, 0, -9, 0, 9, [PC[2], PC[0]]), PC[3], 0.8);
+      x.beginPath(); x.arc(0, 0, 5.5, 0, Math.PI * 2); x.fillStyle = rad(x, -1, -1, 0.5, 6, ['#ffffff', t.light, t.main]); x.fill();
+      for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3; x.fillStyle = PC[3]; x.fillRect(Math.cos(a) * 11 - 1, Math.sin(a) * 11 - 1, 2, 2); }
+    },
   };
-  const SIZE = { marine: 30, marauder: 34, hellion: 40, tankHull: 40, tankGun: 50, viking: 40, banshee: 40, turretBase: 30, turretGun: 28, outpost: 58, outpostGun: 50, main: 84 };
+  const SIZE = { marine: 30, marauder: 34, hellion: 40, tankHull: 40, tankGun: 50, viking: 40, banshee: 40, turretBase: 30, turretGun: 28, outpost: 58, outpostGun: 50, main: 84,
+    zergling: 24, baneling: 22, roach: 32, hydralisk: 32, mutalisk: 40, corruptor: 40, spine: 30, spineGun: 32,
+    zealot: 30, stalker: 34, immortal: 40, colossus: 48, voidray: 44, phoenix: 40, cannon: 30 };
   function spr(name, owner, size) {
     const sz = size || SIZE[name];
     return sprite(name + owner + ':' + sz, sz, x => DRAW[name](x, TEAM[owner], sz));
@@ -388,22 +491,24 @@ const Render = (() => {
       const x = gx, y = gy - (air ? 14 : 0) + bob;
       // 陰影
       ctx.fillStyle = air ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.4)';
-      ctx.beginPath(); ctx.ellipse(gx + (air ? 6 : 1.5), gy + (air ? 4 : 2), air ? 13 : (u.type === 'tank' ? 15 : 9), air ? 7 : (u.type === 'tank' ? 12 : 6), 0, 0, Math.PI * 2); ctx.fill();
+      const sz = u.type === 'tank' ? 40 : u.type === 'turret' ? 30 : SIZE[u.type] || 30, rr0 = sz * 0.36;
+      ctx.beginPath(); ctx.ellipse(gx + (air ? 6 : 1.5), gy + (air ? 4 : 2), air ? sz * 0.33 : rr0 * 0.95, air ? sz * 0.18 : rr0 * 0.7, 0, 0, Math.PI * 2); ctx.fill();
       // 隊伍光圈（分得出敵我）
-      if (!air) { ctx.strokeStyle = t.glow + '0.5)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.ellipse(gx, gy + 1, u.type === 'tank' ? 16 : u.type === 'turret' ? 14 : 10, u.type === 'tank' ? 13 : u.type === 'turret' ? 12 : 8, 0, 0, Math.PI * 2); ctx.stroke(); }
-      let top = 12;
+      if (!air) { ctx.strokeStyle = t.glow + '0.5)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.ellipse(gx, gy + 1, rr0 + 1, rr0 * 0.82, 0, 0, Math.PI * 2); ctx.stroke(); }
+      let top = Math.max(12, sz * 0.42);
       switch (u.type) {
         case 'tank':
           blit(ctx, spr('tankHull', u.owner), x, y, f.body);
           blit(ctx, spr('tankGun', u.owner), x, y, f.gun);
           if (fired(u)) flash(ctx, x, y, f.gun, 24, 10);
           top = 18; break;
-        case 'turret': {
-          blit(ctx, spr('turretBase', u.owner), x, y, 0);
-          blit(ctx, spr('turretGun', u.owner), x, y, f.gun);
-          if (fired(u)) flash(ctx, x, y, f.gun, 12, 6);
+        case 'turret': case 'spine': case 'cannon': {
+          if (u.type === 'turret') { blit(ctx, spr('turretBase', u.owner), x, y, 0); blit(ctx, spr('turretGun', u.owner), x, y, f.gun); }
+          else if (u.type === 'spine') { blit(ctx, spr('spine', u.owner), x, y, 0); blit(ctx, spr('spineGun', u.owner), x, y, f.gun); }
+          else blit(ctx, spr('cannon', u.owner), x, y, 0);
+          if (fired(u)) flash(ctx, x, y, f.gun, u.type === 'cannon' ? 4 : 12, 6);
           // 剩餘時間圈
-          if (u.expires) { const left = Math.max(0, (u.expires - g.time) / DATA.UNITS.turret.lifetime); ctx.strokeStyle = t.light; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 15.5, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * left); ctx.stroke(); }
+          if (u.expires) { const left = Math.max(0, (u.expires - g.time) / DATA.UNITS[u.type].lifetime); ctx.strokeStyle = t.light; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 15.5, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * left); ctx.stroke(); }
           top = 15; break;
         }
         case 'viking': {
@@ -433,11 +538,15 @@ const Render = (() => {
         }
         default: {
           blit(ctx, spr(u.type, u.owner), x, y, f.gun);
-          if (fired(u)) flash(ctx, x + Math.cos(f.gun) * 3.7, y + Math.sin(f.gun) * 3.7, f.gun, u.type === 'hellion' ? 19 : 12, u.type === 'hellion' ? 8 : 4);
-          top = u.type === 'hellion' ? 16 : 12;
+          const melee = u.range < 1;
+          if (fired(u) && !melee && u.race === 'terran') flash(ctx, x + Math.cos(f.gun) * 3.7, y + Math.sin(f.gun) * 3.7, f.gun, u.type === 'hellion' ? 19 : 12, u.type === 'hellion' ? 8 : 4);
+          if (fired(u) && u.race === 'protoss' && !melee) flash(ctx, x, y, f.gun, sz * 0.3, 5);
         }
       }
-      if (u.hp < u.maxHp) hpBar(ctx, x, y - top - 6, u.type === 'tank' || air ? 26 : 18, u.hp / u.maxHp, u.owner);
+      // 血條（神族多一條護盾）
+      const bw = sz >= 38 ? 26 : 18;
+      if (u.hp < u.maxHp || (u.maxShield && u.shield < u.maxShield)) hpBar(ctx, x, y - top - 6, bw, u.hp / u.maxHp, u.owner);
+      if (u.maxShield) { rr(ctx, x - bw / 2, y - top - 10, Math.max(1, bw * u.shield / u.maxShield), 3, 1.5); ctx.fillStyle = '#7fe3ff'; ctx.fill(); }
     }
   }
 
@@ -449,6 +558,26 @@ const Render = (() => {
         if (!!e.air !== airLayer) continue;
         const x1 = fx(e.x1), y1 = fy(e.y1), x2 = fx(e.x2), y2 = fy(e.y2) - (e.air ? 14 : 0);
         const tc = e.owner === 0 ? '140,210,255' : '255,160,120';
+        if (e.by === 'baneling') {
+          // 毒爆蟲自爆：綠色酸液炸開
+          const r = 10 + p * 26;
+          ctx.fillStyle = rad(ctx, x2, y2, 0, r, ['rgba(230,255,170,' + a + ')', 'rgba(140,220,70,' + 0.7 * a + ')', 'rgba(40,90,20,0)']);
+          ctx.beginPath(); ctx.arc(x2, y2, r, 0, Math.PI * 2); ctx.fill();
+          continue;
+        }
+        if (e.by === 'zergling' || e.by === 'zealot') {
+          // 近戰：目標上一道爪痕／光刃
+          ctx.strokeStyle = e.by === 'zealot' ? 'rgba(' + tc + ',' + a + ')' : 'rgba(255,220,200,' + a + ')'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(x2 - 5, y2 - 5); ctx.lineTo(x2 + 5, y2 + 5); ctx.moveTo(x2 + 5, y2 - 5); ctx.lineTo(x2 - 3, y2 + 3); ctx.stroke();
+          continue;
+        }
+        if (e.by === 'voidray' || e.by === 'colossus') {
+          // 光束：粗的發光線＋白芯
+          const col = e.by === 'colossus' ? '255,150,60' : tc;
+          ctx.strokeStyle = 'rgba(' + col + ',' + 0.5 * a + ')'; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+          ctx.strokeStyle = 'rgba(255,255,255,' + 0.9 * a + ')'; ctx.lineWidth = 2; ctx.stroke();
+          continue;
+        }
         if (e.by === 'hellion') {
           // 火焰：一串由小到大的火球
           for (let i = 0; i <= 6; i++) {
@@ -582,7 +711,7 @@ const Render = (() => {
     }
     // 敵方資源（讓玩家讀得到對手的經濟，星海的偵查要素簡化版）
     const e = g.players[1];
-    const parts = [[iconMineral, Math.floor(e.minerals)], [iconGas, Math.floor(e.gas)], [iconWorker, e.workers], [iconSupply, Sim.supplyUsed(g, e) + '/' + e.supplyCap]];
+    const parts = [[iconMineral, Math.floor(e.minerals)], [iconGas, Math.floor(e.gas)], [iconWorker, e.workers], [iconSupply, Math.ceil(Sim.supplyUsed(g, e)) + '/' + e.supplyCap]];
     ctx.font = 'bold 12px sans-serif';
     const widths = parts.map(([, v]) => ctx.measureText(String(v)).width + 22);
     const tot = widths.reduce((a, b) => a + b, 0) + 10;
@@ -648,17 +777,17 @@ const Render = (() => {
     ctx.font = 'bold 16px sans-serif';
     iconGas(ctx, 210, ry, 7); ctx.fillStyle = '#c4f7b4'; ctx.fillText(String(Math.floor(p.gas)), 222, ry + 1);
     ctx.textAlign = 'right'; ctx.fillStyle = used >= p.supplyCap ? '#ff8080' : '#fff';
-    const sup = used + '/' + p.supplyCap; ctx.fillText(sup, W - 10, ry + 1); w = ctx.measureText(sup).width;
+    const sup = Math.ceil(used) + '/' + p.supplyCap; ctx.fillText(sup, W - 10, ry + 1); w = ctx.measureText(sup).width;
     iconSupply(ctx, W - 22 - w, ry, 7);
     const wk = p.workers + (p.workerQueue ? '+' + p.workerQueue : ''); ctx.fillStyle = '#ffe3a0';
     ctx.fillText(wk, W - 40 - w, ry + 1); const w2 = ctx.measureText(wk).width;
     iconWorker(ctx, W - 50 - w - w2, ry, 7);
 
     // 兵種卡
-    DATA.CARD_ORDER.forEach((t, i) => {
+    DATA.RACES[p.race].cards.forEach((t, i) => {
       const d = DATA.UNITS[t], r = cardRect(i), cx = r.x + r.w / 2;
       const locked = !Sim.hasTech(p, d.req), poor = p.minerals < d.m || p.gas < d.g;
-      const full = d.structure ? g.units.filter(u => u.owner === 0 && u.type === t).length >= d.maxCount : used + d.supply > p.supplyCap;
+      const full = d.structure ? g.units.filter(u => u.owner === 0 && u.type === t).length >= d.maxCount : used + d.supply * (d.count || 1) > p.supplyCap + 1e-9;
       const ok = !locked && !poor && !full, sel = ui.drag?.card === t;
       cardFrame(ctx, r, sel ? 'sel' : ok ? 'ok' : 'off');
       if (sel) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = rad(ctx, cx, r.y + 26, 0, 30, ['rgba(120,190,255,' + (0.25 + 0.1 * Math.sin(now * 5)) + ')', 'rgba(0,0,0,0)']); ctx.fillRect(r.x, r.y, r.w, 52); ctx.restore(); }
@@ -667,13 +796,15 @@ const Render = (() => {
       const iy = r.y + 26;
       if (t === 'tank') { blit(ctx, spr('tankHull', 0), cx, iy, 0, 0.8); blit(ctx, spr('tankGun', 0), cx, iy, 0, 0.8); }
       else if (t === 'turret') { blit(ctx, spr('turretBase', 0), cx, iy, 0, 1.05); blit(ctx, spr('turretGun', 0), cx, iy, 0, 1.05); }
-      else blit(ctx, spr(t, 0), cx, iy, 0, t === 'marine' ? 1.25 : t === 'marauder' ? 1.15 : 0.9);
+      else if (t === 'spine') { blit(ctx, spr('spine', 0), cx, iy, 0, 1.05); blit(ctx, spr('spineGun', 0), cx, iy, 0, 1.05); }
+      else if (t === 'zergling') { blit(ctx, spr(t, 0), cx - 8, iy + 1, 0, 1.2); blit(ctx, spr(t, 0), cx + 8, iy + 1, 0, 1.2); }
+      else blit(ctx, spr(t, 0), cx, iy, 0, Math.min(1.3, 36 / (SIZE[t] || 36)));
       ctx.globalAlpha = ok || sel ? 1 : 0.55;
       ctx.fillStyle = '#fff'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(d.name, cx, r.y + 53);
       cost(ctx, d, p, cx, r.y + 69);
       ctx.font = '10px sans-serif';
-      if (locked) { ctx.fillStyle = '#ffd166'; ctx.fillText('需' + DATA.BUILDS[d.req].name, cx, r.y + 85); }
-      else { ctx.fillStyle = '#8b97a8'; ctx.fillText(d.structure ? '撐 60 秒' : '人口 ' + d.supply, cx, r.y + 85); }
+      if (locked) { ctx.fillStyle = '#ffd166'; ctx.fillText('需' + DATA.buildName(d.req, p.race), cx, r.y + 85); }
+      else { ctx.fillStyle = '#8b97a8'; ctx.fillText(d.structure ? '撐 60 秒' : d.count ? '一次 ' + d.count + ' 隻' : '人口 ' + d.supply, cx, r.y + 85); }
       ctx.globalAlpha = 1;
       if (locked) lockBadge(ctx, r.x + r.w - 12, r.y + 12);
     });
@@ -690,7 +821,7 @@ const Render = (() => {
       ctx.globalAlpha = ok || inProg ? 1 : 0.45;
       buildIcon(ctx, wh, cx, r.y + 17, 10);
       ctx.fillStyle = '#fff'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(d.name, cx, r.y + 38);
+      ctx.fillText(DATA.buildName(wh, p.race), cx, r.y + 38);
       cost(ctx, d, p, cx, r.y + 53);
       let status = '';
       if (wh === 'worker') status = p.workers + '/' + d.max + (p.workerQueue ? ' 排' + p.workerQueue : '');
@@ -698,7 +829,7 @@ const Render = (() => {
       else if (d.max === 1) status = have ? '已蓋' : (inProg ? '建造中' : d.t + ' 秒');
       else status = have + '/' + d.max;
       ctx.font = '10px sans-serif';
-      if (locked) { ctx.fillStyle = '#ffd166'; ctx.fillText('需' + DATA.BUILDS[d.req].name, cx, r.y + 68); }
+      if (locked) { ctx.fillStyle = '#ffd166'; ctx.fillText('需' + DATA.buildName(d.req, p.race), cx, r.y + 68); }
       else { ctx.fillStyle = have && d.max === 1 ? '#7ad17a' : '#8b97a8'; ctx.fillText(status, cx, r.y + 68); }
       // 進度條
       rr(ctx, r.x + 7, r.y + 80, r.w - 14, 7, 3.5); ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fill();
@@ -713,7 +844,7 @@ const Render = (() => {
 
   // 畫布座標 → 戰場格；不在戰場內回傳 null
   function toField(px, py) { if (py > FIELD_H) return null; return { x: px / S, y: (FIELD_H - py) / S }; }
-  function hitCard(px, py) { for (let i = 0; i < DATA.CARD_ORDER.length; i++) { const r = cardRect(i); if (px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) return DATA.CARD_ORDER[i]; } return null; }
+  function hitCard(px, py, race) { const cards = DATA.RACES[race || 'terran'].cards; for (let i = 0; i < cards.length; i++) { const r = cardRect(i); if (px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) return cards[i]; } return null; }
   function hitBuild(px, py) { for (let i = 0; i < DATA.BUILD_ORDER.length; i++) { const r = buildRect(i); if (px >= r.x && px <= r.x + r.w && py >= r.y && py <= r.y + r.h) return DATA.BUILD_ORDER[i]; } return null; }
 
   // 主選單的封面圖：藍紅兩軍隔著能量裂谷對峙（畫布 420×220 的倍數）

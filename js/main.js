@@ -50,6 +50,19 @@
     level = b.dataset.level;
     document.querySelectorAll('#levels button').forEach(x => x.classList.toggle('on', x === b));
   }));
+  // 種族：自己選一族，對手可指定或隨機；選擇記在這台裝置
+  const RACE_KEY = 'starclash.race';
+  let pick = { me: 'terran', foe: 'random' };
+  try { pick = Object.assign(pick, JSON.parse(localStorage.getItem(RACE_KEY) || '{}')); } catch (e) { /* 無痕模式 */ }
+  function renderRaces() {
+    for (const who of ['me', 'foe']) document.querySelectorAll(`#race-${who} button`).forEach(b => b.classList.toggle('on', b.dataset.race === pick[who]));
+    $('#race-trait').textContent = DATA.RACES[pick.me].name + '：' + DATA.RACES[pick.me].trait;
+  }
+  for (const who of ['me', 'foe']) document.querySelectorAll(`#race-${who} button`).forEach(b => b.addEventListener('click', () => {
+    pick[who] = b.dataset.race; renderRaces();
+    try { localStorage.setItem(RACE_KEY, JSON.stringify(pick)); } catch (e) { /* 存不了就算了 */ }
+  }));
+  renderRaces();
   $('#start').addEventListener('click', startGame);
   $('#help-btn').addEventListener('click', () => $('#help').classList.toggle('hidden'));
   $('#again').addEventListener('click', startGame);
@@ -59,13 +72,14 @@
   // ---- 開局 ----
   function startGame() {
     const seed = (Date.now() ^ (Math.random() * 1e9)) >>> 0;
-    g = Sim.createGame(seed, [1, DATA.AI[level].income]);
+    const races = Object.keys(DATA.RACES), foe = pick.foe === 'random' ? races[Math.floor(Math.random() * races.length)] : pick.foe;
+    g = Sim.createGame(seed, [1, DATA.AI[level].income], [pick.me, foe]);
     ai = AI.create(1, level, seed + 1);
     ui.drag = null; ui.toasts.length = 0; ui.paused = false; sparks.length = 0;
     $('#menu').classList.add('hidden'); $('#result').classList.add('hidden'); canvas.classList.remove('hidden');
     acc = 0; last = performance.now();
     cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
-    toast('對手：' + DATA.AI[level].name + '　拖卡片到自家半場出兵，點一下隨機放');
+    toast('對手：' + DATA.AI[level].name + DATA.RACES[foe].name + '　拖卡片到自家半場出兵，點一下隨機放');
   }
 
   // ---- 迴圈 ----
@@ -116,7 +130,7 @@
     if (!g || g.over) return;
     ev.preventDefault();
     const c = toCanvas(ev);
-    const card = Render.hitCard(c.x, c.y);
+    const card = Render.hitCard(c.x, c.y, g.players[0].race);
     if (card) { canvas.setPointerCapture(ev.pointerId); ui.drag = { card, x: c.x, y: c.y, moved: false, sx: c.x, sy: c.y }; return; }
     const b = Render.hitBuild(c.x, c.y);
     if (b) { const r = Sim.applyCommand(g, 0, { type: 'build', what: b }); if (!r.ok) toast(r.reason, true); return; }

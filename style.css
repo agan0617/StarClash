@@ -34,3 +34,10 @@ button.link { background: none; border: 0; color: #9fd3ff; text-decoration: unde
 #result-stats { border-collapse: collapse; margin-bottom: 24px; font-size: 15px; }
 #result-stats th, #result-stats td { padding: 4px 16px; border-bottom: 1px solid #2a3344; }
 #result-stats th:first-child, #result-stats td:first-child { text-align: left; color: #9fb3cc; }
+/* 種族選擇 */
+.race-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.race-row > span { color: #9fb3cc; font-size: 14px; width: 4.5em; text-align: right; }
+.races { display: flex; gap: 6px; }
+.races button { padding: 7px 14px; font-size: 15px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; }
+.races button.on { background: linear-gradient(180deg, #3a6aa8, #1d3a63); border-color: #a9dcff; color: #fff; box-shadow: 0 0 10px rgba(77,163,255,0.4); }
+.sub.small { font-size: 13px; margin: 2px 0 16px; min-height: 1.2em; }

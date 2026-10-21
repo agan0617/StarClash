@@ -13,23 +13,25 @@ if (process.env.PATCH) {
 vm.runInContext(fs.readFileSync(path.join(root, 'js', 'sim.js'), 'utf8'), ctx, { filename: 'sim.js' });
 const { DATA, Sim } = vm.runInContext('({ DATA, Sim })', ctx);
 const BUDGET = parseInt(process.argv[2] || '600', 10);
-const types = DATA.CARD_ORDER.filter(t => !DATA.UNITS[t].structure);
-const cost = t => DATA.UNITS[t].m + DATA.UNITS[t].g;
+const only = process.argv[3];   // 只看某一族：node tools/duel.js 600 zerg
+const types = Object.keys(DATA.UNITS).filter(t => !DATA.UNITS[t].structure && (!only || DATA.UNITS[t].race === only));
+const cost = t => (DATA.UNITS[t].m + DATA.UNITS[t].g) / (DATA.UNITS[t].count || 1);
 
 // 回傳 A 方剩下的價值比例（正）或 B 方剩下的（負）
 function fight(a, b) {
   const g = Sim.createGame(1, [1, 1]);
   for (const s of g.structures) { s.hp = s.maxHp = 1e9; s.range = 0; s.dmg = 0; }   // 塔不會壞也不開火，只當兩邊兵前進的目標，看兵對兵
   for (const p of g.players) { p.minerals = 1e6; p.gas = 1e6; p.supplyCap = 999; p.counts.barracks = p.counts.factory = p.counts.starport = 1; }
+  // 用正式的出兵指令放兵（種族特性：回血、護盾、一卡多隻都照實際規則）
   const spawn = (pid, t) => {
-    const n = Math.max(1, Math.round(BUDGET / cost(t)));
-    for (let i = 0; i < n; i++) {
+    const p = g.players[pid], d = DATA.UNITS[t];
+    p.race = d.race;
+    const cards = Math.max(1, Math.round(BUDGET / (d.m + d.g)));
+    for (let i = 0; i < cards; i++) {
       const x = 11.25 + (i % 5 - 2) * 0.9, y = 10 + Math.floor(i / 5) * 0.9;
       const pos = pid === 0 ? { x, y } : { x: DATA.FIELD.w - x, y: DATA.FIELD.h - y };
-      g.units.push({ id: g.nextId++, owner: pid, type: t, x: pos.x, y: pos.y, lane: 0, hp: DATA.UNITS[t].hp, maxHp: DATA.UNITS[t].hp,
-        dmg: DATA.UNITS[t].dmg, cd: DATA.UNITS[t].cd, range: DATA.UNITS[t].range, speed: DATA.UNITS[t].speed, air: DATA.UNITS[t].air,
-        hitsAir: DATA.UNITS[t].hitsAir, armor: DATA.UNITS[t].armor, splash: DATA.UNITS[t].splash || 0, bonus: DATA.UNITS[t].bonus || 0,
-        bonusVs: DATA.UNITS[t].bonusVs, structure: false, radius: DATA.UNIT_RADIUS, cdLeft: 0.3, targetId: 0, expires: 0, born: 0 });
+      const r = Sim.applyCommand(g, pid, { type: 'deploy', unit: t, x: pos.x, y: pos.y });
+      if (!r.ok) throw new Error(t + ' ' + r.reason);
     }
   };
   spawn(0, a); spawn(1, b);

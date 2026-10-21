@@ -22,6 +22,11 @@
     <button data-level="normal" class="on">普通</button>
     <button data-level="hard">困難</button>
   </div>
+  <div class="race-row"><span>你的種族</span><div id="race-me" class="races">
+    <button data-race="terran">人類</button><button data-race="zerg">蟲族</button><button data-race="protoss">神族</button></div></div>
+  <div class="race-row"><span>對手種族</span><div id="race-foe" class="races">
+    <button data-race="random">隨機</button><button data-race="terran">人類</button><button data-race="zerg">蟲族</button><button data-race="protoss">神族</button></div></div>
+  <p id="race-trait" class="sub small"></p>
   <button id="start" class="big">開始對戰</button>
   <p id="record"></p>
   <button id="help-btn" class="link">玩法說明</button>
@@ -30,6 +35,7 @@
     <p><b>出兵</b>：按住下方兵種卡，拖到自家半場（下半部）放手，兵就立刻出現、沿著那條路往上推。拖的時候預覽變紅代表放不下；拖回面板放手就取消。只點一下卡片，兵會放在自家半場的隨機位置。</p>
     <p><b>經濟</b>：礦工自動挖礦，前 8 隻全速、之後半速。瓦斯要蓋精煉廠。每個單位佔人口，人口滿了要蓋補給站。</p>
     <p><b>科技</b>：兵營 → 重工廠 → 星港，蓋好才解鎖對應兵種；武器升級全軍攻擊 +10%。建設不佔戰場，按一下就開始蓋。</p>
+    <p><b>種族</b>：人類兵種均衡、射程長；蟲族便宜、量多、跑得快，所有單位會慢慢回血；神族貴但耐打，護盾沒挨打 3 秒後會回滿。三族的建設角色一樣（礦工、補給、瓦斯、三階科技、升級），名字和兵種不同。</p>
     <p><b>剋制</b>：掠奪者、坦克對重甲與塔多打；惡火噴火剋輕甲海；女妖只有陸戰隊、維京、砲塔打得到。</p>
     <p><b>鍵盤</b>：Q/W/E/R/T/Y/U 建設、P 暫停。</p>
   </div>

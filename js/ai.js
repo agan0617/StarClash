@@ -50,31 +50,35 @@ const AI = (() => {
   function enemiesInHalf(g, ai) {
     return g.units.filter(u => u.owner !== ai.pid && !u.structure && inMyHalf(ai, u));
   }
-  const value = u => U[u.type].m + U[u.type].g;
+  const value = u => (U[u.type].m + U[u.type].g) / (U[u.type].count || 1);
 
   // 可出的兵種裡挑一個並從 res 扣掉：有威脅就挑剋制的，否則照權重隨機
   function pick(g, ai, res, threats) {
     const p = g.players[ai.pid];
-    const avail = DATA.CARD_ORDER.filter(t => !U[t].structure && Sim.hasTech(p, U[t].req));
+    // 三族共用：照兵種的屬性挑（打不打得到空中、對哪種護甲加成、有沒有範圍傷害），不寫死兵種名
+    const avail = DATA.RACES[p.race].cards.filter(t => !U[t].structure && Sim.hasTech(p, U[t].req));
     const w = {};
     for (const t of avail) w[t] = 1;
+    const aa = t => U[t].hitsAir, groundOnly = t => !U[t].hitsAir;
     if (ai.cfg.counter && threats.length) {
       const air = threats.filter(u => u.air).length, light = threats.filter(u => u.armor === 'light' && !u.air).length,
-        armored = threats.filter(u => u.armor === 'armored' && !u.air).length;
-      if (air) { w.marine += 3; if ('viking' in w) w.viking += 4; if ('marauder' in w) w.marauder = 0; if ('hellion' in w) w.hellion = 0; if ('tank' in w) w.tank = 0; }
-      if (light >= 3 && 'hellion' in w) w.hellion += 4;
-      if (armored >= 2) { if ('marauder' in w) w.marauder += 3; if ('tank' in w) w.tank += 2; }
+        armored = threats.filter(u => u.armor === 'armored' && !u.air).length, ground = threats.length - air;
+      if (air) for (const t of avail) { if (aa(t)) w[t] += 3 + (U[t].hitsGround === false ? 1 : 0); else if (!ground) w[t] = 0; }
+      if (light >= 3) for (const t of avail) if (U[t].splash || U[t].bonusVs === 'light') w[t] += 4;
+      if (armored >= 2) for (const t of avail) if (U[t].bonusVs === 'armored' && U[t].hitsGround !== false) w[t] += 3;
+      if (!air) for (const t of avail) if (U[t].hitsGround === false) w[t] = 0;   // 沒有空中威脅就別出只能打空的
     } else {
-      if ('tank' in w) w.tank += 2; if ('banshee' in w) w.banshee += 2; if ('marauder' in w) w.marauder += 1; w.marine += 1;
+      // 進攻：偏好高階兵；只能打空的少出（塔打得到，但效率差）
+      for (const t of avail) { if (U[t].req !== 'barracks') w[t] += 2; if (U[t].hitsGround === false) w[t] = 0.3; }
     }
     // 瓦斯存多了就多出要瓦斯的兵，不然瓦斯一路堆著不用
     if (res.g >= 150) for (const t of avail) if (U[t].g > 0 && w[t] > 0) w[t] += 2;
-    const ok = avail.filter(t => w[t] > 0 && res.m >= U[t].m && res.g >= U[t].g && res.used + U[t].supply <= res.cap);
+    const ok = avail.filter(t => w[t] > 0 && res.m >= U[t].m && res.g >= U[t].g && res.used + U[t].supply * (U[t].count || 1) <= res.cap);
     if (!ok.length) return null;
     let total = 0; for (const t of ok) total += w[t];
     let r = ai.rng() * total, t = ok[ok.length - 1];
     for (const x of ok) { r -= w[x]; if (r <= 0) { t = x; break; } }
-    res.m -= U[t].m; res.g -= U[t].g; res.used += U[t].supply;
+    res.m -= U[t].m; res.g -= U[t].g; res.used += U[t].supply * (U[t].count || 1);
     return t;
   }
 
@@ -98,11 +102,12 @@ const AI = (() => {
         const t = pick(g, ai, res, threats); if (!t) break;
         mine += U[t].m + U[t].g; deployAt(ai, cmds, t, lane, DATA.TOWER_POS.outpostY + 3);
       }
-      // 砲塔：塔血剩一半以下且還沒放滿就補一座
+      // 防禦建築（砲塔／脊刺觸手／光子砲）：塔血剩一半以下且還沒放滿就補一座
+      const def = DATA.RACES[p.race].cards.find(t => U[t].structure);
       const out = g.structures.find(s => s.owner === ai.pid && s.kind === 'outpost' && s.lane === lane);
-      if (out && !out.dead && out.hp < out.maxHp * 0.5 && Sim.hasTech(p, 'barracks') && res.m >= U.turret.m &&
-          g.units.filter(u => u.owner === ai.pid && u.type === 'turret').length < 2) {
-        res.m -= U.turret.m; deployAt(ai, cmds, 'turret', lane, DATA.TOWER_POS.outpostY + 2);
+      if (def && out && !out.dead && out.hp < out.maxHp * 0.5 && Sim.hasTech(p, U[def].req) && res.m >= U[def].m &&
+          g.units.filter(u => u.owner === ai.pid && u.type === def).length < 2) {
+        res.m -= U[def].m; deployAt(ai, cmds, def, lane, DATA.TOWER_POS.outpostY + 2);
       }
       return;
     }

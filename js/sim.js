@@ -14,9 +14,9 @@ const Sim = (() => {
     };
   }
 
-  function makePlayer(id, incomeMul) {
+  function makePlayer(id, incomeMul, race) {
     return {
-      id, minerals: E.startMinerals, gas: E.startGas, workers: E.startWorkers,
+      id, race: race || 'terran', minerals: E.startMinerals, gas: E.startGas, workers: E.startWorkers,
       supplyCap: E.startSupply, incomeMul,
       workerQueue: 0, workerT: 0,              // 主堡一次訓練一隻礦工，可排隊
       counts: { depot: 0, refinery: 0, barracks: 0, factory: 0, starport: 0, upgrade: 0 },
@@ -28,11 +28,11 @@ const Sim = (() => {
   // 鏡射：玩家 0 的座標 (x, y) 在玩家 1 那側是 (w - x, h - y)
   function mirror(p, x, y) { return p === 0 ? { x, y } : { x: F.w - x, y: F.h - y }; }
 
-  function createGame(seed, incomeMul) {
+  function createGame(seed, incomeMul, races = ['terran', 'terran']) {
     const g = {
       tick: 0, time: 0, seed, rng: mulberry32(seed), nextId: 1,
       over: false, winner: -1, overtime: false, endReason: '',
-      players: [makePlayer(0, incomeMul[0]), makePlayer(1, incomeMul[1])],
+      players: [makePlayer(0, incomeMul[0], races[0]), makePlayer(1, incomeMul[1], races[1])],
       units: [], structures: [], effects: [], msgs: [],
     };
     for (let p = 0; p < 2; p++) {
@@ -62,7 +62,7 @@ const Sim = (() => {
   function supplyUsed(g, p) {
     let s = p.workers + p.workerQueue;
     for (const u of g.units) if (u.owner === p.id && !u.structure) s += DATA.UNITS[u.type].supply;
-    return s;
+    return Math.round(s * 2) / 2;
   }
   function hasTech(p, req) { return !req || p.counts[req] > 0; }
   function buildingInProgress(p, what) { return p.builds.filter(b => b.what === what).length; }
@@ -80,10 +80,10 @@ const Sim = (() => {
   function build(g, p, what) {
     const d = DATA.BUILDS[what];
     if (!d) return { ok: false, reason: '不認得的建設' };
-    if (d.req && !hasTech(p, d.req)) return { ok: false, reason: '要先蓋' + DATA.BUILDS[d.req].name };
+    if (d.req && !hasTech(p, d.req)) return { ok: false, reason: '要先蓋' + DATA.buildName(d.req, p.race) };
     const have = what === 'worker' ? p.workers + p.workerQueue : p.counts[what] + buildingInProgress(p, what);
-    if (have >= d.max) return { ok: false, reason: d.name + '已達上限' };
-    if (what === 'worker' && supplyUsed(g, p) + 1 > p.supplyCap) return { ok: false, reason: '人口不足，先蓋補給站' };
+    if (have >= d.max) return { ok: false, reason: DATA.buildName(what, p.race) + '已達上限' };
+    if (what === 'worker' && supplyUsed(g, p) + 1 > p.supplyCap + 1e-9) return { ok: false, reason: '人口不足，先蓋' + DATA.buildName('depot', p.race) };
     if (what === 'upgrade' && buildingInProgress(p, 'upgrade')) return { ok: false, reason: '升級中，一次一級' };
     if (p.minerals < d.m) return { ok: false, reason: '礦物不足' };
     if (p.gas < d.g) return { ok: false, reason: '瓦斯不足' };
@@ -96,23 +96,31 @@ const Sim = (() => {
   function deploy(g, p, type, x, y) {
     const d = DATA.UNITS[type];
     if (!d) return { ok: false, reason: '不認得的兵種' };
-    if (d.req && !hasTech(p, d.req)) return { ok: false, reason: '要先蓋' + DATA.BUILDS[d.req].name };
+    if (d.race && d.race !== p.race) return { ok: false, reason: '不是這個種族的兵' };
+    if (d.req && !hasTech(p, d.req)) return { ok: false, reason: '要先蓋' + DATA.buildName(d.req, p.race) };
     const yy = p.id === 0 ? y : F.h - y;   // 換成玩家 0 視角檢查半場
     if (x < 0.5 || x > F.w - 0.5 || yy < 0.5 || yy > DATA.DEPLOY_MAX_Y) return { ok: false, reason: '只能放在自家半場' };
     if (d.structure) {
       const n = g.units.filter(u => u.owner === p.id && u.type === type).length;
       if (n >= d.maxCount) return { ok: false, reason: d.name + '最多 ' + d.maxCount + ' 座' };
-    } else if (supplyUsed(g, p) + d.supply > p.supplyCap) return { ok: false, reason: '人口不足，先蓋補給站' };
+    } else if (supplyUsed(g, p) + d.supply * (d.count || 1) > p.supplyCap + 1e-9) return { ok: false, reason: '人口不足，先蓋' + DATA.buildName('depot', p.race) };
     if (p.minerals < d.m) return { ok: false, reason: '礦物不足' };
     if (p.gas < d.g) return { ok: false, reason: '瓦斯不足' };
     p.minerals -= d.m; p.gas -= d.g; p.stats.spentM += d.m; p.stats.spentG += d.g; p.stats.deployed++;
     const lane = Math.abs(x - F.lanes[0]) <= Math.abs(x - F.lanes[1]) ? 0 : 1;
-    g.units.push({
-      id: g.nextId++, owner: p.id, type, x, y, lane, hp: d.hp, maxHp: d.hp, dmg: d.dmg, cd: d.cd, range: d.range,
-      speed: d.speed, air: d.air, hitsAir: d.hitsAir, armor: d.armor, splash: d.splash || 0, bonus: d.bonus || 0, bonusVs: d.bonusVs, groundMul: d.groundMul || 1,
-      structure: !!d.structure, radius: d.structure ? 0.6 : DATA.UNIT_RADIUS, cdLeft: 0.3, targetId: 0,
-      expires: d.lifetime ? g.time + d.lifetime : 0, born: g.time,
-    });
+    // 一張卡可以出好幾隻（跳蟲一次兩隻），左右錯開一點
+    const n = d.count || 1;
+    for (let i = 0; i < n; i++) {
+      const ox = n > 1 ? (i - (n - 1) / 2) * 0.7 : 0;
+      g.units.push({
+        id: g.nextId++, owner: p.id, type, race: d.race, x: Math.max(0.3, Math.min(F.w - 0.3, x + ox)), y, lane, hp: d.hp, maxHp: d.hp,
+        shield: d.shield || 0, maxShield: d.shield || 0, lastHit: -99, regen: (d.race === 'zerg' ? DATA.ZERG_REGEN : 0) + (d.regen || 0),
+        dmg: d.dmg, cd: d.cd, range: d.range, speed: d.speed, air: d.air, hitsAir: d.hitsAir, hitsGround: d.hitsGround !== false,
+        armor: d.armor, splash: d.splash || 0, splashFull: !!d.splashFull, suicide: !!d.suicide, bonus: d.bonus || 0, bonusVs: d.bonusVs, groundMul: d.groundMul || 1,
+        structure: !!d.structure, radius: d.structure ? 0.6 : DATA.UNIT_RADIUS, cdLeft: 0.3, targetId: 0,
+        expires: d.lifetime ? g.time + d.lifetime : 0, born: g.time,
+      });
+    }
     return { ok: true };
   }
 
@@ -129,10 +137,20 @@ const Sim = (() => {
     // 傷害同一步結算：先全部開火、再一起扣血，誰先被處理都不佔便宜（之前先建立的一方會先開火，鏡像對打下方勝率偏高）
     g.hits = [];
     for (const e of all) if (e.hp > 0) stepEntity(g, e, all);
-    for (const [a, t, d] of g.hits) {
+    for (const [a, t, d0] of g.hits) {
+      // 神族護盾先吸收傷害
+      let d = d0;
+      if (t.shield > 0) { const s = Math.min(t.shield, d); t.shield -= s; d -= s; }
+      t.lastHit = g.time;
       t.hp -= d;
       if (t.structure && !t.type) g.players[a.owner].stats.dmgToTowers += d;
       if (t.hp <= 0 && t.killer === undefined) t.killer = a.owner;
+    }
+    // 蟲族回血、神族護盾（沒挨打一陣子才回）
+    for (const u of g.units) {
+      if (u.hp <= 0) continue;
+      if (u.regen) u.hp = Math.min(u.maxHp, u.hp + u.regen * TICK);
+      if (u.maxShield && g.time - u.lastHit >= DATA.SHIELD_DELAY) u.shield = Math.min(u.maxShield, u.shield + DATA.SHIELD_REGEN * TICK);
     }
     separate(g);
     cleanup(g);
@@ -151,12 +169,13 @@ const Sim = (() => {
       if (b.t >= b.total) {
         p.builds.splice(i, 1); p.counts[b.what]++;
         if (b.what === 'depot') p.supplyCap = Math.min(E.maxSupply, p.supplyCap + 8);
-        g.msgs.push({ p: p.id, text: DATA.BUILDS[b.what].name + (b.what === 'upgrade' ? ' ' + p.counts.upgrade + ' 級' : '') + '完成' });
+        g.msgs.push({ p: p.id, text: DATA.buildName(b.what, p.race) + (b.what === 'upgrade' ? ' ' + p.counts.upgrade + ' 級' : '') + '完成' });
       }
     }
   }
 
-  function canAttack(a, t) { return t.hp > 0 && t.owner !== a.owner && (a.hitsAir || !t.air); }
+  // hitsGround 為 false 的（腐化飛蟲、鳳凰）打不到地面單位，但塔與防禦建築打得到
+  function canAttack(a, t) { return t.hp > 0 && t.owner !== a.owner && (a.hitsAir || !t.air) && (a.hitsGround !== false || t.air || t.structure); }
   function dist(a, b) { const dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx * dx + dy * dy); }
 
   function findTarget(g, e, all) {
@@ -214,8 +233,10 @@ const Sim = (() => {
     hit(g, a, t, d);
     g.effects.push({ type: 'shot', x1: a.x, y1: a.y, x2: t.x, y2: t.y, owner: a.owner, big: a.structure || a.type === 'tank', by: a.type || a.kind, air: t.air });
     if (a.splash) for (const o of all) {
-      if (o !== t && canAttack(a, o) && !o.air && dist(o, t) <= a.splash) hit(g, a, o, d * 0.5);
+      // 空中單位的範圍傷害（飛龍彈跳）打空中，地面的打地面
+      if (o !== t && canAttack(a, o) && o.air === t.air && dist(o, t) <= a.splash) hit(g, a, o, damageOf(g, a, o) * (a.splashFull ? 1 : 0.5));
     }
+    if (a.suicide) { a.hp = 0; a.expired = true; }   // 毒爆蟲：撞上去就爆，不算被殺
   }
 
   function hit(g, a, t, d) { g.hits.push([a, t, d]); }
