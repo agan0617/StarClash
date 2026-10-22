@@ -79,3 +79,9 @@
 - `node tools/duel.js 1200 [種族]`：兵種對決表，兩種兵花同樣的錢對打
 - `python tools/make_icons.py`：重產 PWA 圖示
 - 改版：`js/data.js` 的 `VERSION`、`sw.js` 的 `VERSION` 都加一，不然舊快取不更新
+
+## 版權
+
+Copyright © 2026 agan0617. All rights reserved. 保留所有權利，詳見 [LICENSE](LICENSE)。
+
+本作品是個人製作的非官方作品，與 皇室戰爭 Clash Royale（Supercell）、星海爭霸 II StarCraft II（Blizzard Entertainment） 沒有關係；相關名稱與商標屬原權利人所有。
