@@ -163,6 +163,7 @@
     if (b) { const res = Sim.applyCommand(g, 0, { type: 'build', what: b }); if (!res.ok) toast(res.reason, true); }
   });
 
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
   showMenu();
+  // 被放進沙盒 iframe（opaque origin）時，讀 navigator.serviceWorker 本身就會丟 SecurityError，要包起來
+  try { if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) { /* 沒有離線快取也能玩 */ }
 })();
