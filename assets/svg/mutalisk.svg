@@ -1,25 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<title>糖蝶（軟糖蟲）</title>
-<path d="M24 30 Q8 8 4 20 Q2 32 22 36 Z" fill="#ffc6de" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M40 30 Q56 8 60 20 Q62 32 42 36 Z" fill="#ffc6de" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M23 38 Q8 42 10 52 Q16 58 26 44 Z" fill="#dcc6ff" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M41 38 Q56 42 54 52 Q48 58 38 44 Z" fill="#dcc6ff" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="12" cy="20" r="3.4" fill="#4da3ff"/><circle cx="52" cy="20" r="3.4" fill="#4da3ff"/>
-<path d="M28 18 Q24 8 20 8" fill="none" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="20" cy="8" r="2.6" fill="#ffe9a0" stroke="#3a2c55" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M36 18 Q40 8 44 8" fill="none" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="44" cy="8" r="2.6" fill="#ffe9a0" stroke="#3a2c55" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="32" cy="46" rx="6" ry="9" fill="#b99de8" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="30" r="13" fill="#dcc6ff" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="26.5" cy="29" rx="3.4" ry="3.81" fill="#3a2c55"/>
-<circle cx="25.41" cy="27.71" r="1.43" fill="#fff"/>
-<circle cx="27.79" cy="30.36" r="0.68" fill="#fff"/>
-<ellipse cx="37.5" cy="29" rx="3.4" ry="3.81" fill="#3a2c55"/>
-<circle cx="36.41" cy="27.71" r="1.43" fill="#fff"/>
-<circle cx="38.79" cy="30.36" r="0.68" fill="#fff"/>
+<title>浮翼獸（蟲族）</title>
+<path d="M22 30 Q6 10 2 22 Q4 28 8 28 Q6 34 12 36 Q14 40 22 38 Z" fill="#6ff5dc" opacity="0.6" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M42 30 Q58 10 62 22 Q60 28 56 28 Q58 34 52 36 Q50 40 42 38 Z" fill="#6ff5dc" opacity="0.6" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 22 L20 32 M56 22 L44 32" stroke="#2fc4b0" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M32 44 Q36 54 30 60 Q34 58 36 54" fill="none" stroke="#2f2850" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="30" cy="60" r="3.60" fill="#ff8ae6" opacity="0.25"/>
+<circle cx="30" cy="60" r="2" fill="#ff8ae6"/>
 
-<ellipse cx="22.5" cy="35" rx="2.4" ry="1.32" fill="#ff9fbf" opacity="0.75"/>
-<ellipse cx="41.5" cy="35" rx="2.4" ry="1.32" fill="#ff9fbf" opacity="0.75"/>
+<ellipse cx="32" cy="32" rx="14" ry="13" fill="#b993ff" opacity="0.95" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M28 20 Q23.2 6 22 10" fill="none" stroke="#2f2850" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="22" cy="10" r="4.68" fill="#ff8ae6" opacity="0.25"/>
+<circle cx="22" cy="10" r="2.6" fill="#ff8ae6"/>
+<path d="M36 20 Q40.8 6 42 10" fill="none" stroke="#2f2850" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="42" cy="10" r="4.68" fill="#ff8ae6" opacity="0.25"/>
+<circle cx="42" cy="10" r="2.6" fill="#ff8ae6"/>
 
-<path d="M30 34.5 Q32 36.3 34 34.5" fill="none" stroke="#3a2c55" stroke-width="1.8" stroke-linecap="round"/>
+<circle cx="32" cy="31" r="7" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32.70" cy="31.84" r="4.62" fill="#6ff5dc"/>
+<circle cx="32.84" cy="32.05" r="2.52" fill="#2f2850"/>
+<circle cx="30.74" cy="29.60" r="1.68" fill="#fff"/>
+<circle cx="34.52" cy="33.94" r="0.70" fill="#fff"/>
 
-<ellipse cx="25" cy="23" rx="3" ry="1.6" fill="#fff" opacity="0.75" transform="rotate(-30 25 23)"/>
+<circle cx="24" cy="40" r="2.88" fill="#6ff5dc" opacity="0.25"/>
+<circle cx="24" cy="40" r="1.6" fill="#6ff5dc"/>
+<circle cx="40" cy="40" r="2.88" fill="#6ff5dc" opacity="0.25"/>
+<circle cx="40" cy="40" r="1.6" fill="#6ff5dc"/>
+
+<ellipse cx="25" cy="24" rx="3" ry="1.4" fill="#fff" opacity="0.7" transform="rotate(-30 25 24)"/>
 </svg>

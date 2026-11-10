@@ -1051,7 +1051,7 @@ const Render = (() => {
       ctx.fillStyle = 'rgba(20,12,40,0.3)'; ctx.beginPath(); ctx.ellipse(x, y + s * 0.4, s * 0.3, s * 0.1, 0, 0, Math.PI * 2); ctx.fill();
       put(ctx, n, o, x, y, s, flip);
     };
-    // 藍軍（左下）：扭蛋兵＋晶光族；紅軍（右上）：軟糖蟲＋晶光族
+    // 藍軍（左下）：人族＋神族；紅軍（右上）：蟲族＋神族
     P('main_terran', 0, 54, 160, 96, false);
     P('colossus', 0, 112, 120, 64, false);
     P('tank', 0, 150, 182, 58, false);

@@ -1,26 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<title>晶刃騎士（晶光族）</title>
-<path d="M22 32 Q12 46 16 56 L30 50 Z" fill="#4da3ff" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="22" y="48" width="8" height="9" rx="3.5" fill="#d99a2b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="34" y="48" width="8" height="9" rx="3.5" fill="#d99a2b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<defs><clipPath id="b"><rect x="19" y="30" width="26" height="22" rx="10"/></clipPath></defs>
-<rect x="19" y="30" width="26" height="22" rx="10" fill="#ffd36b"/>
-<ellipse cx="34" cy="52" rx="18" ry="7" fill="#d99a2b" clip-path="url(#b)"/>
-<rect x="19" y="30" width="26" height="22" rx="10" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M29 38 L32 34 L35 38 L32 42 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M50 34 L56 6 L60 8 L54 36 Z" fill="#5ff0e8" opacity="0.92" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M53 30 L57.5 9" stroke="#d2fffc" stroke-width="1.6" stroke-linecap="round"/>
-<circle cx="50" cy="38" r="4" fill="#ffd36b" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<defs><clipPath id="h"><circle cx="32" cy="22" r="13"/></clipPath></defs>
-<circle cx="32" cy="22" r="13" fill="#ffd36b"/>
-<ellipse cx="34" cy="33" rx="16" ry="6" fill="#d99a2b" clip-path="url(#h)"/>
-<circle cx="32" cy="22" r="13" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M32 9 L29 3 L32 5 L35 3 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="22" y="18" width="20" height="9" rx="4.5" fill="#1f4b5a" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="27.4" cy="22.5" rx="2.2" ry="2.75" fill="#5ff0e8"/>
-<circle cx="26.74" cy="21.51" r="0.77" fill="#fff"/>
-<ellipse cx="36.6" cy="22.5" rx="2.2" ry="2.75" fill="#5ff0e8"/>
-<circle cx="35.94" cy="21.51" r="0.77" fill="#fff"/>
+<title>符文騎士（神族）</title>
+<ellipse cx="32" cy="6" rx="12.5" ry="4.72" fill="none" stroke="#ffe48a" stroke-width="4" opacity="0.35"/>
+<ellipse cx="32" cy="6" rx="11" ry="3.52" fill="none" stroke="#ffe48a" stroke-width="2"/>
 
-<ellipse cx="25" cy="14" rx="3" ry="1.6" fill="#fff" opacity="0.6" transform="rotate(-30 25 14)"/>
+<rect x="22" y="52" width="8" height="9" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="34" y="52" width="8" height="9" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M19 40 Q19 36 24 36 L40 36 Q45 36 45 40 L45 52 Q45 56 40 56 L24 56 Q19 56 19 52 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M25 47 L32 52 L39 47" fill="none" stroke="#ffe48a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+<circle cx="32" cy="44" r="5.10" fill="#ff8fc8" opacity="0.22"/>
+<circle cx="32" cy="44" r="3" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="44" r="1.65" fill="#ffd1ea"/>
+<circle cx="31.10" cy="42.95" r="0.75" fill="#fff"/>
+
+<path d="M48 40 L58 8" stroke="#ffe48a" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
+<path d="M48 40 L58 8" stroke="#ffd1ea" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 24 L52.70 25.30 L54 26 L52.70 26.70 L52 28 L51.30 26.70 L50 26 L51.30 25.30 Z" fill="#ffe48a"/>
+<path d="M57 12.2 L57.63 13.37 L58.8 14 L57.63 14.63 L57 15.8 L56.37 14.63 L55.2 14 L56.37 13.37 Z" fill="#ffe48a"/>
+
+<circle cx="47" cy="42" r="4" fill="#f2c879" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M11 24 Q11 9 32 9 Q53 9 53 24 Q53 39 32 39 Q11 39 11 24 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 30 Q32 44 52 30 Q50 39 32 39 Q14 39 12 30 Z" fill="#c3bce0"/>
+<path d="M11 24 Q11 9 32 9 Q53 9 53 24 Q53 39 32 39 Q11 39 11 24 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 12 Q32 6 44 12" fill="none" stroke="#f2c879" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="24" cy="25" rx="3.6" ry="4.14" fill="#4a2f6b"/>
+<circle cx="22.92" cy="23.63" r="1.51" fill="#fff"/>
+<circle cx="25.26" cy="26.44" r="0.65" fill="#ffe48a"/>
+<ellipse cx="40" cy="25" rx="3.6" ry="4.14" fill="#4a2f6b"/>
+<circle cx="38.92" cy="23.63" r="1.51" fill="#fff"/>
+<circle cx="41.26" cy="26.44" r="0.65" fill="#ffe48a"/>
+
+<path d="M28 16 L32 13 L36 16" fill="none" stroke="#ffe48a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+<ellipse cx="18" cy="15" rx="3.5" ry="1.6" fill="#fff" opacity="0.7" transform="rotate(-30 18 15)"/>
 </svg>

@@ -23,9 +23,9 @@
     <button data-level="hard">困難</button>
   </div>
   <div class="race-row"><span>你的種族</span><div id="race-me" class="races">
-    <button data-race="terran">扭蛋兵</button><button data-race="zerg">軟糖蟲</button><button data-race="protoss">晶光族</button></div></div>
+    <button data-race="terran">人族</button><button data-race="zerg">蟲族</button><button data-race="protoss">神族</button></div></div>
   <div class="race-row"><span>對手種族</span><div id="race-foe" class="races">
-    <button data-race="random">隨機</button><button data-race="terran">扭蛋兵</button><button data-race="zerg">軟糖蟲</button><button data-race="protoss">晶光族</button></div></div>
+    <button data-race="random">隨機</button><button data-race="terran">人族</button><button data-race="zerg">蟲族</button><button data-race="protoss">神族</button></div></div>
   <p id="race-trait" class="sub small"></p>
   <button id="start" class="big">開始對戰</button>
   <button id="online" class="big alt">連線對戰</button>
@@ -35,10 +35,10 @@
   <div id="help" class="hidden">
     <p><b>目標</b>：4 分鐘內拆掉對方的主堡，或拆掉比對方多的塔。平手就進入 1 分鐘驟死戰，先拆一座塔的贏。最後 90 秒和驟死戰收入加倍。</p>
     <p><b>出兵</b>：按住下方兵種卡，拖到自家半場（下半部）放手，兵就立刻出現、沿著那條路往上推。拖的時候預覽變紅代表放不下；拖回面板放手就取消。只點一下卡片，兵會放在自家半場的隨機位置。</p>
-    <p><b>經濟</b>：礦工自動挖礦，前 8 隻全速、之後半速。瓦斯要蓋瓦斯建築（扭蛋兵的汽水站、軟糖蟲的吸管花、晶光族的凝氣塔）。每個單位佔人口，人口滿了要蓋補給（玩具箱／氣球蟲／能源晶柱）。</p>
-    <p><b>科技</b>：一階 → 二階 → 三階建築（扭蛋兵是扭蛋機 → 組裝廠 → 玩具機庫），蓋好才解鎖對應兵種；強化（升級）全軍攻擊 +10%。建設不佔戰場，按一下就開始蓋。</p>
-    <p><b>種族</b>：扭蛋兵（扭蛋公仔小機器人與玩具車）兵種均衡、射程長；軟糖蟲（軟糖麻糬般的圓滾滾小蟲）便宜、量多、跑得快，所有單位會慢慢回血；晶光族（發光水晶的外星騎士）貴但耐打，護盾沒挨打 3 秒後會回滿。三族的建設角色一樣（礦工、補給、瓦斯、三階科技、升級），名字和兵種不同。</p>
-    <p><b>剋制</b>：拳拳機、咚咚車對重甲與塔多打；噗噗車噴火剋輕甲海；嗡嗡機只有嗶嗶兵、啾啾機、扭蛋砲打得到。單位腳下的圈圈：藍色是我方、紅色是敵方，虛線圈是空中單位。</p>
+    <p><b>經濟</b>：礦工自動挖礦，前 8 隻全速、之後半速。瓦斯要蓋瓦斯建築（人族的氣體泵、蟲族的吸氣巢、神族的凝氣塔）。每個單位佔人口，人口滿了要蓋補給（電池艙／共生囊／能量方尖碑）。</p>
+    <p><b>科技</b>：一階 → 二階 → 三階建築（人族是機兵廠 → 機甲廠 → 航空塢），蓋好才解鎖對應兵種；強化（升級）全軍攻擊 +10%。建設不佔戰場，按一下就開始蓋。</p>
+    <p><b>種族</b>：人族（可愛又正經的機器人與機甲）兵種均衡、射程長；蟲族（會發光的可愛外星小生物）便宜、量多、跑得快，所有單位會慢慢回血；神族（古老符文能量驅動的精緻機械）貴但耐打，護盾沒挨打 3 秒後會回滿。三族的建設角色一樣（礦工、補給、瓦斯、三階科技、升級），名字和兵種不同。</p>
+    <p><b>剋制</b>：重拳機甲、砲擊機甲對重甲與塔多打；噴火戰車噴火剋輕甲海；旋翼無人機只有小機兵、鷹式戰機、哨戒砲台打得到。單位腳下的圈圈：藍色是我方、紅色是敵方，虛線圈是空中單位。</p>
     <p><b>連線對戰</b>：在電腦上執行 <code>node server/server.js</code>，兩個人都用它印出的網址開遊戲、按「連線對戰」就會配對。斷線會自動連回，斷 3 秒起電腦代打、15 秒判輸。</p>
     <p><b>重播</b>：每場打完自動存（最近 20 場），結算按「看重播」或主選單按「重播」，可暫停、變速、拖進度條。</p>
     <p><b>鍵盤</b>：Q/W/E/R/T/Y/U 建設、P 暫停（只限對電腦）。</p>

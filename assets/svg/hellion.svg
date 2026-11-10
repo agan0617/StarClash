@@ -1,23 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<title>噗噗車（扭蛋兵）</title>
-<path d="M58 40 Q64 36 62 32 Q60 28 56 31 Q57 26 53 27" fill="#ffe9a0" stroke="#3a2c55" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="59" cy="35" r="2.4" fill="#ffc48a"/>
-<rect x="4" y="34" width="52" height="16" rx="8" fill="#ffe9a0" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="6" y="36" width="48" height="4" rx="2" fill="#fff" opacity="0.5"/>
-<rect x="50" y="37" width="7" height="6" rx="3" fill="#ffc48a" stroke="#3a2c55" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="15" cy="51" r="7.5" fill="#ffc48a" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="15" cy="51" r="3" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="45" cy="51" r="7.5" fill="#ffc48a" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="45" cy="51" r="3" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-<line x1="9" y1="34" x2="7" y2="22" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M7 22 L15 24.5 L7.5 27.5 Z" fill="#4da3ff" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="14" y="4" width="32" height="32" rx="14" fill="#fff8ee" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M16 26 Q30 38 44 26 L44 28 Q42 36 34 36 L26 36 Q16 36 16 28 Z" fill="#eadcc8"/>
-<rect x="14" y="4" width="32" height="32" rx="14" fill="none" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="18" y="10" width="24" height="17" rx="7.1" fill="#3d4a78" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="21" y="12.5" width="18" height="4.2" rx="2.0" fill="#fff" opacity="0.12"/>
-<path d="M22.509999999999998 18.755 Q24.72 14.776999999999997 26.93 18.755" fill="none" stroke="#a6f4ff" stroke-width="1.66" stroke-linecap="round"/>
-<path d="M33.07 18.755 Q35.28 14.776999999999997 37.49 18.755" fill="none" stroke="#a6f4ff" stroke-width="1.66" stroke-linecap="round"/>
-<ellipse cx="21.6" cy="21.8" rx="2.0" ry="1.1" fill="#ff9fbf" opacity="0.8"/>
-<ellipse cx="38.4" cy="21.8" rx="2.0" ry="1.1" fill="#ff9fbf" opacity="0.8"/>
-<path d="M28.011 21.406999999999996 Q30.0 23.197099999999995 31.989 21.406999999999996" fill="none" stroke="#a6f4ff" stroke-width="1.2155" stroke-linecap="round"/>
+<title>噴火戰車（人族）</title>
+<circle cx="14" cy="51" r="8" fill="#6d7a99" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="14" cy="51" r="3.2" fill="#cddcf2" stroke="#2f2850" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="47" cy="51" r="8" fill="#6d7a99" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="47" cy="51" r="3.2" fill="#cddcf2" stroke="#2f2850" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 46 L4 38 Q4 30 14 30 L42 30 Q54 30 58 40 L58 46 Z" fill="#cddcf2" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M5 41 L57 41 L58 46 L4 46 Z" fill="#9fb4d6"/>
+<path d="M4 46 L4 38 Q4 30 14 30 L42 30 Q54 30 58 40 L58 46 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="8" y="34" width="12" height="4" rx="2" fill="#ffb67a"/>
+<rect x="52" y="34" width="10" height="7" rx="2" fill="#6d7a99" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="62" cy="37.5" r="2.4" fill="#ffb67a"/>
+<rect x="6" y="22" width="4" height="10" rx="1" fill="#6d7a99" stroke="#2f2850" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="8" cy="21" r="2.4" fill="#4da3ff" stroke="#2f2850" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 31 Q20 10 34 10 Q48 10 48 31 Z" fill="#cddcf2" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="23" y="16" width="22" height="11" rx="5.5" fill="#2c3656"/>
+<rect x="23" y="16" width="22" height="11" rx="5.5" fill="#2c3656" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="28.7" cy="21.5" r="4.46" fill="#8ff3ff" opacity="0.25"/>
+<circle cx="28.7" cy="21.5" r="3.30" fill="#8ff3ff"/>
+<circle cx="27.6" cy="20.2" r="1.32" fill="#fff"/>
+<circle cx="39.3" cy="21.5" r="4.46" fill="#8ff3ff" opacity="0.25"/>
+<circle cx="39.3" cy="21.5" r="3.30" fill="#8ff3ff"/>
+<circle cx="38.1" cy="20.2" r="1.32" fill="#fff"/>
+<path d="M27.4 18.2 L32.2 18.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
 
-<ellipse cx="18" cy="8" rx="3" ry="1.4" fill="#fff" opacity="0.75" transform="rotate(-15 18 8)"/>
+<ellipse cx="25" cy="14" rx="3" ry="1.3" fill="#fff" opacity="0.7" transform="rotate(-20 25 14)"/>
 </svg>

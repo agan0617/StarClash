@@ -1,17 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<title>稜鏡艦（晶光族）</title>
-<path d="M32 4 L58 30 L32 58 L6 30 Z" fill="#ffd36b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M6 30 L32 58 L58 30 L32 44 Z" fill="#d99a2b" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M32 13 L49 30 L32 47 L15 30 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M32 13 L49 30 L32 30 Z" fill="#d2fffc" opacity="0.6"/>
-<path d="M15 30 L32 47 L32 30 Z" fill="#22b5c4" opacity="0.6"/>
-<ellipse cx="27" cy="29" rx="3.2" ry="3.8" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="27.8" cy="29.6" rx="1.92" ry="2.51" fill="#2b2140"/>
-<circle cx="27.00" cy="28.05" r="0.90" fill="#fff"/>
-<ellipse cx="37" cy="29" rx="3.2" ry="3.8" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="37.8" cy="29.6" rx="1.92" ry="2.51" fill="#2b2140"/>
-<circle cx="37.00" cy="28.05" r="0.90" fill="#fff"/>
+<title>靈光艦（神族）</title>
+<ellipse cx="32" cy="32" rx="29.5" ry="10.2" fill="none" stroke="#ffe48a" stroke-width="4" opacity="0.35"/>
+<ellipse cx="32" cy="32" rx="28" ry="9" fill="none" stroke="#ffe48a" stroke-width="2"/>
 
-<circle cx="6" cy="30" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="58" cy="30" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="4.5" r="2.6" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 32 Q14 18 32 16 Q50 18 58 32 Q50 46 32 48 Q14 46 6 32 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M7 34 Q32 44 57 34 Q50 46 32 48 Q14 46 7 34 Z" fill="#c3bce0"/>
+<path d="M6 32 Q14 18 32 16 Q50 18 58 32 Q50 46 32 48 Q14 46 6 32 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M14 30 L20 27 M50 30 L44 27 M18 40 L24 42 M46 40 L40 42" fill="none" stroke="#ffe48a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+<path d="M14.0 32.0 L12.9 33.2 L12.8 34.8 L11.2 34.9 L10.0 36.0 L8.8 34.9 L7.2 34.8 L7.1 33.2 L6.0 32.0 L7.1 30.8 L7.2 29.2 L8.8 29.1 L10.0 28.0 L11.2 29.1 L12.8 29.2 L12.9 30.8 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="10" cy="32" r="1.4" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M58.0 32.0 L56.9 33.2 L56.8 34.8 L55.2 34.9 L54.0 36.0 L52.8 34.9 L51.2 34.8 L51.1 33.2 L50.0 32.0 L51.1 30.8 L51.2 29.2 L52.8 29.1 L54.0 28.0 L55.2 29.1 L56.8 29.2 L56.9 30.8 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="54" cy="32" r="1.4" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+
+<circle cx="32" cy="30" r="18.70" fill="#ff8fc8" opacity="0.22"/>
+<circle cx="32" cy="30" r="11" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="30" r="6.05" fill="#ffd1ea"/>
+<circle cx="28.70" cy="26.15" r="2.75" fill="#fff"/>
+
+<ellipse cx="27.5" cy="30" rx="2.8" ry="3.22" fill="#4a2f6b"/>
+<circle cx="26.66" cy="28.94" r="1.18" fill="#fff"/>
+<circle cx="28.48" cy="31.12" r="0.50" fill="#ffe48a"/>
+<ellipse cx="36.5" cy="30" rx="2.8" ry="3.22" fill="#4a2f6b"/>
+<circle cx="35.66" cy="28.94" r="1.18" fill="#fff"/>
+<circle cx="37.48" cy="31.12" r="0.50" fill="#ffe48a"/>
+
+<path d="M32 3.6 L32.84 5.16 L34.4 6 L32.84 6.84 L32 8.4 L31.16 6.84 L29.6 6 L31.16 5.16 Z" fill="#ffe48a"/>
+<path d="M20 54.2 L20.63 55.37 L21.8 56 L20.63 56.63 L20 57.8 L19.37 56.63 L18.2 56 L19.37 55.37 Z" fill="#ffe48a"/>
+<path d="M44 54.2 L44.63 55.37 L45.8 56 L44.63 56.63 L44 57.8 L43.37 56.63 L42.2 56 L43.37 55.37 Z" fill="#ffe48a"/>
 </svg>
