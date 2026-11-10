@@ -1,24 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<title>轟轟車（鐵殼聯邦）</title>
-<rect x="5" y="40" width="50" height="16" rx="8" fill="#4a5064" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="13" cy="48" r="4" fill="#8ea3c2" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="24" cy="48" r="4" fill="#8ea3c2" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="35" cy="48" r="4" fill="#8ea3c2" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="46" cy="48" r="4" fill="#8ea3c2" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="8" y="31" width="44" height="12" rx="6" fill="#8ea3c2" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="10" y="33" width="40" height="3.5" rx="1.75" fill="#ff9a3c"/>
-<rect x="36" y="20" width="26" height="7" rx="3.5" fill="#5d6a82" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="57" y="19" width="6" height="9" rx="2.5" fill="#ff9a3c" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<defs><clipPath id="d"><path d="M14 33 Q14 11 31 11 Q46 11 46 33 Z"/></clipPath></defs>
-<path d="M14 33 Q14 11 31 11 Q46 11 46 33 Z" fill="#c3d2e6"/>
-<ellipse cx="34" cy="34" rx="18" ry="6" fill="#8ea3c2" clip-path="url(#d)"/>
-<path d="M14 33 Q14 11 31 11 Q46 11 46 33 Z" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<rect x="20" y="18" width="21" height="9" rx="4.5" fill="#33405a" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="25.5" cy="22.5" rx="2.2" ry="2.75" fill="#7ee0ff"/>
-<circle cx="24.84" cy="21.51" r="0.77" fill="#fff"/>
-<ellipse cx="35.5" cy="22.5" rx="2.2" ry="2.75" fill="#7ee0ff"/>
-<circle cx="34.84" cy="21.51" r="0.77" fill="#fff"/>
+<title>咚咚車（扭蛋兵）</title>
+<rect x="4" y="44" width="52" height="15" rx="7.5" fill="#cfc6e8" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="13" cy="51.5" r="3.6" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="24" cy="51.5" r="3.6" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="35" cy="51.5" r="3.6" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46" cy="51.5" r="3.6" fill="#fff8ee" stroke="#3a2c55" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="7" y="36" width="46" height="11" rx="5.5" fill="#ffc48a" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="10" y="38" width="40" height="3" rx="1.5" fill="#fff" opacity="0.5"/>
+<rect x="44" y="18" width="14" height="8" rx="4" fill="#ffe9a0" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="59" cy="22" r="4.6" fill="#ffc48a" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="12" y="4" width="36" height="35" rx="16" fill="#fff8ee" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M14 29 Q30 41 46 29 L46 32 Q44 39 36 39 L24 39 Q14 39 14 32 Z" fill="#eadcc8"/>
+<rect x="12" y="4" width="36" height="35" rx="16" fill="none" stroke="#3a2c55" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="30" cy="4" r="3.4" fill="#4da3ff" stroke="#3a2c55" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="17" y="10" width="26" height="19" rx="8.0" fill="#3d4a78" stroke="#3a2c55" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="20" y="12.5" width="20" height="4.8" rx="2.3" fill="#fff" opacity="0.12"/>
+<ellipse cx="24.28" cy="18.55" rx="2.47" ry="2.96" fill="#a6f4ff"/>
+<circle cx="23.54" cy="17.56" r="0.94" fill="#fff"/>
+<ellipse cx="35.72" cy="18.55" rx="2.47" ry="2.96" fill="#a6f4ff"/>
+<circle cx="34.98" cy="17.56" r="0.94" fill="#fff"/>
+<ellipse cx="20.8" cy="23.2" rx="2.2" ry="1.2" fill="#ff9fbf" opacity="0.8"/>
+<ellipse cx="39.2" cy="23.2" rx="2.2" ry="1.2" fill="#ff9fbf" opacity="0.8"/>
+<path d="M27.777 22.749000000000002 Q30.0 24.749700000000004 32.223 22.749000000000002" fill="none" stroke="#a6f4ff" stroke-width="1.3585000000000003" stroke-linecap="round"/>
 
-<circle cx="31" cy="11" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="21" cy="16" rx="3.5" ry="1.8" fill="#fff" opacity="0.6" transform="rotate(-30 21 16)"/>
+<ellipse cx="17" cy="9" rx="3" ry="1.4" fill="#fff" opacity="0.75" transform="rotate(-15 17 9)"/>
 </svg>
