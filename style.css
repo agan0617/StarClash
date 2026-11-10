@@ -45,3 +45,12 @@ button.link { background: none; border: 0; color: #9fd3ff; text-decoration: unde
 button.big.alt { margin-top: 12px; background: linear-gradient(180deg, #ffb36b, #d6602f); border-color: #ffd9b0; box-shadow: 0 0 18px rgba(255,140,77,0.45), inset 0 1px 0 rgba(255,255,255,0.5); }
 h1.mid { font-size: 34px; }
 #lobby-msg { white-space: pre-line; color: #cde; font-size: 16px; line-height: 1.7; max-width: 420px; margin: 12px 0 8px; }
+/* 重播 */
+#replay-list { display: flex; flex-direction: column; gap: 6px; width: min(460px, 92vw); max-height: 60vh; overflow-y: auto; color: #9fb3cc; font-size: 14px; }
+#replay-list button { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; font-size: 14px; text-align: left; }
+#replay-list .when { color: #9fb3cc; white-space: nowrap; }
+#replay-list .win { color: #7ad17a; } #replay-list .lose { color: #ff5a5a; }
+#replay-bar { position: fixed; bottom: 6px; left: 50%; transform: translateX(-50%); width: min(520px, 96vw); box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: rgba(10,16,28,0.85); border: 1px solid #3a5a85; z-index: 5; }
+#replay-bar button { padding: 4px 10px; font-size: 15px; border-radius: 6px; border: 1px solid #3a5a85; background: #1d2a40; color: #fff; min-width: 40px; }
+#replay-seek { flex: 1; min-width: 60px; }
+#replay-time { color: #cde; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }

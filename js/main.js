@@ -58,14 +58,35 @@
   // 下指令：單機直接執行；連線送給 server，等它排進某一步再兩邊同時執行
   function issue(cmd) {
     if (mode === 'online') { if (online.phase === 'match') Net.send({ type: 'cmd', cmd }); return; }
-    const r = Sim.applyCommand(g, 0, cmd);
+    if (mode !== 'ai') return;
+    const r = apply(0, cmd);
     if (!r.ok) toast(r.reason, true);
+  }
+
+  // ---- 重播錄製：模擬可重現，所以只記開局參數＋每個指令是在第幾步之前執行的 ----
+  // 單機與連線都錄；連線錄的是 server 排好的指令（含對手與電腦代打的），重連時 server 會補送之前的紀錄
+  const REPLAY_KEY = 'starclash.replays', REPLAY_MAX = 20;
+  let rec = null, lastReplay = null;
+  function apply(pid, cmd) {
+    if (rec) rec.cmds.push([g.tick + 1, pid, cmd]);
+    return Sim.applyCommand(g, pid, cmd);
+  }
+  function loadReplays() { try { return JSON.parse(localStorage.getItem(REPLAY_KEY) || '[]'); } catch (e) { return []; } }
+  function saveReplay() {
+    if (!rec) return;
+    rec.end = { tick: g.tick, winner: g.winner, reason: g.endReason };
+    lastReplay = rec; rec = null;
+    const list = loadReplays(); list.unshift(lastReplay);
+    // 存不下（每筆約 10 KB）就丟最舊的再試
+    for (let n = Math.min(list.length, REPLAY_MAX); n > 0; n--) {
+      try { localStorage.setItem(REPLAY_KEY, JSON.stringify(list.slice(0, n))); return; } catch (e) { /* 空間不夠 */ }
+    }
   }
 
   // ---- 主選單 ----
   function showMenu() {
-    cancelAnimationFrame(raf); g = null; mode = 'ai'; me = 0;
-    $('#menu').classList.remove('hidden'); $('#result').classList.add('hidden'); $('#lobby').classList.add('hidden'); canvas.classList.add('hidden');
+    cancelAnimationFrame(raf); g = null; mode = 'ai'; me = 0; rec = null;
+    $('#menu').classList.remove('hidden'); $('#result').classList.add('hidden'); $('#lobby').classList.add('hidden'); $('#replays').classList.add('hidden'); $('#replay-bar').classList.add('hidden'); canvas.classList.add('hidden');
     updateRecord();
     Render.hero($('#hero'));
   }
@@ -98,13 +119,22 @@
   $('#help-btn').addEventListener('click', () => $('#help').classList.toggle('hidden'));
   $('#again').addEventListener('click', () => { if (mode === 'online') { onlineQuit(); onlineStart(null); } else startGame(); });
   $('#back').addEventListener('click', () => { if (mode === 'online') onlineQuit(); else showMenu(); });
+  $('#watch').addEventListener('click', () => { if (mode === 'online') { Net.close(); online.phase = 'idle'; } if (lastReplay) replayStart(lastReplay); });
+  $('#replays-btn').addEventListener('click', showReplays);
+  $('#replays-back').addEventListener('click', showMenu);
   $('#version').textContent = 'v' + DATA.VERSION;
 
   function enterField() {
     ui.drag = null; ui.toasts.length = 0; ui.paused = false; sparks.length = 0;
-    $('#menu').classList.add('hidden'); $('#result').classList.add('hidden'); $('#lobby').classList.add('hidden'); canvas.classList.remove('hidden');
+    $('#menu').classList.add('hidden'); $('#result').classList.add('hidden'); $('#lobby').classList.add('hidden'); $('#replays').classList.add('hidden'); canvas.classList.remove('hidden');
+    $('#replay-bar').classList.toggle('hidden', mode !== 'replay');
     acc = 0; last = performance.now();
     cancelAnimationFrame(raf); raf = requestAnimationFrame(frame);
+  }
+
+  // 一場重播的開局參數：同樣的 seed、收入倍率、種族＋同樣的指令就跑出同一場
+  function newRec(kind, seed, income, races, extra) {
+    return Object.assign({ v: DATA.VERSION, date: Date.now(), mode: kind, seed, income, races, me, cmds: [], end: null }, extra);
   }
 
   // ---- 開局（單機） ----
@@ -113,6 +143,7 @@
     const seed = (Date.now() ^ (Math.random() * 1e9)) >>> 0;
     const races = Object.keys(DATA.RACES), foe = pick.foe === 'random' ? races[Math.floor(Math.random() * races.length)] : pick.foe;
     g = Sim.createGame(seed, [1, DATA.AI[level].income], [pick.me, foe]);
+    rec = newRec('ai', seed, [1, DATA.AI[level].income], [pick.me, foe], { level });
     ai = AI.create(1, level, seed + 1);
     enterField();
     toast('對手：' + DATA.AI[level].name + DATA.RACES[foe].name + '　拖卡片到自家半場出兵，點一下隨機放');
@@ -175,6 +206,9 @@
         const resumed = !!m.snap || online.phase === 'reconnect';
         mode = 'online'; flipView = null;
         g = m.snap ? Sim.restore(m.snap) : Sim.createGame(online.seed, [1, 1], online.races);
+        // 重連時斷線那段的指令沒收到，改用 server 補送的完整紀錄（log）當重播的開頭
+        rec = newRec('online', online.seed, [1, 1], online.races);
+        if (m.log) rec.cmds = m.log.slice();
         online.frames = []; online.startAt = performance.now() + m.in; online.phase = 'match';
         enterField();
         if (resumed) toast('已連回對戰');
@@ -200,7 +234,7 @@
   function applyFrame(fr, effects) {
     if (fr.tick <= g.tick) return;                 // 重連快照已經包含的步
     if (fr.cmds) for (const [pid, c] of fr.cmds) {
-      const r = Sim.applyCommand(g, pid, c);
+      const r = apply(pid, c);
       if (pid === me && !r.ok) toast(r.reason, true);
     }
     Sim.step(g);
@@ -220,12 +254,13 @@
     let dt = (now - last) / 1000; last = now;
     if (dt > 0.25) dt = 0.25;           // 切到背景再回來不要一口氣補太多步
     if (mode === 'online') stepOnline(dt);
+    else if (mode === 'replay') stepReplay(dt);
     else {
       if (!ui.paused) acc += dt;
       let steps = 0;
       while (acc >= DATA.TICK && steps < 10 && !g.over) {
         acc -= DATA.TICK; steps++;
-        for (const c of AI.update(g, ai)) Sim.applyCommand(g, 1, c);
+        for (const c of AI.update(g, ai)) apply(1, c);
         Sim.step(g);
         afterStep(true);
       }
@@ -234,7 +269,80 @@
     const t = performance.now(); while (ui.toasts.length && ui.toasts[0].until < t) ui.toasts.shift();
     Render.draw(ctx, view(), ui, sparks);
     if (mode === 'online') drawNetOverlay();
-    if (g.over) finish();
+    if (mode === 'replay') updateReplayBar();
+    else if (g.over) finish();
+  }
+
+  // ---- 重播播放 ----
+  // 從種子重建同一場，照紀錄在每一步之前執行指令；拖進度條＝從頭快轉到那一步（整場 4800 步，一下就算完）
+  const rp = { data: null, idx: 0, speed: 1, paused: false };
+  const SPEEDS = [1, 2, 4, 8];
+  const fmt = tick => { const s = Math.floor(tick * DATA.TICK); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+
+  function replayStart(data) {
+    mode = 'replay'; me = data.me; flipView = null; rec = null;
+    Object.assign(rp, { data, idx: 0, paused: false });
+    g = Sim.createGame(data.seed, data.income, data.races);
+    $('#replay-seek').max = data.end.tick;
+    enterField();
+    toast('重播：' + replayTitle(data));
+    if (data.v !== DATA.VERSION) toast('這是 v' + data.v + ' 錄的，之後數值改過的話會和當時不一樣', true);
+  }
+
+  function replayStep() {
+    const cmds = rp.data.cmds;
+    while (rp.idx < cmds.length && cmds[rp.idx][0] <= g.tick + 1) { const [, pid, c] = cmds[rp.idx++]; Sim.applyCommand(g, pid, c); }
+    Sim.step(g);
+    // server 判的結束（中離）模擬自己走不到，照紀錄收尾
+    const e = rp.data.end;
+    if (!g.over && g.tick >= e.tick) { g.over = true; g.winner = e.winner; g.endReason = e.reason; }
+  }
+
+  function stepReplay(dt) {
+    if (rp.paused || g.over) { acc = 0; return; }
+    acc += dt * rp.speed;
+    let n = 0;
+    while (acc >= DATA.TICK && !g.over && n++ < 200) { acc -= DATA.TICK; replayStep(); afterStep(rp.speed <= 4); }
+    if (g.over) toast('重播結束：' + resultWord(g.winner) + '（' + g.endReason + '）');
+  }
+
+  function replaySeek(tick) {
+    if (tick < g.tick) { g = Sim.createGame(rp.data.seed, rp.data.income, rp.data.races); rp.idx = 0; }
+    while (g.tick < tick && !g.over) { replayStep(); g.msgs.length = 0; }
+    sparks.length = 0; acc = 0;
+  }
+
+  function updateReplayBar() {
+    $('#replay-seek').value = g.tick;
+    $('#replay-time').textContent = fmt(g.tick) + ' / ' + fmt(rp.data.end.tick);
+    $('#replay-play').textContent = rp.paused || g.over ? '▶' : '⏸';
+    $('#replay-speed').textContent = '×' + rp.speed;
+  }
+  $('#replay-play').addEventListener('click', () => { if (g.over) { replaySeek(0); rp.paused = false; } else rp.paused = !rp.paused; });
+  $('#replay-speed').addEventListener('click', () => { rp.speed = SPEEDS[(SPEEDS.indexOf(rp.speed) + 1) % SPEEDS.length]; });
+  $('#replay-seek').addEventListener('input', ev => replaySeek(+ev.target.value));
+  $('#replay-exit').addEventListener('click', showMenu);
+
+  const resultWord = w => w === me ? '勝利' : w === 1 - me ? '落敗' : '平手';
+  function replayTitle(d) {
+    const who = d.mode === 'online' ? '連線' : DATA.AI[d.level] ? '電腦' + DATA.AI[d.level].name : '電腦';
+    return who + '　' + DATA.RACES[d.races[d.me]].name + ' vs ' + DATA.RACES[d.races[1 - d.me]].name;
+  }
+
+  // 主選單的重播清單（最近 20 場，存在這台裝置）
+  function showReplays() {
+    const list = loadReplays(), box = $('#replay-list');
+    box.innerHTML = '';
+    if (!list.length) box.textContent = '還沒有重播。打完一場就會自動存下來。';
+    for (const d of list) {
+      const b = document.createElement('button');
+      const t = new Date(d.date), mm = (t.getMonth() + 1) + '/' + t.getDate() + ' ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+      const w = d.end.winner === d.me ? 'win' : d.end.winner === 1 - d.me ? 'lose' : '';
+      b.innerHTML = '<span class="when">' + mm + '</span><span>' + replayTitle(d) + '</span><span class="' + w + '">' + (w === 'win' ? '勝' : w === 'lose' ? '敗' : '平') + '　' + fmt(d.end.tick) + '</span>';
+      b.addEventListener('click', () => replayStart(d));
+      box.appendChild(b);
+    }
+    $('#menu').classList.add('hidden'); $('#replays').classList.remove('hidden');
   }
 
   // 照真實時間一步一步吃 server 送來的步；落後太多（網路抖動、剛連回）就一次追上，留一步緩衝讓畫面不卡
@@ -282,6 +390,8 @@
     if (g.winner === me) r.w++; else if (g.winner === 1 - me) r.l++; else r.d++;
     saveRecord();
     if (mode === 'online') { online.phase = 'over'; setResume(null); Net.close(); }
+    saveReplay();
+    $('#watch').classList.toggle('hidden', !lastReplay);
     const mine = g.players[me].stats, en = g.players[1 - me].stats;
     $('#result-title').textContent = g.winner === me ? '勝利！' : g.winner === 1 - me ? '落敗' : '平手';
     $('#result-title').className = g.winner === me ? 'win' : g.winner === 1 - me ? 'lose' : '';
@@ -300,7 +410,7 @@
 
   // ---- 輸入：按住兵種卡拖到自家半場放手就出兵（Ken 2026-10-21 指定只用拖的）；建設點一下就蓋 ----
   // ui.drag：拖曳中的卡片與手指位置，畫面據此畫半透明預覽與射程圈
-  const playing = () => g && !g.over && (mode !== 'online' || online.phase === 'match');
+  const playing = () => g && !g.over && (mode === 'ai' || mode === 'online' && online.phase === 'match');
   canvas.addEventListener('pointerdown', ev => {
     if (!playing()) return;
     ev.preventDefault();

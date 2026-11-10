@@ -48,6 +48,7 @@ function createRoom(a, b) {
   const room = {
     id, seed, races: [a.race, b.race], g: Sim.createGame(seed, [1, 1], [a.race, b.race]),
     t0: Date.now() + NET.countdownMs, pending: [], hashes: new Map(), endedAt: 0,
+    log: [],   // 整場執行過的指令 [第幾步, pid, 指令]：重連時補給 client，重播才完整（一場約 10 KB）
     players: [a, b].map((q, pid) => ({ pid, ws: null, token: newToken(), online: true, lastSeen: Date.now(), offlineSince: 0, ai: null, stalled: false, n: 0 })),
   };
   rooms.set(id, room);
@@ -64,7 +65,7 @@ function attach(room, pid, ws) {
   if (p.ai) { p.ai = null; log(`[${room.id}] 玩家 ${pid} 連回，收回電腦代打`); }
   send(ws, { type: 'joined', room: room.id, pid, token: p.token });
   send(ws, { type: 'config', seed: room.seed, races: room.races, tickMs: TICK_MS, version: DATA.VERSION });
-  send(ws, { type: 'start', in: Math.max(0, room.t0 - Date.now()), snap: room.g.tick > 0 ? Sim.snapshot(room.g) : null });
+  send(ws, { type: 'start', in: Math.max(0, room.t0 - Date.now()), snap: room.g.tick > 0 ? Sim.snapshot(room.g) : null, log: room.log });
   if (room.endedAt) send(ws, resultMsg(room));
   send(room.players[1 - pid].ws, { type: 'peer', online: true, ai: false });
   send(ws, { type: 'peer', online: room.players[1 - pid].online, ai: !!room.players[1 - pid].ai });
@@ -87,7 +88,7 @@ function stepRoom(room) {
   for (const c of room.pending) cmds.push(c);
   room.pending = [];
   for (const p of room.players) p.n = 0;
-  for (const [pid, c] of cmds) Sim.applyCommand(g, pid, c);
+  for (const [pid, c] of cmds) { room.log.push([g.tick + 1, pid, c]); Sim.applyCommand(g, pid, c); }
   Sim.step(g);
   g.msgs.length = 0; g.effects.length = 0;
   if (g.tick % NET.hashEvery === 0) {

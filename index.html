@@ -30,6 +30,7 @@
   <button id="start" class="big">開始對戰</button>
   <button id="online" class="big alt">連線對戰</button>
   <p id="record"></p>
+  <button id="replays-btn" class="link">重播</button>
   <button id="help-btn" class="link">玩法說明</button>
   <div id="help" class="hidden">
     <p><b>目標</b>：4 分鐘內拆掉對方的主堡，或拆掉比對方多的塔。平手就進入 1 分鐘驟死戰，先拆一座塔的贏。最後 90 秒和驟死戰收入加倍。</p>
@@ -39,6 +40,7 @@
     <p><b>種族</b>：人類兵種均衡、射程長；蟲族便宜、量多、跑得快，所有單位會慢慢回血；神族貴但耐打，護盾沒挨打 3 秒後會回滿。三族的建設角色一樣（礦工、補給、瓦斯、三階科技、升級），名字和兵種不同。</p>
     <p><b>剋制</b>：掠奪者、坦克對重甲與塔多打；惡火噴火剋輕甲海；女妖只有陸戰隊、維京、砲塔打得到。</p>
     <p><b>連線對戰</b>：在電腦上執行 <code>node server/server.js</code>，兩個人都用它印出的網址開遊戲、按「連線對戰」就會配對。斷線會自動連回，斷 3 秒起電腦代打、15 秒判輸。</p>
+    <p><b>重播</b>：每場打完自動存（最近 20 場），結算按「看重播」或主選單按「重播」，可暫停、變速、拖進度條。</p>
     <p><b>鍵盤</b>：Q/W/E/R/T/Y/U 建設、P 暫停（只限對電腦）。</p>
   </div>
   <p id="version" class="dim"></p>
@@ -55,7 +57,23 @@
   <p id="result-reason"></p>
   <table id="result-stats"></table>
   <button id="again" class="big">再來一場</button>
+  <button id="watch" class="link">看重播</button>
   <button id="back" class="link">回主選單</button>
+</div>
+
+<div id="replays" class="overlay hidden">
+  <h1 class="mid">重播</h1>
+  <p class="sub small">最近 20 場，存在這台裝置</p>
+  <div id="replay-list"></div>
+  <button id="replays-back" class="link">回主選單</button>
+</div>
+
+<div id="replay-bar" class="hidden">
+  <button id="replay-play">⏸</button>
+  <button id="replay-speed">×1</button>
+  <input id="replay-seek" type="range" min="0" max="4800" step="1" value="0">
+  <span id="replay-time">0:00</span>
+  <button id="replay-exit">離開</button>
 </div>
 
 <script src="js/data.js"></script>
