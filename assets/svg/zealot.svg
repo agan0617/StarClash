@@ -3,29 +3,29 @@
 <ellipse cx="32" cy="6" rx="12.5" ry="4.72" fill="none" stroke="#ffe48a" stroke-width="4" opacity="0.35"/>
 <ellipse cx="32" cy="6" rx="11" ry="3.52" fill="none" stroke="#ffe48a" stroke-width="2"/>
 
-<rect x="22" y="52" width="8" height="9" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="34" y="52" width="8" height="9" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M19 40 Q19 36 24 36 L40 36 Q45 36 45 40 L45 52 Q45 56 40 56 L24 56 Q19 56 19 52 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="22" y="52" width="8" height="9" rx="3" fill="#dcd2bd" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="34" y="52" width="8" height="9" rx="3" fill="#dcd2bd" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M19 40 Q19 36 24 36 L40 36 Q45 36 45 40 L45 52 Q45 56 40 56 L24 56 Q19 56 19 52 Z" fill="#f7f3ea" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M25 47 L32 52 L39 47" fill="none" stroke="#ffe48a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 
-<circle cx="32" cy="44" r="5.10" fill="#ff8fc8" opacity="0.22"/>
-<circle cx="32" cy="44" r="3" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="44" r="1.65" fill="#ffd1ea"/>
+<circle cx="32" cy="44" r="5.10" fill="#3fe0dc" opacity="0.22"/>
+<circle cx="32" cy="44" r="3" fill="#3fe0dc" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="44" r="1.65" fill="#c9fbf8"/>
 <circle cx="31.10" cy="42.95" r="0.75" fill="#fff"/>
 
 <path d="M48 40 L58 8" stroke="#ffe48a" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
-<path d="M48 40 L58 8" stroke="#ffd1ea" stroke-width="3" stroke-linecap="round"/>
+<path d="M48 40 L58 8" stroke="#c9fbf8" stroke-width="3" stroke-linecap="round"/>
 <path d="M52 24 L52.70 25.30 L54 26 L52.70 26.70 L52 28 L51.30 26.70 L50 26 L51.30 25.30 Z" fill="#ffe48a"/>
 <path d="M57 12.2 L57.63 13.37 L58.8 14 L57.63 14.63 L57 15.8 L56.37 14.63 L55.2 14 L56.37 13.37 Z" fill="#ffe48a"/>
 
 <circle cx="47" cy="42" r="4" fill="#f2c879" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M11 24 Q11 9 32 9 Q53 9 53 24 Q53 39 32 39 Q11 39 11 24 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M12 30 Q32 44 52 30 Q50 39 32 39 Q14 39 12 30 Z" fill="#c3bce0"/>
+<path d="M11 24 Q11 9 32 9 Q53 9 53 24 Q53 39 32 39 Q11 39 11 24 Z" fill="#f7f3ea" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 30 Q32 44 52 30 Q50 39 32 39 Q14 39 12 30 Z" fill="#dcd2bd"/>
 <path d="M11 24 Q11 9 32 9 Q53 9 53 24 Q53 39 32 39 Q11 39 11 24 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M20 12 Q32 6 44 12" fill="none" stroke="#f2c879" stroke-width="3" stroke-linecap="round"/>
-<ellipse cx="24" cy="25" rx="3.6" ry="4.14" fill="#4a2f6b"/>
+<ellipse cx="24" cy="25" rx="3.6" ry="4.14" fill="#1f3550"/>
 <circle cx="22.92" cy="23.63" r="1.51" fill="#fff"/>
 <circle cx="25.26" cy="26.44" r="0.65" fill="#ffe48a"/>
-<ellipse cx="40" cy="25" rx="3.6" ry="4.14" fill="#4a2f6b"/>
+<ellipse cx="40" cy="25" rx="3.6" ry="4.14" fill="#1f3550"/>
 <circle cx="38.92" cy="23.63" r="1.51" fill="#fff"/>
 <circle cx="41.26" cy="26.44" r="0.65" fill="#ffe48a"/>
 

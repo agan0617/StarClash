@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>齒輪守衛（神族）</title>
 <path d="M48.0 18.0 L43.9 21.9 L44.9 27.4 L39.3 28.1 L36.9 33.2 L32.0 30.5 L27.1 33.2 L24.7 28.1 L19.1 27.4 L20.1 21.9 L16.0 18.0 L20.1 14.1 L19.1 8.6 L24.7 7.9 L27.1 2.8 L32.0 5.5 L36.9 2.8 L39.3 7.9 L44.9 8.6 L43.9 14.1 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="18" r="5.6" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="18" r="5.6" fill="#f7f3ea" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 
-<rect x="15" y="50" width="11" height="10" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="38" y="50" width="11" height="10" rx="3" fill="#c3bce0" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M8 32 Q8 22 18 22 L46 22 Q56 22 56 32 L56 46 Q56 54 46 54 L18 54 Q8 54 8 46 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M9 46 L55 46 Q55 54 46 54 L18 54 Q9 54 9 46 Z" fill="#c3bce0"/>
+<rect x="15" y="50" width="11" height="10" rx="3" fill="#dcd2bd" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="38" y="50" width="11" height="10" rx="3" fill="#dcd2bd" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 32 Q8 22 18 22 L46 22 Q56 22 56 32 L56 46 Q56 54 46 54 L18 54 Q8 54 8 46 Z" fill="#f7f3ea" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M9 46 L55 46 Q55 54 46 54 L18 54 Q9 54 9 46 Z" fill="#dcd2bd"/>
 <path d="M8 32 Q8 22 18 22 L46 22 Q56 22 56 32 L56 46 Q56 54 46 54 L18 54 Q8 54 8 46 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="3" y="28" width="9" height="20" rx="4" fill="#f2c879" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="52" y="28" width="9" height="20" rx="4" fill="#f2c879" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="23" cy="33" rx="4" ry="4.60" fill="#4a2f6b"/>
+<ellipse cx="23" cy="33" rx="4" ry="4.60" fill="#1f3550"/>
 <circle cx="21.80" cy="31.48" r="1.68" fill="#fff"/>
 <circle cx="24.40" cy="34.60" r="0.72" fill="#ffe48a"/>
-<ellipse cx="41" cy="33" rx="4" ry="4.60" fill="#4a2f6b"/>
+<ellipse cx="41" cy="33" rx="4" ry="4.60" fill="#1f3550"/>
 <circle cx="39.80" cy="31.48" r="1.68" fill="#fff"/>
 <circle cx="42.40" cy="34.60" r="0.72" fill="#ffe48a"/>
 
 <path d="M16 44 L24 48 L32 44 L40 48 L48 44" fill="none" stroke="#ffe48a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 
-<circle cx="32" cy="22" r="5.78" fill="#ff8fc8" opacity="0.22"/>
-<circle cx="32" cy="22" r="3.4" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="22" r="1.87" fill="#ffd1ea"/>
+<circle cx="32" cy="22" r="5.78" fill="#3fe0dc" opacity="0.22"/>
+<circle cx="32" cy="22" r="3.4" fill="#3fe0dc" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="22" r="1.87" fill="#c9fbf8"/>
 <circle cx="30.98" cy="20.81" r="0.85" fill="#fff"/>
 
 <ellipse cx="15" cy="27" rx="3" ry="1.4" fill="#fff" opacity="0.7" transform="rotate(-30 15 27)"/>

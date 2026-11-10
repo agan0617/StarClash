@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>爆泡體（蟲族）</title>
-<circle cx="32" cy="36" r="24" fill="#6ff5dc" opacity="0.55" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="38" r="15" fill="#2fc4b0" opacity="0.5"/>
-<circle cx="22" cy="46" r="4.32" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="22" cy="46" r="2.4" fill="#ff8ae6"/>
+<circle cx="32" cy="36" r="24" fill="#93e86a" opacity="0.9" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="38" r="15" fill="#b5d92c" opacity="0.5"/>
+<circle cx="22" cy="46" r="4.32" fill="#ffa63d" opacity="0.25"/>
+<circle cx="22" cy="46" r="2.4" fill="#ffa63d"/>
 <circle cx="44" cy="48" r="3.60" fill="#fff" opacity="0.25"/>
 <circle cx="44" cy="48" r="2" fill="#fff"/>
-<circle cx="46" cy="26" r="2.88" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="46" cy="26" r="1.6" fill="#ff8ae6"/>
+<circle cx="46" cy="26" r="2.88" fill="#ffa63d" opacity="0.25"/>
+<circle cx="46" cy="26" r="1.6" fill="#ffa63d"/>
 
 <path d="M32 13 Q32.0 0 32 4" fill="none" stroke="#2f2850" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="4" r="4.68" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="32" cy="4" r="2.6" fill="#ff8ae6"/>
+<circle cx="32" cy="4" r="4.68" fill="#ffa63d" opacity="0.25"/>
+<circle cx="32" cy="4" r="2.6" fill="#ffa63d"/>
 
 <circle cx="25" cy="32" r="6.5" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="25.65" cy="32.78" r="4.29" fill="#ff8ae6"/>
+<circle cx="25.65" cy="32.78" r="4.29" fill="#ffa63d"/>
 <circle cx="25.78" cy="32.98" r="2.34" fill="#2f2850"/>
 <circle cx="23.83" cy="30.70" r="1.56" fill="#fff"/>
 <circle cx="27.34" cy="34.73" r="0.65" fill="#fff"/>
 <circle cx="40" cy="32" r="6.5" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="40.65" cy="32.78" r="4.29" fill="#ff8ae6"/>
+<circle cx="40.65" cy="32.78" r="4.29" fill="#ffa63d"/>
 <circle cx="40.78" cy="32.98" r="2.34" fill="#2f2850"/>
 <circle cx="38.83" cy="30.70" r="1.56" fill="#fff"/>
 <circle cx="42.34" cy="34.73" r="0.65" fill="#fff"/>

@@ -3,25 +3,25 @@
 <ellipse cx="32" cy="32" rx="29.5" ry="10.2" fill="none" stroke="#ffe48a" stroke-width="4" opacity="0.35"/>
 <ellipse cx="32" cy="32" rx="28" ry="9" fill="none" stroke="#ffe48a" stroke-width="2"/>
 
-<path d="M6 32 Q14 18 32 16 Q50 18 58 32 Q50 46 32 48 Q14 46 6 32 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M7 34 Q32 44 57 34 Q50 46 32 48 Q14 46 7 34 Z" fill="#c3bce0"/>
+<path d="M6 32 Q14 18 32 16 Q50 18 58 32 Q50 46 32 48 Q14 46 6 32 Z" fill="#f7f3ea" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M7 34 Q32 44 57 34 Q50 46 32 48 Q14 46 7 34 Z" fill="#dcd2bd"/>
 <path d="M6 32 Q14 18 32 16 Q50 18 58 32 Q50 46 32 48 Q14 46 6 32 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M14 30 L20 27 M50 30 L44 27 M18 40 L24 42 M46 40 L40 42" fill="none" stroke="#ffe48a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 
 <path d="M14.0 32.0 L12.9 33.2 L12.8 34.8 L11.2 34.9 L10.0 36.0 L8.8 34.9 L7.2 34.8 L7.1 33.2 L6.0 32.0 L7.1 30.8 L7.2 29.2 L8.8 29.1 L10.0 28.0 L11.2 29.1 L12.8 29.2 L12.9 30.8 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="10" cy="32" r="1.4" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="10" cy="32" r="1.4" fill="#f7f3ea" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M58.0 32.0 L56.9 33.2 L56.8 34.8 L55.2 34.9 L54.0 36.0 L52.8 34.9 L51.2 34.8 L51.1 33.2 L50.0 32.0 L51.1 30.8 L51.2 29.2 L52.8 29.1 L54.0 28.0 L55.2 29.1 L56.8 29.2 L56.9 30.8 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="54" cy="32" r="1.4" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="54" cy="32" r="1.4" fill="#f7f3ea" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 
-<circle cx="32" cy="30" r="18.70" fill="#ff8fc8" opacity="0.22"/>
-<circle cx="32" cy="30" r="11" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="30" r="6.05" fill="#ffd1ea"/>
+<circle cx="32" cy="30" r="18.70" fill="#3fe0dc" opacity="0.22"/>
+<circle cx="32" cy="30" r="11" fill="#3fe0dc" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="30" r="6.05" fill="#c9fbf8"/>
 <circle cx="28.70" cy="26.15" r="2.75" fill="#fff"/>
 
-<ellipse cx="27.5" cy="30" rx="2.8" ry="3.22" fill="#4a2f6b"/>
+<ellipse cx="27.5" cy="30" rx="2.8" ry="3.22" fill="#1f3550"/>
 <circle cx="26.66" cy="28.94" r="1.18" fill="#fff"/>
 <circle cx="28.48" cy="31.12" r="0.50" fill="#ffe48a"/>
-<ellipse cx="36.5" cy="30" rx="2.8" ry="3.22" fill="#4a2f6b"/>
+<ellipse cx="36.5" cy="30" rx="2.8" ry="3.22" fill="#1f3550"/>
 <circle cx="35.66" cy="28.94" r="1.18" fill="#fff"/>
 <circle cx="37.48" cy="31.12" r="0.50" fill="#ffe48a"/>
 

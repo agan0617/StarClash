@@ -1,37 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>孢子哨（蟲族）</title>
-<ellipse cx="32" cy="57" rx="26" ry="6" fill="#8a64d8" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="16" cy="56" r="3.60" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="16" cy="56" r="2" fill="#6ff5dc"/>
-<circle cx="48" cy="57" r="3.60" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="48" cy="57" r="2" fill="#6ff5dc"/>
-<circle cx="32" cy="59" r="2.88" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="32" cy="59" r="1.6" fill="#ff8ae6"/>
+<ellipse cx="32" cy="57" rx="26" ry="6" fill="#2a9a86" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="16" cy="56" r="3.60" fill="#eaff5c" opacity="0.25"/>
+<circle cx="16" cy="56" r="2" fill="#eaff5c"/>
+<circle cx="48" cy="57" r="3.60" fill="#eaff5c" opacity="0.25"/>
+<circle cx="48" cy="57" r="2" fill="#eaff5c"/>
+<circle cx="32" cy="59" r="2.88" fill="#ffa63d" opacity="0.25"/>
+<circle cx="32" cy="59" r="1.6" fill="#ffa63d"/>
 
-<path d="M14 54 Q10 36 20 30 L44 30 Q54 36 50 54 Z" fill="#b993ff" opacity="0.92" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M20 46 Q32 52 44 46" fill="none" stroke="#dcc8ff" stroke-width="2" stroke-linecap="round"/>
+<path d="M14 54 Q10 36 20 30 L44 30 Q54 36 50 54 Z" fill="#93e86a" opacity="0.92" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 46 Q32 52 44 46" fill="none" stroke="#dcffc0" stroke-width="2" stroke-linecap="round"/>
 <path d="M32 30 Q30 18 32 14" fill="none" stroke="#2f2850" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32" cy="12" r="10" fill="#b993ff" opacity="0.95" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="12" r="10" fill="#93e86a" opacity="0.95" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <circle cx="32" cy="12" r="6.5" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32.65" cy="12.78" r="4.29" fill="#ff8ae6"/>
+<circle cx="32.65" cy="12.78" r="4.29" fill="#ffa63d"/>
 <circle cx="32.78" cy="12.97" r="2.34" fill="#2f2850"/>
 <circle cx="30.83" cy="10.70" r="1.56" fill="#fff"/>
 <circle cx="34.34" cy="14.73" r="0.65" fill="#fff"/>
 
 <path d="M24 34 Q14.4 20 12 24" fill="none" stroke="#2f2850" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="12" cy="24" r="4.68" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="12" cy="24" r="2.6" fill="#6ff5dc"/>
+<circle cx="12" cy="24" r="4.68" fill="#eaff5c" opacity="0.25"/>
+<circle cx="12" cy="24" r="2.6" fill="#eaff5c"/>
 <path d="M40 34 Q49.6 20 52 24" fill="none" stroke="#2f2850" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="52" cy="24" r="4.68" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="52" cy="24" r="2.6" fill="#6ff5dc"/>
+<circle cx="52" cy="24" r="4.68" fill="#eaff5c" opacity="0.25"/>
+<circle cx="52" cy="24" r="2.6" fill="#eaff5c"/>
 
 <circle cx="26" cy="42" r="3.2" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="26.32" cy="42.38" r="2.11" fill="#6ff5dc"/>
+<circle cx="26.32" cy="42.38" r="2.11" fill="#eaff5c"/>
 <circle cx="26.38" cy="42.48" r="1.15" fill="#2f2850"/>
 <circle cx="25.42" cy="41.36" r="0.77" fill="#fff"/>
 <circle cx="27.15" cy="43.34" r="0.32" fill="#fff"/>
 <circle cx="38" cy="42" r="3.2" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="38.32" cy="42.38" r="2.11" fill="#6ff5dc"/>
+<circle cx="38.32" cy="42.38" r="2.11" fill="#eaff5c"/>
 <circle cx="38.38" cy="42.48" r="1.15" fill="#2f2850"/>
 <circle cx="37.42" cy="41.36" r="0.77" fill="#fff"/>
 <circle cx="39.15" cy="43.34" r="0.32" fill="#fff"/>

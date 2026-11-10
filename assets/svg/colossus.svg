@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>秘紋高腳（神族）</title>
-<path d="M22 28 L10 42 L8 62 M42 28 L54 42 L56 62 M27 30 L22 62 M37 30 L42 62" fill="none" stroke="#c3bce0" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 28 L10 42 L8 62 M42 28 L54 42 L56 62 M27 30 L22 62 M37 30 L42 62" fill="none" stroke="#dcd2bd" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M22 28 L10 42 L8 62 M42 28 L54 42 L56 62 M27 30 L22 62 M37 30 L42 62" fill="none" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M13.4 42.0 L12.5 43.0 L12.4 44.4 L11.0 44.5 L10.0 45.4 L9.0 44.5 L7.6 44.4 L7.5 43.0 L6.6 42.0 L7.5 41.0 L7.6 39.6 L9.0 39.5 L10.0 38.6 L11.0 39.5 L12.4 39.6 L12.5 41.0 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="10" cy="42" r="1.2" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="10" cy="42" r="1.2" fill="#f7f3ea" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M57.4 42.0 L56.5 43.0 L56.4 44.4 L55.0 44.5 L54.0 45.4 L53.0 44.5 L51.6 44.4 L51.5 43.0 L50.6 42.0 L51.5 41.0 L51.6 39.6 L53.0 39.5 L54.0 38.6 L55.0 39.5 L56.4 39.6 L56.5 41.0 Z" fill="#f2c879" stroke="#2f2850" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="54" cy="42" r="1.2" fill="#ece8f7" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="54" cy="42" r="1.2" fill="#f7f3ea" stroke="#2f2850" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
 
-<path d="M14 22 Q14 8 32 8 Q50 8 50 22 Q50 32 32 32 Q14 32 14 22 Z" fill="#ece8f7" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M15 26 Q32 36 49 26 Q47 32 32 32 Q17 32 15 26 Z" fill="#c3bce0"/>
+<path d="M14 22 Q14 8 32 8 Q50 8 50 22 Q50 32 32 32 Q14 32 14 22 Z" fill="#f7f3ea" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M15 26 Q32 36 49 26 Q47 32 32 32 Q17 32 15 26 Z" fill="#dcd2bd"/>
 <path d="M14 22 Q14 8 32 8 Q50 8 50 22 Q50 32 32 32 Q14 32 14 22 Z" fill="none" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="4" y="15" width="10" height="7" rx="3" fill="#f2c879" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="50" y="15" width="10" height="7" rx="3" fill="#f2c879" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="4" cy="18.5" r="4.08" fill="#ff8fc8" opacity="0.22"/>
-<circle cx="4" cy="18.5" r="2.4" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="4" cy="18.5" r="1.32" fill="#ffd1ea"/>
+<circle cx="4" cy="18.5" r="4.08" fill="#3fe0dc" opacity="0.22"/>
+<circle cx="4" cy="18.5" r="2.4" fill="#3fe0dc" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="4" cy="18.5" r="1.32" fill="#c9fbf8"/>
 <circle cx="3.28" cy="17.66" r="0.60" fill="#fff"/>
-<circle cx="60" cy="18.5" r="4.08" fill="#ff8fc8" opacity="0.22"/>
-<circle cx="60" cy="18.5" r="2.4" fill="#ff8fc8" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="60" cy="18.5" r="1.32" fill="#ffd1ea"/>
+<circle cx="60" cy="18.5" r="4.08" fill="#3fe0dc" opacity="0.22"/>
+<circle cx="60" cy="18.5" r="2.4" fill="#3fe0dc" stroke="#2f2850" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="60" cy="18.5" r="1.32" fill="#c9fbf8"/>
 <circle cx="59.28" cy="17.66" r="0.60" fill="#fff"/>
 
-<ellipse cx="26" cy="20" rx="3.4" ry="3.91" fill="#4a2f6b"/>
+<ellipse cx="26" cy="20" rx="3.4" ry="3.91" fill="#1f3550"/>
 <circle cx="24.98" cy="18.71" r="1.43" fill="#fff"/>
 <circle cx="27.19" cy="21.36" r="0.61" fill="#ffe48a"/>
-<ellipse cx="38" cy="20" rx="3.4" ry="3.91" fill="#4a2f6b"/>
+<ellipse cx="38" cy="20" rx="3.4" ry="3.91" fill="#1f3550"/>
 <circle cx="36.98" cy="18.71" r="1.43" fill="#fff"/>
 <circle cx="39.19" cy="21.36" r="0.61" fill="#ffe48a"/>
 

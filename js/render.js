@@ -361,8 +361,8 @@ const Render = (() => {
     for (let i = 0; i < 30; i++) {
       const px = r() * W, py = r() * FIELD_H;
       if (clear(px, py)) continue;
-      // 小草叢：三片圓葉
-      x.fillStyle = '#6bd0a0'; x.strokeStyle = OL; x.lineWidth = 1.4;
+      // 小草叢：三片圓葉（淡紫，0.10.1 起避免跟綠色的蟲族混在一起）
+      x.fillStyle = '#b7a6f0'; x.strokeStyle = OL; x.lineWidth = 1.4;
       for (const [dx, dy] of [[-4, 0], [4, 0], [0, -3]]) { x.beginPath(); x.ellipse(px + dx, py + dy, 3.2, 4.5, dx * 0.08, 0, Math.PI * 2); x.fill(); x.stroke(); }
     }
     // 兩條路：圓角的淺色步道＋粗外框＋虛線中線

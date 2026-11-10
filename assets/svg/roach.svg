@@ -1,28 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>殼甲獸（蟲族）</title>
 <path d="M10 50 L4 56 M18 55 L15 61 M46 55 L49 61 M54 50 L60 56" stroke="#2f2850" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M4 44 Q4 26 32 24 Q60 26 60 44 Q60 58 32 58 Q4 58 4 44 Z" fill="#8a64d8" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M10 36 Q32 28 54 36 M8 46 Q32 38 56 46" fill="none" stroke="#b993ff" stroke-width="3" stroke-linecap="round"/>
-<circle cx="16" cy="50" r="3.96" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="16" cy="50" r="2.2" fill="#6ff5dc"/>
-<circle cx="48" cy="50" r="3.96" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="48" cy="50" r="2.2" fill="#6ff5dc"/>
+<path d="M4 44 Q4 26 32 24 Q60 26 60 44 Q60 58 32 58 Q4 58 4 44 Z" fill="#2a9a86" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 36 Q32 28 54 36 M8 46 Q32 38 56 46" fill="none" stroke="#93e86a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="16" cy="50" r="3.96" fill="#eaff5c" opacity="0.25"/>
+<circle cx="16" cy="50" r="2.2" fill="#eaff5c"/>
+<circle cx="48" cy="50" r="3.96" fill="#eaff5c" opacity="0.25"/>
+<circle cx="48" cy="50" r="2.2" fill="#eaff5c"/>
 <circle cx="32" cy="52" r="4.32" fill="#4da3ff" opacity="0.25"/>
 <circle cx="32" cy="52" r="2.4" fill="#4da3ff"/>
 
-<circle cx="32" cy="24" r="15" fill="#b993ff" opacity="0.95" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="24" r="15" fill="#93e86a" opacity="0.95" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 <circle cx="24" cy="23" r="5" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="24.50" cy="23.60" r="3.30" fill="#6ff5dc"/>
+<circle cx="24.50" cy="23.60" r="3.30" fill="#eaff5c"/>
 <circle cx="24.60" cy="23.75" r="1.80" fill="#2f2850"/>
 <circle cx="23.10" cy="22.00" r="1.20" fill="#fff"/>
 <circle cx="25.80" cy="25.10" r="0.50" fill="#fff"/>
 <circle cx="40" cy="23" r="5" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="40.50" cy="23.60" r="3.30" fill="#6ff5dc"/>
+<circle cx="40.50" cy="23.60" r="3.30" fill="#eaff5c"/>
 <circle cx="40.60" cy="23.75" r="1.80" fill="#2f2850"/>
 <circle cx="39.10" cy="22.00" r="1.20" fill="#fff"/>
 <circle cx="41.80" cy="25.10" r="0.50" fill="#fff"/>
 <circle cx="32" cy="13" r="3.8" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="32.38" cy="13.46" r="2.51" fill="#ff8ae6"/>
+<circle cx="32.38" cy="13.46" r="2.51" fill="#ffa63d"/>
 <circle cx="32.46" cy="13.57" r="1.37" fill="#2f2850"/>
 <circle cx="31.32" cy="12.24" r="0.91" fill="#fff"/>
 <circle cx="33.37" cy="14.60" r="0.38" fill="#fff"/>

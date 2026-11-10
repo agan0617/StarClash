@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <title>浮游眼（蟲族）</title>
-<path d="M18 40 Q14 50 20 56 M27 42 Q25 52 28 60 M37 42 Q39 52 36 60 M46 40 Q50 50 44 56" fill="none" stroke="#8a64d8" stroke-width="4" stroke-linecap="round"/>
-<circle cx="20" cy="56" r="3.60" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="20" cy="56" r="2" fill="#6ff5dc"/>
-<circle cx="28" cy="60" r="3.24" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="28" cy="60" r="1.8" fill="#ff8ae6"/>
-<circle cx="36" cy="60" r="3.24" fill="#6ff5dc" opacity="0.25"/>
-<circle cx="36" cy="60" r="1.8" fill="#6ff5dc"/>
-<circle cx="44" cy="56" r="3.60" fill="#ff8ae6" opacity="0.25"/>
-<circle cx="44" cy="56" r="2" fill="#ff8ae6"/>
+<path d="M18 40 Q14 50 20 56 M27 42 Q25 52 28 60 M37 42 Q39 52 36 60 M46 40 Q50 50 44 56" fill="none" stroke="#2a9a86" stroke-width="4" stroke-linecap="round"/>
+<circle cx="20" cy="56" r="3.60" fill="#eaff5c" opacity="0.25"/>
+<circle cx="20" cy="56" r="2" fill="#eaff5c"/>
+<circle cx="28" cy="60" r="3.24" fill="#ffa63d" opacity="0.25"/>
+<circle cx="28" cy="60" r="1.8" fill="#ffa63d"/>
+<circle cx="36" cy="60" r="3.24" fill="#eaff5c" opacity="0.25"/>
+<circle cx="36" cy="60" r="1.8" fill="#eaff5c"/>
+<circle cx="44" cy="56" r="3.60" fill="#ffa63d" opacity="0.25"/>
+<circle cx="44" cy="56" r="2" fill="#ffa63d"/>
 
-<path d="M6 34 Q6 6 32 6 Q58 6 58 34 Q58 44 32 44 Q6 44 6 34 Z" fill="#b993ff" opacity="0.8" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-<ellipse cx="32" cy="36" rx="20" ry="5" fill="#8a64d8" opacity="0.6"/>
+<path d="M6 34 Q6 6 32 6 Q58 6 58 34 Q58 44 32 44 Q6 44 6 34 Z" fill="#93e86a" opacity="0.8" stroke="#2f2850" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="36" rx="20" ry="5" fill="#2a9a86" opacity="0.6"/>
 <circle cx="14" cy="20" r="3.96" fill="#4da3ff" opacity="0.25"/>
 <circle cx="14" cy="20" r="2.2" fill="#4da3ff"/>
 <circle cx="50" cy="18" r="3.60" fill="#4da3ff" opacity="0.25"/>
@@ -20,7 +20,7 @@
 <circle cx="48" cy="32" r="1.6" fill="#4da3ff"/>
 
 <circle cx="32" cy="24" r="11" fill="#fff" stroke="#2f2850" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="33.10" cy="25.32" r="7.26" fill="#6ff5dc"/>
+<circle cx="33.10" cy="25.32" r="7.26" fill="#eaff5c"/>
 <circle cx="33.32" cy="25.65" r="3.96" fill="#2f2850"/>
 <circle cx="30.02" cy="21.80" r="2.64" fill="#fff"/>
 <circle cx="35.96" cy="28.62" r="1.10" fill="#fff"/>
