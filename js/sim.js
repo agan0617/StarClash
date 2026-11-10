@@ -275,7 +275,8 @@ const Sim = (() => {
     for (const s of g.structures) if (s.hp <= 0 && !s.dead) {
       s.dead = true; s.hp = 0;
       g.effects.push({ type: 'boom', x: s.x, y: s.y });
-      g.msgs.push({ p: -1, text: (s.owner === 0 ? '我方' : '敵方') + DATA.TOWERS[s.kind].name + '被摧毀' });
+      // 「我方／敵方」由畫面依自己是哪一邊補上（連線對戰時自己可能是玩家 1）
+      g.msgs.push({ p: -1, side: s.owner, text: DATA.TOWERS[s.kind].name + '被摧毀' });
     }
   }
 
@@ -306,5 +307,29 @@ const Sim = (() => {
 
   function finish(g, winner, reason) { g.over = true; g.winner = winner; g.endReason = reason; }
 
-  return { createGame, step, applyCommand, supplyUsed, income, hasTech, buildingInProgress, crowns, towerHp, mirror, dist, mulberry32 };
+  // ---- 連線用：快照、還原、狀態雜湊 ----
+  // 快照是純資料（JSON 來回不失真：數字以最短可還原字串表示）；g.rng 模擬沒用到，還原時照種子重建
+  function snapshot(g) {
+    const s = {};
+    for (const k of ['tick', 'time', 'seed', 'nextId', 'over', 'winner', 'overtime', 'otCrowns', 'endReason', 'players', 'units', 'structures']) s[k] = g[k];
+    return JSON.parse(JSON.stringify(s));
+  }
+  function restore(s) {
+    const g = JSON.parse(JSON.stringify(s));
+    g.rng = mulberry32(g.seed); g.effects = []; g.msgs = []; g.hits = [];
+    return g;
+  }
+  // 逐位元雜湊（不取整數，差 1 ulp 也抓得到），server 拿來比對兩邊的模擬有沒有分岔
+  const f64 = new Float64Array(1), u32 = new Uint32Array(f64.buffer);
+  function hash(g) {
+    let h = 2166136261 >>> 0;
+    const mix = v => { f64[0] = v; h = Math.imul(h ^ u32[0], 16777619) >>> 0; h = Math.imul(h ^ u32[1], 16777619) >>> 0; };
+    mix(g.tick); mix(g.nextId);
+    for (const p of g.players) { mix(p.minerals); mix(p.gas); mix(p.workers); mix(p.workerQueue); mix(p.supplyCap); }
+    for (const u of g.units) { mix(u.id); mix(u.x); mix(u.y); mix(u.hp); mix(u.shield); mix(u.cdLeft); mix(u.targetId); }
+    for (const s of g.structures) { mix(s.hp); mix(s.cdLeft); }
+    return h;
+  }
+
+  return { createGame, step, applyCommand, supplyUsed, income, hasTech, buildingInProgress, crowns, towerHp, mirror, dist, mulberry32, snapshot, restore, hash };
 })();

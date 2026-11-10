@@ -28,6 +28,7 @@
     <button data-race="random">隨機</button><button data-race="terran">人類</button><button data-race="zerg">蟲族</button><button data-race="protoss">神族</button></div></div>
   <p id="race-trait" class="sub small"></p>
   <button id="start" class="big">開始對戰</button>
+  <button id="online" class="big alt">連線對戰</button>
   <p id="record"></p>
   <button id="help-btn" class="link">玩法說明</button>
   <div id="help" class="hidden">
@@ -37,9 +38,16 @@
     <p><b>科技</b>：兵營 → 重工廠 → 星港，蓋好才解鎖對應兵種；武器升級全軍攻擊 +10%。建設不佔戰場，按一下就開始蓋。</p>
     <p><b>種族</b>：人類兵種均衡、射程長；蟲族便宜、量多、跑得快，所有單位會慢慢回血；神族貴但耐打，護盾沒挨打 3 秒後會回滿。三族的建設角色一樣（礦工、補給、瓦斯、三階科技、升級），名字和兵種不同。</p>
     <p><b>剋制</b>：掠奪者、坦克對重甲與塔多打；惡火噴火剋輕甲海；女妖只有陸戰隊、維京、砲塔打得到。</p>
-    <p><b>鍵盤</b>：Q/W/E/R/T/Y/U 建設、P 暫停。</p>
+    <p><b>連線對戰</b>：在電腦上執行 <code>node server/server.js</code>，兩個人都用它印出的網址開遊戲、按「連線對戰」就會配對。斷線會自動連回，斷 3 秒起電腦代打、15 秒判輸。</p>
+    <p><b>鍵盤</b>：Q/W/E/R/T/Y/U 建設、P 暫停（只限對電腦）。</p>
   </div>
   <p id="version" class="dim"></p>
+</div>
+
+<div id="lobby" class="overlay hidden">
+  <h1 class="mid">連線對戰</h1>
+  <p id="lobby-msg"></p>
+  <button id="lobby-cancel" class="link">回主選單</button>
 </div>
 
 <div id="result" class="overlay hidden">
@@ -53,6 +61,7 @@
 <script src="js/data.js"></script>
 <script src="js/sim.js"></script>
 <script src="js/ai.js"></script>
+<script src="js/net.js"></script>
 <script src="js/render.js"></script>
 <script src="js/main.js"></script>
 </body>

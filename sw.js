@@ -1,8 +1,8 @@
 /* 離線快取：先用快取秒開，背景抓新版，下次打開就是新的。改版時把 VERSION 加一。 */
-const VERSION = 'sc-0.5.1';
+const VERSION = 'sc-0.6.0';
 const FILES = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
-  'js/data.js', 'js/sim.js', 'js/ai.js', 'js/render.js', 'js/main.js',
+  'js/data.js', 'js/sim.js', 'js/ai.js', 'js/net.js', 'js/render.js', 'js/main.js',
   'icons/icon-192.png', 'icons/icon-512.png',
 ];
 
