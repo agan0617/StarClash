@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>殼殼蟲（黏黏蟲群）</title>
+<path d="M14 40 L5 44 M14 47 L6 53 M50 40 L59 44 M50 47 L58 53 M22 52 L19 59 M42 52 L45 59" stroke="#2b2140" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><ellipse cx="32" cy="38" rx="21" ry="17"/></clipPath></defs>
+<ellipse cx="32" cy="38" rx="21" ry="17" fill="#a374db"/>
+<ellipse cx="34" cy="54" rx="26" ry="9" fill="#6f46ab" clip-path="url(#b)"/>
+<path d="M11 33 Q32 26 53 33 M11 41 Q32 34 53 41" fill="none" stroke="#6f46ab" stroke-width="2.4"/>
+<path d="M32 21 L32 55" stroke="#4da3ff" stroke-width="3" clip-path="url(#b)"/>
+<ellipse cx="32" cy="38" rx="21" ry="17" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="20" rx="12" ry="9" fill="#d2b6f5" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="27" cy="19" rx="3.4" ry="4" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="27.8" cy="19.6" rx="2.04" ry="2.64" fill="#2b2140"/>
+<circle cx="26.95" cy="18.00" r="0.95" fill="#fff"/>
+<ellipse cx="37" cy="19" rx="3.4" ry="4" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="37.8" cy="19.6" rx="2.04" ry="2.64" fill="#2b2140"/>
+<circle cx="36.95" cy="18.00" r="0.95" fill="#fff"/>
+
+<path d="M28.5 25 Q32 27.5 35.5 25" fill="none" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="20" cy="31" rx="5" ry="2.4" fill="#fff" opacity="0.6" transform="rotate(-30 20 31)"/>
+</svg>

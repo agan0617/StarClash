@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>晶刃騎士（晶光族）</title>
+<path d="M22 32 Q12 46 16 56 L30 50 Z" fill="#4da3ff" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="22" y="48" width="8" height="9" rx="3.5" fill="#d99a2b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="34" y="48" width="8" height="9" rx="3.5" fill="#d99a2b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><rect x="19" y="30" width="26" height="22" rx="10"/></clipPath></defs>
+<rect x="19" y="30" width="26" height="22" rx="10" fill="#ffd36b"/>
+<ellipse cx="34" cy="52" rx="18" ry="7" fill="#d99a2b" clip-path="url(#b)"/>
+<rect x="19" y="30" width="26" height="22" rx="10" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M29 38 L32 34 L35 38 L32 42 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M50 34 L56 6 L60 8 L54 36 Z" fill="#5ff0e8" opacity="0.92" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M53 30 L57.5 9" stroke="#d2fffc" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="50" cy="38" r="4" fill="#ffd36b" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="h"><circle cx="32" cy="22" r="13"/></clipPath></defs>
+<circle cx="32" cy="22" r="13" fill="#ffd36b"/>
+<ellipse cx="34" cy="33" rx="16" ry="6" fill="#d99a2b" clip-path="url(#h)"/>
+<circle cx="32" cy="22" r="13" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 9 L29 3 L32 5 L35 3 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="22" y="18" width="20" height="9" rx="4.5" fill="#1f4b5a" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="27.4" cy="22.5" rx="2.2" ry="2.75" fill="#5ff0e8"/>
+<circle cx="26.74" cy="21.51" r="0.77" fill="#fff"/>
+<ellipse cx="36.6" cy="22.5" rx="2.2" ry="2.75" fill="#5ff0e8"/>
+<circle cx="35.94" cy="21.51" r="0.77" fill="#fff"/>
+
+<ellipse cx="25" cy="14" rx="3" ry="1.6" fill="#fff" opacity="0.6" transform="rotate(-30 25 14)"/>
+</svg>

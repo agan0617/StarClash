@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>稜鏡艦（晶光族）</title>
+<path d="M32 4 L58 30 L32 58 L6 30 Z" fill="#ffd36b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 30 L32 58 L58 30 L32 44 Z" fill="#d99a2b" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 13 L49 30 L32 47 L15 30 Z" fill="#5ff0e8" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 13 L49 30 L32 30 Z" fill="#d2fffc" opacity="0.6"/>
+<path d="M15 30 L32 47 L32 30 Z" fill="#22b5c4" opacity="0.6"/>
+<ellipse cx="27" cy="29" rx="3.2" ry="3.8" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="27.8" cy="29.6" rx="1.92" ry="2.51" fill="#2b2140"/>
+<circle cx="27.00" cy="28.05" r="0.90" fill="#fff"/>
+<ellipse cx="37" cy="29" rx="3.2" ry="3.8" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="37.8" cy="29.6" rx="1.92" ry="2.51" fill="#2b2140"/>
+<circle cx="37.00" cy="28.05" r="0.90" fill="#fff"/>
+
+<circle cx="6" cy="30" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="58" cy="30" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="4.5" r="2.6" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

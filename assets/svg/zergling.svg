@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>蹦蹦蟲（黏黏蟲群）</title>
+<path d="M24 22 Q18 10 12 10" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="12" cy="10" r="3.2" fill="#4da3ff" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M40 22 Q46 10 52 10" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52" cy="10" r="3.2" fill="#4da3ff" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M17 46 L11 55 M25 49 L22 57 M39 49 L42 57 M47 46 L53 55" stroke="#2b2140" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><ellipse cx="32" cy="36" rx="18" ry="15"/></clipPath></defs>
+<ellipse cx="32" cy="36" rx="18" ry="15" fill="#a374db"/>
+<ellipse cx="35" cy="50" rx="24" ry="8" fill="#6f46ab" clip-path="url(#b)"/>
+<circle cx="20" cy="27" r="3" fill="#9be35a" clip-path="url(#b)"/><circle cx="45" cy="26" r="2.4" fill="#9be35a" clip-path="url(#b)"/>
+<ellipse cx="32" cy="36" rx="18" ry="15" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="25" cy="33" rx="4.6" ry="5.4" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="25.8" cy="33.6" rx="2.76" ry="3.56" fill="#2b2140"/>
+<circle cx="24.65" cy="31.65" r="1.29" fill="#fff"/>
+<ellipse cx="39" cy="33" rx="4.6" ry="5.4" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="39.8" cy="33.6" rx="2.76" ry="3.56" fill="#2b2140"/>
+<circle cx="38.65" cy="31.65" r="1.29" fill="#fff"/>
+
+<path d="M27 43 Q32 47 37 43" fill="none" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M28.5 44 L29.5 47 L30.5 44.6 M33.5 44.6 L34.5 47 L35.5 44" fill="#fff" stroke="#2b2140" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="20" cy="40.5" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+<ellipse cx="44" cy="40.5" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+
+<ellipse cx="23" cy="26" rx="3.5" ry="2" fill="#fff" opacity="0.6" transform="rotate(-30 23 26)"/>
+</svg>

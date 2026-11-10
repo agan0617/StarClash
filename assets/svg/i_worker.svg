@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<title>工人</title>
+<circle cx="16" cy="19" r="10" fill="#ffd36b" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M5 18 Q5 6 16 6 Q27 6 27 18 Z" fill="#ff9a3c" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="3" y="16" width="26" height="4" rx="2" fill="#d9681c" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="12.5" cy="23" r="1.6" fill="#2b2140"/><circle cx="19.5" cy="23" r="1.6" fill="#2b2140"/>
+</svg>

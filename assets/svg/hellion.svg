@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>火花車（鐵殼聯邦）</title>
+<defs><clipPath id="b"><path d="M8 40 Q8 26 22 25 L40 25 Q52 26 55 36 L57 44 Q57 47 54 47 L11 47 Q8 47 8 44 Z"/></clipPath></defs>
+<line x1="14" y1="27" x2="10" y2="12" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 12 L19 14 L11 18 Z" fill="#4da3ff" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 40 Q8 26 22 25 L40 25 Q52 26 55 36 L57 44 Q57 47 54 47 L11 47 Q8 47 8 44 Z" fill="#c3d2e6"/>
+<rect x="4" y="40" width="58" height="10" fill="#8ea3c2" clip-path="url(#b)"/>
+<rect x="4" y="28" width="58" height="4" fill="#ff9a3c" clip-path="url(#b)"/>
+<path d="M8 40 Q8 26 22 25 L40 25 Q52 26 55 36 L57 44 Q57 47 54 47 L11 47 Q8 47 8 44 Z" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M22 25 Q24 13 34 13 Q43 13 45 25 Z" fill="#7ee0ff" opacity="0.9" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="29.8" cy="19.5" rx="2.6" ry="3.2" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="30.6" cy="20.1" rx="1.56" ry="2.11" fill="#2b2140"/>
+<circle cx="29.95" cy="18.70" r="0.73" fill="#fff"/>
+<ellipse cx="38.2" cy="19.5" rx="2.6" ry="3.2" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="39.0" cy="20.1" rx="1.56" ry="2.11" fill="#2b2140"/>
+<circle cx="38.35" cy="18.70" r="0.73" fill="#fff"/>
+
+<ellipse cx="29" cy="15.5" rx="2.5" ry="1.2" fill="#fff" opacity="0.6" transform="rotate(-30 29 15.5)"/>
+
+<rect x="54" y="33" width="8" height="6" rx="2.4" fill="#5d6a82" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M62 33 Q66 36 62 39" fill="#ff9a3c" stroke="#d9681c" stroke-width="1.2"/>
+<circle cx="18" cy="48" r="7.5" fill="#3b3f52" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="18" cy="48" r="3" fill="#eef4fb" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="46" cy="48" r="7.5" fill="#3b3f52" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="46" cy="48" r="3" fill="#eef4fb" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

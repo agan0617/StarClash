@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>飛飛蝠（黏黏蟲群）</title>
+<path d="M20 30 Q8 14 2 24 Q6 26 6 31 Q10 29 12 34 Q16 31 20 36 Z" fill="#6f46ab" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M44 30 Q56 14 62 24 Q58 26 58 31 Q54 29 52 34 Q48 31 44 36 Z" fill="#6f46ab" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 46 Q34 56 28 58 Q31 54 29 50" fill="none" stroke="#2b2140" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><circle cx="32" cy="34" r="14"/></clipPath></defs>
+<circle cx="32" cy="34" r="14" fill="#a374db"/>
+<ellipse cx="34" cy="46" rx="18" ry="7" fill="#6f46ab" clip-path="url(#b)"/>
+<ellipse cx="32" cy="42" rx="6" ry="4" fill="#4da3ff" clip-path="url(#b)"/>
+<circle cx="32" cy="34" r="14" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M22 23 L20 16 L26 21 M42 23 L44 16 L38 21" fill="#a374db" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="26.5" cy="32" rx="3.6" ry="4.3" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="27.3" cy="32.6" rx="2.16" ry="2.84" fill="#2b2140"/>
+<circle cx="26.40" cy="30.93" r="1.01" fill="#fff"/>
+<ellipse cx="37.5" cy="32" rx="3.6" ry="4.3" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="38.3" cy="32.6" rx="2.16" ry="2.84" fill="#2b2140"/>
+<circle cx="37.40" cy="30.93" r="1.01" fill="#fff"/>
+
+<path d="M29.5 38.5 L30.5 41 L31.5 38.8 M32.5 38.8 L33.5 41 L34.5 38.5" fill="#fff" stroke="#2b2140" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="22.5" cy="37" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+<ellipse cx="41.5" cy="37" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+
+<ellipse cx="25" cy="26" rx="3" ry="1.8" fill="#fff" opacity="0.6" transform="rotate(-30 25 26)"/>
+</svg>

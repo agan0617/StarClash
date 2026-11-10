@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<title>鎖</title>
+<path d="M10 15 L10 10 Q10 4 16 4 Q22 4 22 10 L22 15" fill="none" stroke="#2b2140" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 15 L10 10 Q10 4 16 4 Q22 4 22 10 L22 15" fill="none" stroke="#ffd166" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="6" y="14" width="20" height="15" rx="5" fill="#ffd166" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="16" cy="21" r="2.4" fill="#2b2140"/>
+</svg>

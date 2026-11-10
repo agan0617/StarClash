@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<title>人口</title>
+<path d="M3 29 L3 14 L16 4 L29 14 L29 29 Z" fill="#c3d2e6" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1 15 L16 3 L31 15" fill="none" stroke="#ff9a3c" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="16" cy="18" r="3.2" fill="#33405a"/>
+<path d="M10 29 Q10 22 16 22 Q22 22 22 29 Z" fill="#33405a"/>
+</svg>

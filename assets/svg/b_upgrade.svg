@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<title>建設：升級</title>
+<path d="M24 3 L42 21 L32 21 L32 31 L16 31 L16 21 L6 21 Z" fill="#ffd36b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 34 h16 v5 h-16 Z M16 41 h16 v4 h-16 Z" fill="#ff9a3c" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="18" cy="15" rx="3" ry="1.4" fill="#fff" opacity="0.6" transform="rotate(-45 18 15)"/>
+</svg>

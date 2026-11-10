@@ -1,56 +1,82 @@
-html, body { margin: 0; height: 100%; background: #090d14; color: #eee; font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif; overflow: hidden; overscroll-behavior: none; }
+/* Q 版可愛科幻風（0.8.0）：圓角、粗深色外框、柔和漸層、按鈕有底部厚度。顏色變數集中在 :root */
+:root {
+  --ol: #2b2140;            /* 外框 */
+  --bg1: #3b2f6e; --bg2: #1f1840;
+  --ink: #fff; --sub: #d8d0ff; --dim: #a59bd6;
+  --blue1: #a9dcff; --blue2: #4d8fe0; --blue3: #2f5fae;
+  --org1: #ffe08a; --org2: #ff9a3c; --org3: #c85f1c;
+  --chip1: #8f84e0; --chip2: #5a4bb0; --chip3: #3a2f7a;
+  --win: #9ef59e; --lose: #ff8a8a;
+}
+html, body { margin: 0; height: 100%; background: var(--bg2); color: var(--ink); font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif; overflow: hidden; overscroll-behavior: none; }
 body { display: flex; align-items: center; justify-content: center; }
 #game { display: block; touch-action: none; user-select: none; -webkit-user-select: none; }
 .hidden { display: none !important; }
-/* 選單背景：星空＋藍紅兩色星雲（純 CSS） */
-.overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; overflow-y: auto; text-align: center;
+/* 選單背景：紫藍色星空＋粉彩小星星與藍紅兩團柔光（純 CSS） */
+.overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; box-sizing: border-box; overflow-y: auto; text-align: center;
   background:
-    radial-gradient(1px 1px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 78% 12%, #cfe6ff, transparent),
-    radial-gradient(1.5px 1.5px at 33% 72%, #fff, transparent), radial-gradient(1px 1px at 88% 64%, #ffd9d9, transparent),
-    radial-gradient(1px 1px at 52% 38%, #fff, transparent), radial-gradient(1.5px 1.5px at 22% 48%, #bfe0ff, transparent),
-    radial-gradient(1px 1px at 66% 86%, #fff, transparent), radial-gradient(1px 1px at 8% 90%, #fff, transparent),
-    radial-gradient(1px 1px at 94% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 44% 8%, #fff, transparent),
-    radial-gradient(ellipse 70% 45% at 15% 85%, rgba(40,110,220,0.35), transparent 70%),
-    radial-gradient(ellipse 70% 45% at 85% 10%, rgba(220,50,60,0.3), transparent 70%),
-    radial-gradient(ellipse at center, #111a2a, #05070c 75%); }
-#hero { width: min(420px, 86vw); height: auto; aspect-ratio: 420 / 220; margin-bottom: 4px; }
-h1 { margin: 0 0 4px; font-size: 44px; letter-spacing: 6px; font-weight: 900;
-  background: linear-gradient(180deg, #ffffff 10%, #a9dcff 55%, #4d8fdf 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 0 12px rgba(77,163,255,0.55)) drop-shadow(0 2px 0 rgba(0,0,0,0.6)); }
-.sub { margin: 0 0 24px; color: #9fb3cc; letter-spacing: 1px; }
-#levels { display: flex; gap: 8px; margin-bottom: 20px; }
-#levels button { padding: 10px 22px; font-size: 16px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; }
-#levels button.on { background: linear-gradient(180deg, #3a6aa8, #1d3a63); border-color: #a9dcff; color: #fff; box-shadow: 0 0 12px rgba(77,163,255,0.45); }
-button.big { padding: 14px 48px; font-size: 20px; border-radius: 10px; border: 1px solid #a9dcff; background: linear-gradient(180deg, #7cc0ff, #2f7fd6); color: #04101c; font-weight: 900; letter-spacing: 2px;
-  box-shadow: 0 0 18px rgba(77,163,255,0.5), inset 0 1px 0 rgba(255,255,255,0.5); }
-button.link { background: none; border: 0; color: #9fd3ff; text-decoration: underline; font-size: 15px; margin-top: 12px; }
-#record { color: #bbb; font-size: 14px; margin: 16px 0 0; }
-#help { max-width: 460px; text-align: left; font-size: 14px; line-height: 1.6; color: #ccc; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 4px 16px; }
+    radial-gradient(2px 2px at 12% 18%, #fff, transparent), radial-gradient(2px 2px at 78% 12%, #ffe08a, transparent),
+    radial-gradient(2.5px 2.5px at 33% 72%, #fff, transparent), radial-gradient(2px 2px at 88% 64%, #ffb3e6, transparent),
+    radial-gradient(1.5px 1.5px at 52% 38%, #fff, transparent), radial-gradient(2.5px 2.5px at 22% 48%, #a9dcff, transparent),
+    radial-gradient(1.5px 1.5px at 66% 86%, #fff, transparent), radial-gradient(2px 2px at 8% 90%, #ffe08a, transparent),
+    radial-gradient(1.5px 1.5px at 94% 30%, #fff, transparent), radial-gradient(2px 2px at 44% 8%, #a9dcff, transparent),
+    radial-gradient(ellipse 70% 45% at 15% 85%, rgba(77,163,255,0.35), transparent 70%),
+    radial-gradient(ellipse 70% 45% at 85% 10%, rgba(255,110,140,0.3), transparent 70%),
+    radial-gradient(ellipse at center, var(--bg1), var(--bg2) 80%); }
+#hero { width: min(420px, 92vw); height: auto; aspect-ratio: 420 / 220; margin-bottom: 2px; }
+/* 標題：白字＋粗深色描邊（paint-order 讓描邊在字的外側）＋底部厚影＋淡藍光暈 */
+h1 { margin: 0 0 4px; font-size: 46px; letter-spacing: 6px; font-weight: 900; color: #fff; -webkit-text-fill-color: #fff;
+  -webkit-text-stroke: 7px var(--ol); paint-order: stroke fill;
+  text-shadow: 0 5px 0 var(--ol), 0 0 18px rgba(169,220,255,0.6); }
+.sub { margin: 0 0 20px; color: var(--sub); letter-spacing: 1px; font-weight: 600; }
+/* 共用：糖果按鈕（粗框、上亮下暗、底部厚度，按下去會沉） */
+#levels button, .races button, button.big, #replay-list button, #replay-bar button {
+  font-family: inherit; font-weight: 800; color: #fff; cursor: pointer;
+  border: 3px solid var(--ol); border-radius: 14px;
+  background: linear-gradient(180deg, var(--chip1), var(--chip2));
+  box-shadow: 0 4px 0 var(--ol), inset 0 3px 0 rgba(255,255,255,0.28);
+  text-shadow: 0 2px 0 rgba(43,33,64,0.6);
+  transition: transform 0.06s, box-shadow 0.06s; }
+#levels button:active, .races button:active, button.big:active, #replay-list button:active, #replay-bar button:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ol), inset 0 3px 0 rgba(255,255,255,0.28); }
+#levels { display: flex; gap: 8px; margin-bottom: 16px; }
+#levels button { padding: 9px 20px; font-size: 16px; }
+#levels button.on, .races button.on { background: linear-gradient(180deg, var(--blue1), var(--blue2)); color: #fff; box-shadow: 0 4px 0 var(--ol), inset 0 3px 0 rgba(255,255,255,0.5), 0 0 14px rgba(169,220,255,0.6); }
+button.big { padding: 13px 44px; font-size: 21px; letter-spacing: 3px; border-radius: 18px; margin-top: 4px;
+  background: linear-gradient(180deg, #8fd0ff, var(--blue2)); box-shadow: 0 6px 0 var(--ol), inset 0 4px 0 rgba(255,255,255,0.45), 0 0 18px rgba(124,192,255,0.45); }
+button.big:active { box-shadow: 0 2px 0 var(--ol), inset 0 4px 0 rgba(255,255,255,0.45); }
+button.big.alt { margin-top: 12px; background: linear-gradient(180deg, var(--org1), var(--org2)); color: var(--ol); text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 6px 0 var(--ol), inset 0 4px 0 rgba(255,255,255,0.55), 0 0 18px rgba(255,154,60,0.4); }
+button.link { background: none; border: 0; color: var(--blue1); text-decoration: underline; text-underline-offset: 3px; font-size: 15px; font-weight: 700; margin-top: 12px; font-family: inherit; cursor: pointer; }
+#record { color: var(--sub); font-size: 14px; margin: 16px 0 0; }
+#help { max-width: 460px; text-align: left; font-size: 14px; line-height: 1.65; color: #ece8ff; background: rgba(43,33,64,0.7); border: 3px solid var(--ol); border-radius: 16px; padding: 4px 16px; margin-top: 8px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.12); }
 #help p { margin: 10px 0; }
-.dim { color: #556; font-size: 12px; margin-top: 24px; }
-#result-title { font-size: 48px; }
-#result-title.win { color: #7ad17a; } #result-title.lose { color: #ff5a5a; }
-#result-reason { color: #bbb; margin: 0 0 16px; }
-#result-stats { border-collapse: collapse; margin-bottom: 24px; font-size: 15px; }
-#result-stats th, #result-stats td { padding: 4px 16px; border-bottom: 1px solid #2a3344; }
-#result-stats th:first-child, #result-stats td:first-child { text-align: left; color: #9fb3cc; }
+#help b { color: var(--org1); }
+.dim { color: var(--dim); font-size: 12px; margin-top: 24px; }
+/* 結算 */
+#result-title { font-size: 54px; }
+#result-title.win { color: var(--win); background: none; -webkit-text-fill-color: var(--win); }
+#result-title.lose { color: var(--lose); background: none; -webkit-text-fill-color: var(--lose); }
+#result-reason { color: var(--sub); margin: 0 0 16px; font-weight: 600; }
+#result-stats { border-collapse: separate; border-spacing: 0; margin-bottom: 24px; font-size: 15px; background: rgba(43,33,64,0.7); border: 3px solid var(--ol); border-radius: 16px; overflow: hidden; }
+#result-stats th, #result-stats td { padding: 6px 16px; border-bottom: 2px solid rgba(43,33,64,0.6); }
+#result-stats tr:last-child th, #result-stats tr:last-child td { border-bottom: 0; }
+#result-stats th { color: var(--org1); }
+#result-stats th:first-child, #result-stats td:first-child { text-align: left; color: var(--sub); }
 /* 種族選擇 */
-.race-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.race-row > span { color: #9fb3cc; font-size: 14px; width: 4.5em; text-align: right; }
-.races { display: flex; gap: 6px; }
-.races button { padding: 7px 14px; font-size: 15px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; }
-.races button.on { background: linear-gradient(180deg, #3a6aa8, #1d3a63); border-color: #a9dcff; color: #fff; box-shadow: 0 0 10px rgba(77,163,255,0.4); }
-.sub.small { font-size: 13px; margin: 2px 0 16px; min-height: 1.2em; }
+.race-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.race-row > span { color: var(--sub); font-size: 14px; font-weight: 700; width: 4.5em; text-align: right; flex: none; }
+.races { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.races button { padding: 6px 10px; font-size: 15px; border-radius: 12px; box-shadow: 0 3px 0 var(--ol), inset 0 2px 0 rgba(255,255,255,0.28); }
+.sub.small { font-size: 13px; margin: 2px 0 14px; min-height: 1.2em; max-width: 420px; }
 /* 連線對戰 */
-button.big.alt { margin-top: 12px; background: linear-gradient(180deg, #ffb36b, #d6602f); border-color: #ffd9b0; box-shadow: 0 0 18px rgba(255,140,77,0.45), inset 0 1px 0 rgba(255,255,255,0.5); }
-h1.mid { font-size: 34px; }
-#lobby-msg { white-space: pre-line; color: #cde; font-size: 16px; line-height: 1.7; max-width: 420px; margin: 12px 0 8px; }
+h1.mid { font-size: 36px; }
+#lobby-msg { white-space: pre-line; color: #ece8ff; font-size: 16px; line-height: 1.7; max-width: 420px; margin: 12px 0 8px; }
 /* 重播 */
-#replay-list { display: flex; flex-direction: column; gap: 6px; width: min(460px, 92vw); max-height: 60vh; overflow-y: auto; color: #9fb3cc; font-size: 14px; }
-#replay-list button { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid #3a5a85; background: linear-gradient(180deg, #26344a, #161e2b); color: #ddd; font-size: 14px; text-align: left; }
-#replay-list .when { color: #9fb3cc; white-space: nowrap; }
-#replay-list .win { color: #7ad17a; } #replay-list .lose { color: #ff5a5a; }
-#replay-bar { position: fixed; bottom: 6px; left: 50%; transform: translateX(-50%); width: min(520px, 96vw); box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: rgba(10,16,28,0.85); border: 1px solid #3a5a85; z-index: 5; }
-#replay-bar button { padding: 4px 10px; font-size: 15px; border-radius: 6px; border: 1px solid #3a5a85; background: #1d2a40; color: #fff; min-width: 40px; }
-#replay-seek { flex: 1; min-width: 60px; }
-#replay-time { color: #cde; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#replay-list { display: flex; flex-direction: column; gap: 8px; width: min(460px, 92vw); max-height: 60vh; overflow-y: auto; color: var(--sub); font-size: 14px; padding: 4px 4px 8px; box-sizing: border-box; }
+#replay-list button { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; font-size: 14px; text-align: left; font-weight: 700; flex: none; }
+#replay-list .when { color: var(--sub); white-space: nowrap; }
+#replay-list .win { color: var(--win); } #replay-list .lose { color: var(--lose); }
+#replay-bar { position: fixed; bottom: 6px; left: 50%; transform: translateX(-50%); width: min(520px, 96vw); box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 16px; background: linear-gradient(180deg, rgba(74,62,128,0.95), rgba(43,33,80,0.95)); border: 3px solid var(--ol); z-index: 5; }
+#replay-bar button { padding: 3px 10px; font-size: 15px; border-radius: 10px; min-width: 40px; box-shadow: 0 3px 0 var(--ol), inset 0 2px 0 rgba(255,255,255,0.28); }
+#replay-seek { flex: 1; min-width: 60px; accent-color: var(--org2); }
+#replay-time { color: #ece8ff; font-size: 13px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }

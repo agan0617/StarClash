@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+<title>前哨塔（鐵殼聯邦）</title>
+<rect x="14" y="70" width="68" height="18" rx="9" fill="#5d6a82" stroke="#2b2140" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="28" cy="79" r="3" fill="#4da3ff"/><circle cx="48" cy="79" r="3" fill="#4da3ff"/><circle cx="68" cy="79" r="3" fill="#4da3ff"/>
+<defs><clipPath id="b"><rect x="22" y="34" width="52" height="42" rx="10"/></clipPath></defs>
+<rect x="22" y="34" width="52" height="42" rx="10" fill="#c3d2e6"/>
+<rect x="18" y="64" width="60" height="14" fill="#8ea3c2" clip-path="url(#b)"/>
+<rect x="18" y="44" width="60" height="6" fill="#ff9a3c" clip-path="url(#b)"/>
+<rect x="22" y="34" width="52" height="42" rx="10" fill="none" stroke="#2b2140" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="56" y="16" width="30" height="8" rx="4" fill="#5d6a82" stroke="#2b2140" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="82" y="15" width="7" height="10" rx="3" fill="#ff9a3c" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M26 36 Q26 8 48 8 Q70 8 70 36 Z" fill="#c3d2e6" stroke="#2b2140" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="33" y="19" width="30" height="12" rx="6" fill="#33405a" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="41" cy="25" rx="3" ry="3.75" fill="#7ee0ff"/>
+<circle cx="40.10" cy="23.65" r="1.05" fill="#fff"/>
+<ellipse cx="55" cy="25" rx="3" ry="3.75" fill="#7ee0ff"/>
+<circle cx="54.10" cy="23.65" r="1.05" fill="#fff"/>
+
+<line x1="30" y1="12" x2="30" y2="0" stroke="#2b2140" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M30 1 L44 4 L30 8 Z" fill="#4da3ff" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="36" cy="15" rx="5" ry="2.4" fill="#fff" opacity="0.6" transform="rotate(-30 36 15)"/>
+
+<rect x="42" y="56" width="12" height="20" rx="6" fill="#33405a" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

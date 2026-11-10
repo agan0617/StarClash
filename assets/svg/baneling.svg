@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>啵啵球（黏黏蟲群）</title>
+<path d="M14 50 L10 56 M50 50 L54 56" stroke="#2b2140" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><circle cx="32" cy="37" r="19"/></clipPath></defs>
+<circle cx="32" cy="37" r="19" fill="#9be35a"/>
+<ellipse cx="35" cy="53" rx="24" ry="9" fill="#5fae2e" clip-path="url(#b)"/>
+<circle cx="22" cy="44" r="3" fill="#d9ffb0" opacity="0.8"/><circle cx="43" cy="47" r="2" fill="#d9ffb0" opacity="0.8"/><circle cx="40" cy="26" r="1.6" fill="#d9ffb0" opacity="0.8"/>
+<circle cx="32" cy="37" r="19" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M19 22 Q32 10 45 22 Q32 18 19 22 Z" fill="#a374db" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="32" cy="16.5" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="25.5" cy="35" rx="4.2" ry="5" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="26.3" cy="35.6" rx="2.52" ry="3.30" fill="#2b2140"/>
+<circle cx="25.25" cy="33.75" r="1.18" fill="#fff"/>
+<ellipse cx="38.5" cy="35" rx="4.2" ry="5" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="39.3" cy="35.6" rx="2.52" ry="3.30" fill="#2b2140"/>
+<circle cx="38.25" cy="33.75" r="1.18" fill="#fff"/>
+
+<path d="M26 44 Q32 50 38 44 Z" fill="#7a2d4f" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="20" cy="42" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+<ellipse cx="44" cy="42" rx="2.6" ry="1.5" fill="#ff8fb1" opacity="0.7"/>
+
+<ellipse cx="22" cy="27" rx="5" ry="2.6" fill="#fff" opacity="0.6" transform="rotate(-30 22 27)"/>
+</svg>

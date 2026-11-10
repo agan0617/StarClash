@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<title>尖刺花（黏黏蟲群）</title>
+<ellipse cx="32" cy="55" rx="24" ry="6.5" fill="#9be35a" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="25" cy="53.5" rx="5" ry="1.6" fill="#d9ffb0" opacity="0.8"/>
+<path d="M18 48 Q6 40 6 26 Q14 32 22 40 M46 48 Q58 40 58 26 Q50 32 42 40" fill="#6f46ab" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 22 Q28 10 32 3 Q36 10 32 22" fill="#4da3ff" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<defs><clipPath id="b"><path d="M14 54 Q12 30 32 20 Q52 30 50 54 Z"/></clipPath></defs>
+<path d="M14 54 Q12 30 32 20 Q52 30 50 54 Z" fill="#a374db"/>
+<rect x="8" y="46" width="48" height="10" fill="#6f46ab" clip-path="url(#b)"/>
+<path d="M14 54 Q12 30 32 20 Q52 30 50 54 Z" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 34 L14 30 L19 38 M44 34 L50 30 L45 38" fill="#d2b6f5" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="26" cy="38" rx="3.8" ry="4.6" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="26.8" cy="38.6" rx="2.28" ry="3.04" fill="#2b2140"/>
+<circle cx="25.85" cy="36.85" r="1.06" fill="#fff"/>
+<ellipse cx="38" cy="38" rx="3.8" ry="4.6" fill="#fff" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="38.8" cy="38.6" rx="2.28" ry="3.04" fill="#2b2140"/>
+<circle cx="37.85" cy="36.85" r="1.06" fill="#fff"/>
+
+<path d="M28 46 Q32 49 36 46" fill="none" stroke="#2b2140" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="24" cy="30" rx="3" ry="1.8" fill="#fff" opacity="0.6" transform="rotate(-30 24 30)"/>
+</svg>

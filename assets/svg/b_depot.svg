@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<title>建設：補給</title>
+<rect x="6" y="26" width="18" height="16" rx="3" fill="#ff9a3c" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="24" y="26" width="18" height="16" rx="3" fill="#ffb86b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="15" y="10" width="18" height="16" rx="3" fill="#c3d2e6" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 34 h18 M24 34 h18 M15 18 h18" stroke="#2b2140" stroke-width="1.6"/>
+<circle cx="24" cy="18" r="2.4" fill="#4da3ff"/>
+</svg>

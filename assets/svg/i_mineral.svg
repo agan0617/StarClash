@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<title>礦</title>
+<path d="M16 2 L27 11 L23 29 L9 29 L5 11 Z" fill="#5cc8ff" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 2 L27 11 L16 14 Z" fill="#c8f0ff"/>
+<path d="M16 14 L23 29 L9 29 Z" fill="#2f8fd6"/>
+<path d="M16 2 L27 11 L23 29 L9 29 L5 11 Z" fill="none" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

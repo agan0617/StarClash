@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<title>皇冠</title>
+<path d="M3 26 L3 10 L10 17 L16 5 L22 17 L29 10 L29 26 Z" fill="#ffc93d" stroke="#2b2140" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="3" y="22" width="26" height="5" fill="#e09a14" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="16" cy="17" r="3" fill="#4da3ff" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="3" cy="9.5" r="2" fill="#fff3b0" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16" cy="4.5" r="2" fill="#fff3b0" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="29" cy="9.5" r="2" fill="#fff3b0" stroke="#2b2140" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<title>建設：工人</title>
+<rect x="13" y="38" width="8" height="6" rx="3" fill="#8ea3c2" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><rect x="27" y="38" width="8" height="6" rx="3" fill="#8ea3c2" stroke="#2b2140" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="24" cy="26" r="13" fill="#ffd36b" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M11 24 Q11 10 24 10 Q37 10 37 24 Z" fill="#ff9a3c" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="16" y="23" width="16" height="8" rx="4" fill="#33405a" stroke="#2b2140" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="20" cy="27" rx="1.8" ry="2.25" fill="#7ee0ff"/>
+<circle cx="19.46" cy="26.19" r="0.63" fill="#fff"/>
+<ellipse cx="28" cy="27" rx="1.8" ry="2.25" fill="#7ee0ff"/>
+<circle cx="27.46" cy="26.19" r="0.63" fill="#fff"/>
+
+<path d="M36 14 L44 4 M40 4 Q46 6 46 12" fill="none" stroke="#8a5a2b" stroke-width="3" stroke-linecap="round"/>
+<path d="M38 2 Q46 2 47 10" fill="none" stroke="#2b2140" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
