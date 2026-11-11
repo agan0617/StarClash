@@ -4,7 +4,7 @@
 'use strict';
 
 const DATA = {
-  VERSION: '0.10.1',
+  VERSION: '0.11.0',
   TICK: 0.05,                 // 模擬固定每秒 20 步，和畫面更新分開
   FIELD: { w: 22.5, h: 30, river: 15, lanes: [5.5, 17], mid: 11.25 },
   DEPLOY_MAX_Y: 14,           // 玩家只能在 y ≤ 14 的自家半場放兵（敵方鏡射）
@@ -28,10 +28,10 @@ const DATA = {
   BUILDS: {
     worker:   { m: 50,  g: 0,   t: 8,  max: 16, names: { terran: '採礦機', zerg: '採集體', protoss: '符文工匠' } },
     depot:    { m: 100, g: 0,   t: 12, max: 5,  names: { terran: '電池艙', zerg: '共生囊', protoss: '能量方尖碑' } },
-    refinery: { m: 75,  g: 0,   t: 15, max: 2,  names: { terran: '氣體泵', zerg: '吸氣巢', protoss: '凝氣塔' } },
-    barracks: { m: 150, g: 0,   t: 20, max: 1,  names: { terran: '機兵廠', zerg: '幼體巢', protoss: '召喚陣' } },
-    factory:  { m: 150, g: 75,  t: 25, max: 1,  req: 'barracks', names: { terran: '機甲廠', zerg: '甲殼巢', protoss: '秘械工坊' } },
-    starport: { m: 150, g: 75,  t: 25, max: 1,  req: 'factory',  names: { terran: '航空塢', zerg: '飛翼巢', protoss: '浮空港' } },
+    refinery: { m: 75,  g: 0,   t: 10, max: 2,  names: { terran: '氣體泵', zerg: '吸氣巢', protoss: '凝氣塔' } },
+    barracks: { m: 150, g: 0,   t: 12, max: 1,  names: { terran: '機兵廠', zerg: '幼體巢', protoss: '召喚陣' } },
+    factory:  { m: 150, g: 50,  t: 15, max: 1,  req: 'barracks', names: { terran: '機甲廠', zerg: '甲殼巢', protoss: '秘械工坊' } },
+    starport: { m: 150, g: 50,  t: 15, max: 1,  req: 'factory',  names: { terran: '航空塢', zerg: '飛翼巢', protoss: '浮空港' } },
     upgrade:  { m: 100, g: 75,  t: 25, max: 3,  req: 'barracks', names: { terran: '武裝升級', zerg: '進化腺', protoss: '符文強化' } },
   },
   BUILD_ORDER: ['worker', 'depot', 'refinery', 'barracks', 'factory', 'starport', 'upgrade'],
@@ -49,27 +49,27 @@ const DATA = {
   UNITS: {
     // ── 人族（id terran）：可愛又正經的機器人與機甲 ──
     marine:   { race: 'terran', name: '小機兵', m: 50,  g: 0,   supply: 1, hp: 45,  dmg: 6,  cd: 0.6,  range: 4,   speed: 2.0, air: false, hitsAir: true,  armor: 'light',   req: 'barracks', desc: '便宜、打得到空中，數量就是力量' },
-    marauder: { race: 'terran', name: '重拳機甲', m: 100, g: 25,  supply: 2, hp: 150, dmg: 10, bonus: 10, bonusVs: 'armored', cd: 1.0, range: 4.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', req: 'barracks', desc: '對重甲與建築多打一倍，打不到空中' },
-    hellion:  { race: 'terran', name: '噴火戰車', m: 100, g: 0,   supply: 2, hp: 90,  dmg: 8,  bonus: 10, bonusVs: 'light',   cd: 1.2, range: 3.5, speed: 4.0, air: false, hitsAir: false, armor: 'light',   splash: 1.0, req: 'factory', desc: '跑得快、噴火範圍傷害，剋輕甲海' },
-    tank:     { race: 'terran', name: '砲擊機甲', m: 150, g: 125, supply: 3, hp: 200, dmg: 30, bonus: 15, bonusVs: 'armored', cd: 1.6, range: 7,  speed: 1.8, air: false, hitsAir: false, armor: 'armored', splash: 1.2, req: 'factory', desc: '射程最遠、拆塔最快，怕空中單位' },
-    viking:   { race: 'terran', name: '鷹式戰機', m: 150, g: 75,  supply: 2, hp: 135, dmg: 12, bonus: 6,  bonusVs: 'armored', cd: 1.2, range: 6,   speed: 3.5, air: true,  hitsAir: true,  armor: 'armored', groundMul: 0.5, req: 'starport', desc: '空中單位、主力防空，打地面只有一半傷害' },
+    marauder: { race: 'terran', name: '重拳機甲', m: 100, g: 25,  supply: 2, hp: 150, dmg: 10, bonus: 16, bonusVs: 'armored', cd: 1.0, range: 4.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', req: 'barracks', desc: '對重甲與建築多打一倍，打不到空中' },
+    hellion:  { race: 'terran', name: '噴火戰車', m: 100, g: 0,   supply: 2, hp: 90,  dmg: 8,  bonus: 16, bonusVs: 'light',   cd: 1.2, range: 3.5, speed: 4.0, air: false, hitsAir: false, armor: 'light',   splash: 1.0, req: 'factory', desc: '跑得快、噴火範圍傷害，剋輕甲海' },
+    tank:     { race: 'terran', name: '砲擊機甲', m: 150, g: 125, supply: 3, hp: 200, dmg: 30, bonus: 15, bonusVs: 'armored', cd: 1.6, range: 7,  speed: 1.8, air: false, hitsAir: false, armor: 'armored', splash: 1.5, req: 'factory', desc: '射程最遠、拆塔最快，怕空中單位' },
+    viking:   { race: 'terran', name: '鷹式戰機', m: 150, g: 75,  supply: 2, hp: 135, dmg: 12, bonus: 12, bonusVs: 'armored', cd: 1.2, range: 6,   speed: 3.5, air: true,  hitsAir: true,  armor: 'armored', groundMul: 0.5, req: 'starport', desc: '空中單位、主力防空，打地面只有一半傷害' },
     banshee:  { race: 'terran', name: '旋翼無人機', m: 150, g: 100, supply: 3, hp: 140, dmg: 24, cd: 1.25, range: 5,  speed: 3.5, air: true,  hitsAir: false, armor: 'light',   req: 'starport', desc: '空中轟炸，打不到空中' },
     turret:   { race: 'terran', name: '哨戒砲台', m: 100, g: 0,   supply: 0, hp: 250, dmg: 12, cd: 0.8,  range: 6,   speed: 0,   air: false, hitsAir: true,  armor: 'armored', structure: true, lifetime: 60, maxCount: 3, req: 'barracks', desc: '固定防禦，打空也打地，撐 60 秒，最多 3 座' },
     // ── 蟲族（id zerg）：可愛外星生物；便宜、快、會回血 ──
     zergling: { race: 'zerg', name: '小觸獸', m: 50,  g: 0,   supply: 0.5, count: 2, hp: 38, dmg: 5, cd: 0.5, range: 0.6, speed: 4.2, air: false, hitsAir: false, armor: 'light', req: 'barracks', desc: '一張卡兩隻，又快又便宜的近戰' },
     baneling: { race: 'zerg', name: '爆泡體', m: 50,  g: 25,  supply: 0.5, hp: 30,  dmg: 18, bonus: 18, bonusVs: 'light', cd: 1, range: 0.6, speed: 3.2, air: false, hitsAir: false, armor: 'light', splash: 1.6, splashFull: true, suicide: true, req: 'barracks', desc: '衝進敵群自爆，範圍傷害，剋輕甲海' },
-    roach:    { race: 'zerg', name: '殼甲獸', m: 75,  g: 25,  supply: 2, hp: 145, dmg: 16, cd: 1.4, range: 4,   speed: 2.6, air: false, hitsAir: false, armor: 'armored', regen: 4, req: 'factory', desc: '耐打、回血很快的重甲，打不到空中' },
+    roach:    { race: 'zerg', name: '殼甲獸', m: 95, g: 25,  supply: 2, hp: 145, dmg: 16, cd: 1.4, range: 4,   speed: 2.6, air: false, hitsAir: false, armor: 'armored', regen: 4, req: 'factory', desc: '耐打、回血很快的重甲，打不到空中' },
     hydralisk:{ race: 'zerg', name: '噴光獸', m: 100, g: 50,  supply: 2, hp: 90,  dmg: 12, cd: 0.6, range: 5,   speed: 2.6, air: false, hitsAir: true,  armor: 'light',   req: 'factory', desc: '高輸出、打得到空中，但很脆' },
     mutalisk: { race: 'zerg', name: '浮翼獸', m: 100, g: 100, supply: 2, hp: 100, dmg: 8,  cd: 1.0, range: 3,   speed: 4.2, air: true,  hitsAir: true,  armor: 'light',   splash: 0.9, req: 'starport', desc: '快速的空中騷擾，攻擊會彈跳' },
-    corruptor:{ race: 'zerg', name: '浮游眼', m: 150, g: 100, supply: 2, hp: 200, dmg: 14, bonus: 8, bonusVs: 'armored', cd: 1.0, range: 6, speed: 3.5, air: true, hitsAir: true, hitsGround: false, armor: 'armored', req: 'starport', desc: '專打空中（也能侵蝕塔），打不到地面單位' },
+    corruptor:{ race: 'zerg', name: '浮游眼', m: 150, g: 100, supply: 2, hp: 200, dmg: 14, bonus: 14, bonusVs: 'armored', cd: 1.0, range: 6, speed: 3.5, air: true, hitsAir: true, hitsGround: false, armor: 'armored', req: 'starport', desc: '專打空中（也能侵蝕塔），打不到地面單位' },
     spine:    { race: 'zerg', name: '孢子哨', m: 100, g: 0,  supply: 0, hp: 300, dmg: 18, bonus: 10, bonusVs: 'armored', cd: 1.2, range: 6, speed: 0, air: false, hitsAir: false, armor: 'armored', structure: true, lifetime: 60, maxCount: 3, req: 'barracks', desc: '固定防禦，很耐打但打不到空中，撐 60 秒' },
     // ── 神族（id protoss）：符文能量＋精緻機械；貴、硬、有護盾 ──
-    zealot:   { race: 'protoss', name: '符文騎士', m: 100, g: 0,   supply: 2, hp: 100, shield: 70,  dmg: 16, cd: 1.2, range: 0.6, speed: 2.8, air: false, hitsAir: false, armor: 'light', req: 'barracks', desc: '近戰坦克，有護盾，打不到空中' },
-    stalker:  { race: 'protoss', name: '核心行者', m: 125, g: 50,  supply: 2, hp: 85,  shield: 80,  dmg: 13, bonus: 5, bonusVs: 'armored', cd: 1.0, range: 6, speed: 3.0, air: false, hitsAir: true, armor: 'armored', req: 'barracks', desc: '射程長、打得到空中的萬用兵' },
+    zealot:   { race: 'protoss', name: '符文騎士', m: 100, g: 0,   supply: 2, hp: 100, shield: 55,  dmg: 16, cd: 1.2, range: 0.6, speed: 2.8, air: false, hitsAir: false, armor: 'light', req: 'barracks', desc: '近戰坦克，有護盾，打不到空中' },
+    stalker:  { race: 'protoss', name: '核心行者', m: 125, g: 50,  supply: 2, hp: 85,  shield: 80,  dmg: 13, bonus: 8, bonusVs: 'armored', cd: 1.0, range: 6, speed: 3.0, air: false, hitsAir: true, armor: 'armored', req: 'barracks', desc: '射程長、打得到空中的萬用兵' },
     immortal: { race: 'protoss', name: '齒輪守衛', m: 200, g: 100, supply: 4, hp: 250, shield: 150, dmg: 20, bonus: 30, bonusVs: 'armored', cd: 1.4, range: 5.5, speed: 2.2, air: false, hitsAir: false, armor: 'armored', req: 'factory', desc: '專拆重甲與塔，打不到空中' },
-    colossus: { race: 'protoss', name: '秘紋高腳', m: 250, g: 150, supply: 6, hp: 250, shield: 150, dmg: 14, bonus: 8, bonusVs: 'light', cd: 1.5, range: 6.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', splash: 1.4, splashFull: true, req: 'factory', desc: '長射程範圍光束，剋輕甲海' },
-    voidray:  { race: 'protoss', name: '靈光艦', m: 250, g: 150, supply: 4, hp: 150, shield: 100, dmg: 10, bonus: 6, bonusVs: 'armored', cd: 0.8, range: 5, speed: 3.0, air: true, hitsAir: true, armor: 'armored', req: 'starport', desc: '空中光束艦，打空也打地，專剋重甲' },
-    phoenix:  { race: 'protoss', name: '光翼機', m: 150, g: 100, supply: 2, hp: 120, shield: 60,  dmg: 10, bonus: 6, bonusVs: 'light', cd: 0.8, range: 5, speed: 4.6, air: true, hitsAir: true, hitsGround: false, armor: 'light', req: 'starport', desc: '最快的戰機，專打空中（也能打塔）' },
+    colossus: { race: 'protoss', name: '秘紋高腳', m: 250, g: 150, supply: 6, hp: 250, shield: 150, dmg: 14, bonus: 14, bonusVs: 'light', cd: 1.5, range: 6.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', splash: 1.4, splashFull: true, req: 'factory', desc: '長射程範圍光束，剋輕甲海' },
+    voidray:  { race: 'protoss', name: '靈光艦', m: 250, g: 150, supply: 4, hp: 150, shield: 100, dmg: 10, bonus: 4, bonusVs: 'armored', cd: 0.8, range: 5, speed: 3.0, air: true, hitsAir: true, armor: 'armored', req: 'starport', desc: '空中光束艦，打空也打地，專剋重甲' },
+    phoenix:  { race: 'protoss', name: '光翼機', m: 150, g: 100, supply: 2, hp: 120, shield: 60,  dmg: 10, bonus: 12, bonusVs: 'light', cd: 0.8, range: 5, speed: 4.6, air: true, hitsAir: true, hitsGround: false, armor: 'light', req: 'starport', desc: '最快的戰機，專打空中（也能打塔）' },
     cannon:   { race: 'protoss', name: '符文砲塔', m: 150, g: 0,   supply: 0, hp: 150, shield: 150, dmg: 16, cd: 1.0, range: 6.5, speed: 0, air: false, hitsAir: true, armor: 'armored', structure: true, lifetime: 60, maxCount: 3, req: 'barracks', desc: '固定防禦，打空也打地，有護盾，撐 60 秒' },
   },
   CARD_ORDER: ['marine', 'marauder', 'hellion', 'tank', 'viking', 'banshee', 'turret'],   // 舊版相容：人族的卡

@@ -244,7 +244,7 @@
 
   // ---- 迴圈 ----
   function afterStep(effects) {
-    if (effects) for (const e of g.effects) sparks.push(Object.assign({ age: 0, life: e.type === 'boom' ? 0.8 : e.type === 'die' ? 0.4 : 0.12 }, me === 0 ? e : flipXY(e)));
+    if (effects) for (const e of g.effects) sparks.push(Object.assign({ age: 0, life: e.type === 'boom' ? 0.8 : e.type === 'die' ? 0.4 : 0.3 }, me === 0 ? e : flipXY(e)));
     for (const m of g.msgs) if (m.p === -1 || m.p === me) toast((m.side === undefined ? '' : m.side === me ? '我方' : '敵方') + m.text, m.p === -1);
     g.msgs.length = 0;
   }

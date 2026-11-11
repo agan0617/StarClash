@@ -39,9 +39,12 @@ const AI = (() => {
     // 科技順序
     if (!c.barracks && !inProg('barracks') && workers >= 6) want('barracks');
     if (c.barracks && c.refinery + inProg('refinery') < 1) want('refinery');
-    if (c.barracks && !c.factory && !inProg('factory') && workers >= 9) want('factory');
+    if (c.barracks && !c.factory && !inProg('factory') && workers >= 8) want('factory');
     if (c.factory && c.refinery + inProg('refinery') < 2) want('refinery');
-    if (c.factory && !c.starport && !inProg('starport') && res.m > 250) want('starport');
+    if (c.factory && !c.starport && !inProg('starport')) want('starport');
+    // 下一座科技建築還沒錢蓋：先把它要的瓦斯留著，不然瓦斯一直被出兵花掉、科技永遠蓋不出來（簡單電腦以前整場只出一階兵）
+    const next = ['factory', 'starport'].find(w => !c[w] && !inProg(w) && (!B[w].req || c[B[w].req]));
+    res.keepG = next ? B[next].g : 0; res.keepM = next ? B[next].m : 0;
     if (c.barracks && c.upgrade + inProg('upgrade') < 3 && !inProg('upgrade') && res.m > 300 && res.g > 150) want('upgrade');
   }
 
@@ -73,7 +76,8 @@ const AI = (() => {
     }
     // 瓦斯存多了就多出要瓦斯的兵，不然瓦斯一路堆著不用
     if (res.g >= 150) for (const t of avail) if (U[t].g > 0 && w[t] > 0) w[t] += 2;
-    const ok = avail.filter(t => w[t] > 0 && res.m >= U[t].m && res.g >= U[t].g && res.used + U[t].supply * (U[t].count || 1) <= res.cap);
+    const keepG = threats.length ? 0 : res.keepG || 0;   // 守的時候不留，先活下來
+    const ok = avail.filter(t => w[t] > 0 && res.m >= U[t].m && res.g - (U[t].g ? keepG : 0) >= U[t].g && res.used + U[t].supply * (U[t].count || 1) <= res.cap);
     if (!ok.length) return null;
     let total = 0; for (const t of ok) total += w[t];
     let r = ai.rng() * total, t = ok[ok.length - 1];
@@ -115,7 +119,7 @@ const AI = (() => {
     // 一波的預算隨時間變大（後面的兵比較貴、經濟也比較好），最後一分鐘收入加倍時門檻降低、有就推
     const endgame = g.overtime || g.time > DATA.MATCH_TIME - DATA.DOUBLE_TIME;
     const wave = endgame ? 150 : ai.cfg.wave + g.time * (ai.cfg.waveGrow ?? 1.2);
-    if (res.m < wave) return;
+    if (res.m < wave + (endgame ? 0 : res.keepM || 0)) return;
     const outs = g.structures.filter(s => s.owner !== ai.pid && s.kind === 'outpost' && !s.dead);
     if (outs.length) { outs.sort((a, b) => a.hp - b.hp); ai.attackLane = outs[0].lane; }
     for (let i = 0; i < 12; i++) {

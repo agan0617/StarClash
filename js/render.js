@@ -607,7 +607,16 @@ const Render = (() => {
     ctx.fillStyle = t.glow + (air ? '0.12)' : '0.25)');
     ctx.beginPath(); ctx.ellipse(gx, sy, rx + 1, ry + 1, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.setLineDash([]);
     const cy = air ? gy - 16 + bob : gy - size * 0.14 - hop;
-    put(ctx, u.type, u.owner, gx, cy, size, f.flip);
+    // 挨打：角色閃白一下＋晃一下，看得出誰被打（血＋護盾變少就算；狀態記在畫面的 face 表，不碰遊戲狀態）
+    const life = u.hp + (u.shield || 0);
+    if (f.lastLife !== undefined && life < f.lastLife - 0.01) f.hitT = now;
+    f.lastLife = life;
+    const hk = (now - (f.hitT ?? -9)) / 0.18, wob = hk < 1 ? Math.sin(now * 90) * 1.5 : 0;
+    put(ctx, u.type, u.owner, gx + wob, cy, size, f.flip);
+    if (hk < 1) {
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = 0.75 * (1 - hk);
+      put(ctx, u.type, u.owner, gx + wob, cy, size, f.flip); ctx.restore();
+    }
     // 開火：從角色身前（朝目標那側）閃一下
     if (fired(u) && u.range >= 1) {
       const fxp = gx + (f.flip ? -1 : 1) * size * 0.32;
@@ -692,53 +701,85 @@ const Render = (() => {
     }
   }
 
+  // 命中圈：目標身上一圈陣營色的環往外擴，深色描邊，淺色草地上也看得到
+  function impactRing(ctx, x, y, r0, grow, k, col) {
+    const r = r0 + grow * k, w = 3.5 * (1 - k) + 1.2;
+    ctx.globalAlpha = 1 - k;
+    ctx.strokeStyle = OUTLINE; ctx.lineWidth = w + 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
+    ctx.strokeStyle = col; ctx.lineWidth = w; ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+  // 粗線：先畫深色外框再畫顏色，彈道才不會被淺色地面洗掉
+  function outlinedLine(ctx, xa, ya, xb, yb, w, col, alpha) {
+    ctx.globalAlpha = alpha; ctx.lineCap = 'round';
+    ctx.strokeStyle = OUTLINE; ctx.lineWidth = w + 2.5; ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xb, yb); ctx.stroke();
+    ctx.strokeStyle = col; ctx.lineWidth = w; ctx.stroke();
+    ctx.globalAlpha = 1; ctx.lineCap = 'butt';
+  }
+  const OUTLINE = '#2b2140';
+  const FLY = 0.5;   // 一發攻擊的前一半時間是彈丸飛行，後一半是命中圈
+
   function drawEffects(ctx, g, sparks, airLayer) {
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    ctx.save();
     for (const e of sparks) {
       const a = 1 - e.age / e.life, p = e.age / e.life;
+      // 彈道與命中圈用一般混色（深色描邊才看得到）；煙、爆炸這類發光的才用加亮
+      ctx.globalCompositeOperation = e.type === 'shot' ? 'source-over' : 'lighter';
       if (e.type === 'shot') {
         if (!!e.air !== airLayer) continue;
         const x1 = fx(e.x1), y1 = fy(e.y1), x2 = fx(e.x2), y2 = fy(e.y2) - (e.air ? 14 : 0);
-        const tc = e.owner === 0 ? '140,210,255' : '255,160,120';
+        const T = TEAM[e.owner], big = e.big;
         if (e.by === 'baneling') {
-          // 毒爆蟲自爆：綠色酸液炸開
+          // 爆泡體自爆：綠色酸液炸開
           const r = 10 + p * 26;
+          ctx.globalCompositeOperation = 'lighter';
           ctx.fillStyle = rad(ctx, x2, y2, 0, r, ['rgba(230,255,170,' + a + ')', 'rgba(140,220,70,' + 0.7 * a + ')', 'rgba(40,90,20,0)']);
           ctx.beginPath(); ctx.arc(x2, y2, r, 0, Math.PI * 2); ctx.fill();
+          ctx.globalCompositeOperation = 'source-over';
+          impactRing(ctx, x2, y2, 8, 22, p, T.main);
           continue;
         }
         if (e.by === 'zergling' || e.by === 'zealot') {
-          // 近戰：目標上一道爪痕／光刃
-          ctx.strokeStyle = e.by === 'zealot' ? 'rgba(' + tc + ',' + a + ')' : 'rgba(255,220,200,' + a + ')'; ctx.lineWidth = 2;
-          ctx.beginPath(); ctx.moveTo(x2 - 5, y2 - 5); ctx.lineTo(x2 + 5, y2 + 5); ctx.moveTo(x2 + 5, y2 - 5); ctx.lineTo(x2 - 3, y2 + 3); ctx.stroke();
+          // 近戰：目標身上兩道陣營色的爪痕／光刃，深色描邊
+          const s = 7 + p * 2;
+          ctx.globalAlpha = a; ctx.lineCap = 'round';
+          for (const [w, c] of [[6.5, OUTLINE], [3.5, T.main]]) {
+            ctx.strokeStyle = c; ctx.lineWidth = w;
+            ctx.beginPath(); ctx.moveTo(x2 - s, y2 - s); ctx.lineTo(x2 + s, y2 + s); ctx.moveTo(x2 + s, y2 - s); ctx.lineTo(x2 - s * 0.6, y2 + s * 0.6); ctx.stroke();
+          }
+          ctx.globalAlpha = 1; ctx.lineCap = 'butt';
           continue;
         }
         if (e.by === 'voidray' || e.by === 'colossus') {
-          // 光束：粗的發光線＋白芯
-          const col = e.by === 'colossus' ? '255,150,60' : tc;
-          ctx.strokeStyle = 'rgba(' + col + ',' + 0.5 * a + ')'; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-          ctx.strokeStyle = 'rgba(255,255,255,' + 0.9 * a + ')'; ctx.lineWidth = 2; ctx.stroke();
+          // 光束：從攻擊者連到目標，整段持續到消失
+          outlinedLine(ctx, x1, y1, x2, y2, 5, e.by === 'colossus' ? '#ffa040' : T.main, a);
+          outlinedLine(ctx, x1, y1, x2, y2, 1.5, '#ffffff', a);
+          impactRing(ctx, x2, y2, 5, 10, p, T.light);
           continue;
         }
         if (e.by === 'hellion') {
-          // 火焰：一串由小到大的火球
+          // 火焰：一串由小到大的火球從車頭噴到目標
+          ctx.globalCompositeOperation = 'lighter';
+          const reach = Math.min(1, p / FLY);
           for (let i = 0; i <= 6; i++) {
-            const q = i / 6, px = x1 + (x2 - x1) * q, py = y1 + (y2 - y1) * q, r = 3 + q * 9;
-            ctx.fillStyle = rad(ctx, px, py, 0, r, ['rgba(255,240,170,' + 0.8 * a + ')', 'rgba(255,120,30,' + 0.5 * a + ')', 'rgba(255,60,0,0)']);
+            const q = i / 6 * reach, px = x1 + (x2 - x1) * q, py = y1 + (y2 - y1) * q, r = 3 + q * 9;
+            ctx.fillStyle = rad(ctx, px, py, 0, r, ['rgba(255,240,170,' + 0.9 * a + ')', 'rgba(255,120,30,' + 0.6 * a + ')', 'rgba(255,60,0,0)']);
             ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
           }
-        } else {
-          const big = e.big;
-          ctx.strokeStyle = 'rgba(' + tc + ',' + 0.35 * a + ')'; ctx.lineWidth = big ? 7 : 4;
-          ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-          ctx.strokeStyle = 'rgba(255,255,240,' + 0.9 * a + ')'; ctx.lineWidth = big ? 2.2 : 1.2;
-          // 曳光：只畫靠近目標的一段
-          const q0 = Math.max(0, p * 1.4 - 0.4), q1 = Math.min(1, p * 1.4 + 0.3);
-          ctx.beginPath(); ctx.moveTo(x1 + (x2 - x1) * q0, y1 + (y2 - y1) * q0); ctx.lineTo(x1 + (x2 - x1) * q1, y1 + (y2 - y1) * q1); ctx.stroke();
-          const ir = big ? 10 : 5;
-          ctx.fillStyle = rad(ctx, x2, y2, 0, ir, ['rgba(255,240,200,' + a + ')', 'rgba(' + tc + ',' + 0.4 * a + ')', 'rgba(0,0,0,0)']);
-          ctx.beginPath(); ctx.arc(x2, y2, ir, 0, Math.PI * 2); ctx.fill();
+          ctx.globalCompositeOperation = 'source-over';
+          if (p >= FLY) impactRing(ctx, x2, y2, 6, 12, (p - FLY) / (1 - FLY), T.main);
+          continue;
         }
+        // 一般射擊：陣營色彈丸帶一小段尾巴從攻擊者飛到目標，到了以後目標身上冒一圈命中圈
+        if (p < FLY) {
+          const q = p / FLY, q0 = Math.max(0, q - 0.3);
+          const bx = x1 + (x2 - x1) * q, by = y1 + (y2 - y1) * q;
+          outlinedLine(ctx, x1 + (x2 - x1) * q0, y1 + (y2 - y1) * q0, bx, by, big ? 3.5 : 2.2, T.main, 0.85);
+          const r = big ? 5 : 3.5;
+          ctx.fillStyle = T.light; ctx.strokeStyle = OUTLINE; ctx.lineWidth = 1.8;
+          ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(bx - r * 0.25, by - r * 0.25, r * 0.4, 0, Math.PI * 2); ctx.fill();
+        } else impactRing(ctx, x2, y2, big ? 7 : 4, big ? 16 : 9, (p - FLY) / (1 - FLY), T.main);
       } else if (e.type === 'die') {
         if (!!e.air !== airLayer) continue;
         // 被打倒：一團軟軟的煙＋往外飛的小星星

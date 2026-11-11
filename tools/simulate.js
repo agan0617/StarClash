@@ -39,15 +39,18 @@ if (R0 === 'all') {
   process.exit(0);
 }
 const wins = [0, 0, 0], reasons = {}, times = [], units = { 0: {}, 1: {} }, firstFall = [], crowns = [];
+const techAt = { 0: { factory: [], starport: [] }, 1: { factory: [], starport: [] } };   // 二、三階蓋好的時間（沒蓋到不算）
 let maxUnits = 0, decided = 0, mainKills = 0;
 for (let i = 0; i < N; i++) {
   const seed = 1000 + i;
   const g = Sim.createGame(seed, [DATA.AI[L0].income, DATA.AI[L1].income], [R0, R1]);
   const ais = [AI.create(0, L0, seed * 7 + 1), AI.create(1, L1, seed * 7 + 2)];
   let fell = null;
+  const seen = { 0: {}, 1: {} };
   while (!g.over) {
     for (const a of ais) for (const c of AI.update(g, a)) { const r = Sim.applyCommand(g, a.pid, c); if (r.ok && c.type === 'deploy') units[a.pid][c.unit] = (units[a.pid][c.unit] || 0) + 1; }
     Sim.step(g);
+    for (const p of [0, 1]) for (const w of ['factory', 'starport']) if (!seen[p][w] && g.players[p].counts[w]) { seen[p][w] = 1; techAt[p][w].push(g.time); }
     if (fell == null && g.structures.some(s => s.dead)) fell = g.time;
     maxUnits = Math.max(maxUnits, g.units.length);
     g.msgs.length = 0;
@@ -63,4 +66,5 @@ const pct = n => Math.round(n / N * 100) + '%';
 console.log(`${N} 場  下方(${L0} ${R0}) 勝 ${wins[0]}  上方(${L1} ${R1}) 勝 ${wins[1]}  平 ${wins[2]}  平均 ${avg(times).toFixed(0)} 秒  同場最多單位 ${maxUnits}`);
 console.log(`正規時間內分出勝負 ${pct(decided)}  拆主堡 ${pct(mainKills)}  有塔被拆的場次 ${pct(firstFall.length)}  第一座塔倒下平均 ${firstFall.length ? avg(firstFall).toFixed(0) + ' 秒' : '—'}  每場拆塔 ${avg(crowns).toFixed(2)}`);
 console.log('結束原因：', reasons);
+for (const p of [0, 1]) console.log(`玩家 ${p} 二階蓋好 ${pct(techAt[p].factory.length)} 平均 ${avg(techAt[p].factory).toFixed(0)} 秒、三階蓋好 ${pct(techAt[p].starport.length)} 平均 ${avg(techAt[p].starport).toFixed(0)} 秒`);
 for (const p of [0, 1]) console.log(`玩家 ${p} 出兵：`, Object.entries(units[p]).map(([k, v]) => `${DATA.UNITS[k].name} ${(v / N).toFixed(1)}`).join('、'));
