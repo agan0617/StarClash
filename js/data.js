@@ -4,7 +4,7 @@
 'use strict';
 
 const DATA = {
-  VERSION: '0.12.0',
+  VERSION: '0.13.0',
   TICK: 0.05,                 // 模擬固定每秒 20 步，和畫面更新分開
   FIELD: { w: 22.5, h: 30, river: 15, lanes: [5.5, 17], mid: 11.25 },
   DEPLOY_MAX_Y: 14,           // 玩家只能在 y ≤ 14 的自家半場放兵（敵方鏡射）
@@ -49,11 +49,11 @@ const DATA = {
   UNITS: {
     // ── 人族（id terran）：可愛又正經的機器人與機甲 ──
     marine:   { race: 'terran', name: '小機兵', m: 50,  g: 0,   supply: 1, hp: 45,  dmg: 6,  cd: 0.6,  range: 4,   speed: 2.0, air: false, hitsAir: true,  armor: 'light',   req: 'barracks', desc: '便宜、打得到空中，數量就是力量' },
-    marauder: { race: 'terran', name: '重拳機甲', m: 100, g: 25,  supply: 2, hp: 150, dmg: 10, bonus: 16, bonusVs: 'armored', cd: 1.0, range: 4.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', req: 'barracks', desc: '對重甲與建築多打一倍，打不到空中' },
-    hellion:  { race: 'terran', name: '噴火戰車', m: 75,  g: 0,   supply: 2, hp: 90,  dmg: 8,  bonus: 16, bonusVs: 'light',   cd: 1.2, range: 3.5, speed: 4.0, air: false, hitsAir: false, armor: 'light',   splash: 1.0, req: 'factory', desc: '跑得快、噴火範圍傷害，剋輕甲海' },
-    tank:     { race: 'terran', name: '砲擊機甲', m: 115, g: 95,  supply: 3, hp: 200, dmg: 30, bonus: 15, bonusVs: 'armored', cd: 1.6, range: 7,  speed: 1.8, air: false, hitsAir: false, armor: 'armored', splash: 1.5, req: 'factory', desc: '射程最遠、拆塔最快，怕空中單位' },
-    viking:   { race: 'terran', name: '鷹式戰機', m: 115, g: 55,  supply: 2, hp: 135, dmg: 12, bonus: 12, bonusVs: 'armored', cd: 1.2, range: 6,   speed: 3.5, air: true,  hitsAir: true,  armor: 'armored', groundMul: 0.5, req: 'starport', desc: '空中單位、主力防空，打地面只有一半傷害' },
-    banshee:  { race: 'terran', name: '旋翼無人機', m: 115, g: 75,  supply: 3, hp: 140, dmg: 24, cd: 1.25, range: 5,  speed: 3.5, air: true,  hitsAir: false, armor: 'light',   req: 'starport', desc: '空中轟炸，打不到空中' },
+    marauder: { race: 'terran', name: '重拳機甲', m: 125, g: 25,  supply: 2, hp: 150, dmg: 10, bonus: 16, bonusVs: 'armored', cd: 1.0, range: 4.5, speed: 2.0, air: false, hitsAir: false, armor: 'armored', req: 'barracks', desc: '對重甲與建築多打一倍，打不到空中' },
+    hellion:  { race: 'terran', name: '噴火戰車', m: 70,  g: 0,  supply: 2, hp: 90,  dmg: 8,  bonus: 16, bonusVs: 'light',   cd: 1.2, range: 3.5, speed: 4.0, air: false, hitsAir: false, armor: 'light',   splash: 1.0, req: 'factory', desc: '跑得快、噴火範圍傷害，剋輕甲海' },
+    tank:     { race: 'terran', name: '砲擊機甲', m: 105, g: 85,  supply: 3, hp: 200, dmg: 30, bonus: 15, bonusVs: 'armored', cd: 1.6, range: 7,  speed: 1.8, air: false, hitsAir: false, armor: 'armored', splash: 1.5, req: 'factory', desc: '射程最遠、拆塔最快，怕空中單位' },
+    viking:   { race: 'terran', name: '鷹式戰機', m: 105, g: 50,  supply: 2, hp: 135, dmg: 12, bonus: 12, bonusVs: 'armored', cd: 1.2, range: 6,   speed: 3.5, air: true,  hitsAir: true,  armor: 'armored', groundMul: 0.5, req: 'starport', desc: '空中單位、主力防空，打地面只有一半傷害' },
+    banshee:  { race: 'terran', name: '旋翼無人機', m: 105, g: 70,  supply: 3, hp: 140, dmg: 24, cd: 1.25, range: 5,  speed: 3.5, air: true,  hitsAir: false, armor: 'light',   req: 'starport', desc: '空中轟炸，打不到空中' },
     turret:   { race: 'terran', name: '哨戒砲台', m: 100, g: 0,   supply: 0, hp: 250, dmg: 12, cd: 0.8,  range: 6,   speed: 0,   air: false, hitsAir: true,  armor: 'armored', structure: true, lifetime: 60, maxCount: 3, req: 'barracks', desc: '固定防禦，打空也打地，撐 60 秒，最多 3 座' },
     // ── 蟲族（id zerg）：可愛外星生物；便宜、快、會回血 ──
     zergling: { race: 'zerg', name: '小觸獸', m: 50,  g: 0,   supply: 0.5, count: 2, hp: 38, dmg: 5, cd: 0.5, range: 0.6, speed: 4.2, air: false, hitsAir: false, armor: 'light', req: 'barracks', desc: '一張卡兩隻，又快又便宜的近戰' },
